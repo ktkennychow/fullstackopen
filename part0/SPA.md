@@ -3,17 +3,8 @@
       participant browser
       participant server
 
-      browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
-      activate server
-      Note left of server: The server start executing the post request by wrapping the body text/note with and time tag as an object and pushing it into the existing notes JSON/database
 
-      server-->>browser: HTTP status code 302
-      Note left of browser: The server asks the browser to do a new HTTP GET request to the address https://studies.cs.helsinki.fi/exampleapp/notes to reload the page with the new notes list
-
-      deactivate server
-
-
-      browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+      browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
       activate server
       server-->>browser: HTML document
       deactivate server
@@ -23,7 +14,7 @@
       server-->>browser: the css file
       deactivate server
 
-      browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+      browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
       activate server
       server-->>browser: the JavaScript file
       deactivate server

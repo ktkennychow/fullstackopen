@@ -3,14 +3,15 @@
       participant browser
       participant server
 
-      browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+      note right of browser: JavaScript pushes the new note to the current dom element "div" under the id "notes"
+      browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
       activate server
-      Note left of server: The server start executing the post request by wrapping the body text/note with and time tag as an object and pushing it into the existing notes JSON/database
+      Note left of server: The server received a json with the new object wrapping the body text/note with and time tag and pushed it into the existing notes JSON/database
 
-      server-->>browser: HTTP status code 302
-      Note left of browser: The server asks the browser to do a new HTTP GET request to the address https://studies.cs.helsinki.fi/exampleapp/notes to reload the page with the new notes list
-
+      server-->>browser: HTTP status code 201
+      Note left of server: The server confirmed to the browser that the request was fulfilled and has resulted in a change in the server.
       deactivate server
+
 
 
       browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
