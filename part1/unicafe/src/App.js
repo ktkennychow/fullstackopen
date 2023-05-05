@@ -41,33 +41,34 @@ const StatisticsTable = ({ good, neutral, bad }) => {
 		return (
 			<>
 				<h1>statistics (table ver.)</h1>
-        <table>
-          <tr>
-            <td>good</td>
-            <td>{good}</td>
-          </tr>
-          <tr>
-            <td>neutral</td>
-            <td>{neutral}</td>
-          </tr>
-          <tr>
-            <td>bad</td>
-            <td>{bad}</td>
-          </tr>
-          <tr>
-            <td>all</td>
-            <td>{all}</td>
-          </tr>
-          <tr>
-            <td>average</td>
-            <td>{average}</td>
-          </tr>
-          <tr>
-            <td>positive</td>
-            <td>{positive}</td>
-          </tr>
-          
-        </table>
+				<table>
+					<tbody>
+						<tr>
+							<td>good</td>
+							<td>{good}</td>
+						</tr>
+						<tr>
+							<td>neutral</td>
+							<td>{neutral}</td>
+						</tr>
+						<tr>
+							<td>bad</td>
+							<td>{bad}</td>
+						</tr>
+						<tr>
+							<td>all</td>
+							<td>{all}</td>
+						</tr>
+						<tr>
+							<td>average</td>
+							<td>{average}</td>
+						</tr>
+						<tr>
+							<td>positive</td>
+							<td>{positive}</td>
+						</tr>
+					</tbody>
+				</table>
 			</>
 		);
 	}
@@ -93,7 +94,7 @@ const App = () => {
 			<Button clickHandler={neutralHandler} name='neutral' />
 			<Button clickHandler={badHandler} name='bad' />
 			<Statistics good={good} neutral={neutral} bad={bad} />
-      <StatisticsTable good={good} neutral={neutral} bad={bad} />
+			<StatisticsTable good={good} neutral={neutral} bad={bad} />
 		</>
 	);
 };
