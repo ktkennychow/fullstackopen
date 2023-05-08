@@ -1,49 +1,69 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Persons from "./components/Persons";
 import PersonForm from "./components/PersonForm";
 import Filter from "./components/Filter";
+import personsServices from "./services/persons";
 
 const App = () => {
-	const [persons, setPersons] = useState([
-		{ name: "Arto Hellas", number: "040-123456", id: 1 },
-		{ name: "Ada Lovelace", number: "39-44-5323523", id: 2 },
-		{ name: "Dan Abramov", number: "12-43-234345", id: 3 },
-		{ name: "Mary Poppendieck", number: "39-23-6423122", id: 4 },
-	]);
+	const [persons, setPersons] = useState([]);
 	const [newName, setNewName] = useState("");
 	const [newNumber, setNewNumber] = useState("");
 	const [filterName, setFilterName] = useState("");
-	const [display, setDisplay] = useState(persons);
+
+	useEffect(() => {
+		personsServices.getAll().then(response => { setPersons(response) })
+	}, [])
 
 	const updatePersonsHandler = (event) => {
 		event.preventDefault();
+		const lastPerson = persons.slice(-1)
 		const newPerson = {
 			name: newName,
 			number: newNumber,
-			id: persons.length + 1,
+			id: lastPerson.id + 1,
 		};
-		console.log(persons, newPerson);
+		if (persons.find((person) => person.name === newName)) {
+			const personId = persons.find((person) => person.name === newName).id;
+			console.log(personId);
+			if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
+				personsServices.update(personId, newPerson).then(response => {
+					console.log("updated!", response)
+					personsServices.getAll().then(response => {
+						setPersons(response);
+						setNewName("");
+						setNewNumber("");
+					})
+
+				})
+			}
+			return ""
+		}
 		if (persons.some((item) => newPerson.name === item.name)) {
 			alert(`${newPerson.name} is already added to the phonebook`);
 		}
 		if (!persons.some((item) => newPerson.name === item.name)) {
-			const newPersons = persons.concat(newPerson);
-			setPersons(newPersons);
-			setDisplay(newPersons);
-			setNewName("");
-			setNewNumber("");
+			personsServices.create(newPerson).then(response => {
+				console.log("Added!", response);
+				const newPersons = [...persons, response];
+				setPersons(newPersons);
+				setNewName("");
+				setNewNumber("");
+			})
 		}
 	};
 
+	const deleteHandler = (id) => {
+		const name = persons.find(p => p.id === id).name
+		window.confirm(`Delete ${name} ?`)
+		personsServices.remove(id).then(response => {
+			personsServices.getAll().then(response => { setPersons(response) })
+			console.log("deleted!", response)
+		})
+	}
+
 	const filterHandler = (event) => {
 		setFilterName(event.target.value);
-		setDisplay(
-			persons.filter((person) =>
-				person.name
-					.toLowerCase()
-					.startsWith(event.target.value.toLowerCase())
-			)
-		);
+		console.log("filtered!", event.target.value)
 	};
 
 	return (
@@ -60,7 +80,7 @@ const App = () => {
 				setNewNumber={setNewNumber}
 			/>
 			<h3>Numbers</h3>
-			<Persons display={display} />
+			<Persons persons={persons} filterName={filterName} deleteHandler={deleteHandler} />
 		</div>
 	);
 };
