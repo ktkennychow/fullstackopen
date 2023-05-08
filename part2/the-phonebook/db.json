@@ -1,39 +1,19 @@
 {
   "persons": [
     {
-      "name": "Ada Lovelace",
-      "number": "39-44-5323523",
-      "id": 2
-    },
-    {
-      "name": "Dan Abramov",
-      "number": "12-43-234345",
-      "id": 3
-    },
-    {
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122",
-      "id": 4
-    },
-    {
       "name": "Kenny Chow",
-      "number": "I love Adora",
+      "number": "53534534543",
       "id": 5
     },
     {
       "name": "Adora Kim",
-      "number": "I love Kenny Chow",
+      "number": "f4234234",
       "id": 6
     },
     {
-      "name": "fsdfds",
-      "number": "432423",
+      "name": "42342342",
+      "number": "4234234",
       "id": 8
-    },
-    {
-      "name": "Adora",
-      "number": "I love Kenny Chow",
-      "id": 9
     }
   ]
 }

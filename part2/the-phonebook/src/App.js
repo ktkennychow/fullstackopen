@@ -3,15 +3,20 @@ import Persons from "./components/Persons";
 import PersonForm from "./components/PersonForm";
 import Filter from "./components/Filter";
 import personsServices from "./services/persons";
+import Notification from "./components/Notification";
+
 
 const App = () => {
 	const [persons, setPersons] = useState([]);
 	const [newName, setNewName] = useState("");
 	const [newNumber, setNewNumber] = useState("");
 	const [filterName, setFilterName] = useState("");
+	const [message, setMessage] = useState("")
 
 	useEffect(() => {
-		personsServices.getAll().then(response => { setPersons(response) })
+		personsServices
+			.getAll()
+			.then(response => { setPersons(response) })
 	}, [])
 
 	const updatePersonsHandler = (event) => {
@@ -32,8 +37,9 @@ const App = () => {
 						setPersons(response);
 						setNewName("");
 						setNewNumber("");
+						setMessage(`Updated ${newName}`)
+						setTimeout(() => setMessage(""), 3000)
 					})
-
 				})
 			}
 			return ""
@@ -44,22 +50,47 @@ const App = () => {
 		if (!persons.some((item) => newPerson.name === item.name)) {
 			personsServices.create(newPerson).then(response => {
 				console.log("Added!", response);
-				const newPersons = [...persons, response];
-				setPersons(newPersons);
+				personsServices
+					.getAll()
+					.then(response => {
+						setPersons(response)
+					})
 				setNewName("");
 				setNewNumber("");
+				setMessage(`Added ${newName}`)
+				setTimeout(() => setMessage(""), 3000)
 			})
 		}
 	};
 
-	const deleteHandler = (id) => {
+	const deleteHandler = async (id) => {
 		const name = persons.find(p => p.id === id).name
-		window.confirm(`Delete ${name} ?`)
-		personsServices.remove(id).then(response => {
-			personsServices.getAll().then(response => { setPersons(response) })
-			console.log("deleted!", response)
-		})
+		if (window.confirm(`Delete ${name} ?`)) {
+			personsServices.remove(id)
+				.then(response => {
+					personsServices
+						.getAll()
+						.then(response => {
+							setPersons(response)
+							console.log("deleted!", response)
+						})
+				})
+				.catch(error => {
+					if (error.response) {
+						console.log(error.response)
+					}
+					setMessage(`Information of ${name} has already been removed from server`)
+					personsServices
+						.getAll()
+						.then(response => {
+							setPersons(response)
+						})
+				})
+
+		}
 	}
+
+
 
 	const filterHandler = (event) => {
 		setFilterName(event.target.value);
@@ -68,8 +99,8 @@ const App = () => {
 
 	return (
 		<div>
-			<div>debug: {newNumber}</div>
 			<h2>Phonebook</h2>
+			<Notification message={message} />
 			<Filter filterName={filterName} filterHandler={filterHandler} />
 			<h3>add a new</h3>
 			<PersonForm
