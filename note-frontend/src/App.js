@@ -24,12 +24,21 @@ const App = () => {
 			content: newNote,
 			important: Math.random() > 0.5,
 		}
+		console.log(3131321)
 
 		noteService
-			.create(noteObject)
-			.then(returnedNote => {
-				setNotes(notes.concat(returnedNote))
-				setNewNote('')
+		.create(noteObject)
+		.then(returnedNote => {
+			setNotes(notes.concat(returnedNote))
+			setNewNote('')
+
+		})
+		.catch(error => {
+			console.log(error,111111)
+			setErrorMessage(error.response.data.error)
+				setTimeout(() => {
+					setErrorMessage(null)
+				}, 5000)
 			})
 	}
 

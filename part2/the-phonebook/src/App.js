@@ -12,6 +12,7 @@ const App = () => {
 	const [newNumber, setNewNumber] = useState("");
 	const [filterName, setFilterName] = useState("");
 	const [message, setMessage] = useState("")
+	const [status, setStatus] = useState("")
 
 	useEffect(() => {
 		personsServices
@@ -27,7 +28,7 @@ const App = () => {
 		};
 		if (persons.find((person) => person.name === newName)) {
 			const personId = persons.find((person) => person.name === newName).id;
-			console.log(personId,423423432);
+			console.log(personId, 423423432);
 			if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
 				personsServices.update(personId, newPerson).then(response => {
 					console.log("updated!", response)
@@ -36,7 +37,8 @@ const App = () => {
 						setNewName("");
 						setNewNumber("");
 						setMessage(`Updated ${newName}`)
-						setTimeout(() => setMessage(""), 3000)
+						setStatus("success")
+						setTimeout(() => { setMessage(""); setStatus("") }, 3000)
 					})
 				})
 			}
@@ -44,23 +46,25 @@ const App = () => {
 		}
 		if (!persons.some((item) => newPerson.name === item.name)) {
 			personsServices.create(newPerson)
-			.then(response => {
-				console.log("Added!", response);
-				personsServices
-					.getAll()
-					.then(response => {
-						setPersons(response)
-					})
-				setNewName("");
-				setNewNumber("");
-				setMessage(`Added ${newName}`)
-				setTimeout(() => setMessage(""), 3000)
-			})
-			.catch((err) => {
-				console.log(err.response.data.error)
-				setMessage(`${err.response.data.error}`)
-}
-			)
+				.then(response => {
+					console.log("Added!", response);
+					personsServices
+						.getAll()
+						.then(response => {
+							setPersons(response)
+						})
+					setNewName("");
+					setNewNumber("");
+					setMessage(`Added ${newName}`)
+					setStatus("success")
+					setTimeout(() => { setMessage(""); setStatus("") }, 3000)
+				})
+				.catch((err) => {
+					console.log(err.response.data.error)
+					setMessage(`${err.response.data.error}`)
+					setStatus("error")
+				}
+				)
 		}
 	};
 
@@ -81,11 +85,13 @@ const App = () => {
 						console.log(error.response)
 					}
 					setMessage(`Information of ${name} has already been removed from server`)
+					setStatus("error")
 					personsServices
 						.getAll()
 						.then(response => {
 							setPersons(response)
 						})
+					setTimeout(() => { setMessage(""); setStatus("") }, 3000)
 				})
 
 		}
@@ -101,7 +107,7 @@ const App = () => {
 	return (
 		<div>
 			<h2>Phonebook</h2>
-			<Notification message={message} />
+			<Notification message={message} status={status} />
 			<Filter filterName={filterName} filterHandler={filterHandler} />
 			<h3>add a new</h3>
 			<PersonForm
