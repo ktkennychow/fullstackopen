@@ -21,15 +21,13 @@ const App = () => {
 
 	const updatePersonsHandler = (event) => {
 		event.preventDefault();
-		const lastPerson = persons.slice(-1)
 		const newPerson = {
 			name: newName,
 			number: newNumber,
-			id: lastPerson.id + 1,
 		};
 		if (persons.find((person) => person.name === newName)) {
 			const personId = persons.find((person) => person.name === newName).id;
-			console.log(personId);
+			console.log(personId,423423432);
 			if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
 				personsServices.update(personId, newPerson).then(response => {
 					console.log("updated!", response)
@@ -44,11 +42,9 @@ const App = () => {
 			}
 			return ""
 		}
-		if (persons.some((item) => newPerson.name === item.name)) {
-			alert(`${newPerson.name} is already added to the phonebook`);
-		}
 		if (!persons.some((item) => newPerson.name === item.name)) {
-			personsServices.create(newPerson).then(response => {
+			personsServices.create(newPerson)
+			.then(response => {
 				console.log("Added!", response);
 				personsServices
 					.getAll()
@@ -60,6 +56,11 @@ const App = () => {
 				setMessage(`Added ${newName}`)
 				setTimeout(() => setMessage(""), 3000)
 			})
+			.catch((err) => {
+				console.log(err.response.data.error)
+				setMessage(`${err.response.data.error}`)
+}
+			)
 		}
 	};
 
