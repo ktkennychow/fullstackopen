@@ -27,15 +27,15 @@ const App = () => {
 		console.log(3131321)
 
 		noteService
-		.create(noteObject)
-		.then(returnedNote => {
-			setNotes(notes.concat(returnedNote))
-			setNewNote('')
+			.create(noteObject)
+			.then(returnedNote => {
+				setNotes(notes.concat(returnedNote))
+				setNewNote('')
 
-		})
-		.catch(error => {
-			console.log(error,111111)
-			setErrorMessage(error.response.data.error)
+			})
+			.catch(error => {
+				console.log(error, 111111)
+				setErrorMessage(error.response.data.error)
 				setTimeout(() => {
 					setErrorMessage(null)
 				}, 5000)
@@ -79,13 +79,13 @@ const App = () => {
 				</button>
 			</div>
 			<ul>
-					{notesToShow.map(note =>
-						<Note
-							key={note.id}
-							note={note}
-							toggleImportance={() => toggleImportanceOf(note.id)}
-						/>
-					)}
+				{notesToShow.map(note =>
+					<Note
+						key={note.id}
+						note={note}
+						toggleImportance={() => toggleImportanceOf(note.id)}
+					/>
+				)}
 			</ul>
 			<form onSubmit={addNote}>
 				<input value={newNote} onChange={handleNoteChange} />
