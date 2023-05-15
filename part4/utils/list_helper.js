@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 const dummy = (blogs) => {
   const blog = {
     title: "fasdfdaf",
@@ -38,7 +36,7 @@ const mostBloggedAuthor = (blogs) => {
     return authorWithBlogs
   }
   ,{})
-  console.log(43242342,authorWithBlogs)
+  console.log(authorWithBlogs)
   const mostBloggedAuthor = Object.keys(authorWithBlogs).reduce((mostBloggedAuthor, author) => {
     console.log(authorWithBlogs[author].blogs)
     let currHighest = authorWithBlogs[author].blogs
@@ -64,7 +62,6 @@ const mostLikedAuthor = (blogs) => {
   }
   ,{})
 
-  console.log(43242342,authorWithBlogs)
   const mostLikedAuthor = Object.keys(authorWithBlogs).reduce((mostLikedAuthor, author) => {
     console.log(authorWithBlogs[author].likes)
     let currHighest = authorWithBlogs[author].likes
