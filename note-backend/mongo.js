@@ -1,10 +1,11 @@
 require('dotenv').config()
 
 const mongoose = require('mongoose')
-const url = process.env.MONGODB_URL
+const MONGODB_URI = process.env.TEST_MONGODB_URI
+
 
 mongoose.set('strictQuery', false)
-mongoose.connect(url)
+mongoose.connect(MONGODB_URI)
 
 const noteSchema = new mongoose.Schema({
   content: String,
@@ -13,19 +14,19 @@ const noteSchema = new mongoose.Schema({
 
 const Note = mongoose.model('Note', noteSchema)
 
-// const note = new Note({
-//   content: 'HTML is HARD',
-//   important: false,
-// })
+const note = new Note({
+  content: 'CSS is easy',
+  important: false,
+})
 
-// note.save().then(result => {
-//   console.log('note saved!')
-//   console.log(note)
-//   mongoose.connection.close()
-// })
-Note.find({ important: true }).then(result => {
-  result.forEach(note => {
-    console.log(note)
-  })
+note.save().then(result => {
+  console.log('note saved!', result)
+  console.log(note)
   mongoose.connection.close()
 })
+// Note.find({ important: true }).then(result => {
+//   result.forEach(note => {
+//     console.log(note)
+//   })
+//   mongoose.connection.close()
+// })
