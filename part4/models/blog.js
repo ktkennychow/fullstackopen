@@ -10,7 +10,7 @@ const blogSchema = new mongoose.Schema({
 
 blogSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString()
+    returnedObject.id = returnedObject._id.toHexString()
     returnedObject.likes
       ? returnedObject.likes = returnedObject.likes
       : returnedObject.likes = 0
