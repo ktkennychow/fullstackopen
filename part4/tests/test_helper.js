@@ -6,13 +6,15 @@ const initialBlogs = [
     title: "I love Jeff Basil",
     author: "Maya",
     url: "www.amazon.com/blog/amazedballs",
-    likes: 6000009
+    likes: 6000009,
+    id: "64634b37ef7a7b322937baaf"
   },
   {
     title: "WTH is GOOGLE",
     author: "ken",
     url: "www.google.com",
-    likes: 432
+    likes: 432,
+    id: "64634b38ef7a7b322937bab1"
   }
 ]
 
@@ -27,7 +29,7 @@ const usersInDb = async () => {
 }
 
 module.exports = {
-  initialNotes,
+  initialBlogs,
   blogsInDb,
   usersInDb,
 }

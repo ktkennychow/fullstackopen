@@ -1,9 +1,9 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlvbG80MjAiLCJpZCI6IjY0NjMxZWVlYzczMDEyMDgwMDg0YTBlNCIsImlhdCI6MTY4NDIyMTQ4OH0.9GvjZkyeArIByj0oQmyT5YlNCg_8hdofUTD620JdyBs
+
 
 {
-  "title": "testing for 4.20",
-  "author": "Me",
-  "url": "www.thisisnotimportant.com"
+  "title": "testing for 4.22",
+  "author": "4.22",
+  "url": "www.4.22.com"
 }
