@@ -2,6 +2,7 @@ POST http://localhost:3001/api/notes
 Content-Type: application/json
 
 {
-"content": "HTML is easy",
-"important": true
+"content": "Browser can execute only JavaScript",
+"important": true,
+"userId": "6462f70ff929f74fd43bab82"
 }
