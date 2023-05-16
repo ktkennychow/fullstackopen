@@ -1,9 +1,9 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlvbG80MjAiLCJpZCBs
 
 {
-  "title": "FSO",
+  "title": "FSO2-two-two",
   "author": "DOPE",
-  "url": "www.hey.com",
-  "userId": "6463136a2adcd5c00e8b05a6"
+  "url": "www.FSO.com"
 }

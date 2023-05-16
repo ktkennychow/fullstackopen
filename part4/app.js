@@ -7,6 +7,8 @@ const errorHandler = require('./utils/error_handler')
 const logger = require('./utils/logger')
 const blogsRouter = require('./controllers/blogs')
 const usersRouter = require('./controllers/users')
+const loginRouter = require('./controllers/login')
+
 const mongoose = require('mongoose')
 
 logger.info('connecting to', config.MONGODB_URI)
@@ -24,6 +26,7 @@ app.use(express.json())
 
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/login', loginRouter)
 
 
 console.log('app running')
