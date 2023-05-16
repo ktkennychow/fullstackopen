@@ -2,10 +2,13 @@ const mongoose = require('mongoose')
 
 
 const blogSchema = new mongoose.Schema({
+  url: String,
   title: String,
   author: String,
-  url: String,
-  likes: Number,
+  likes: {
+    type: Number,
+    default: 0
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -15,9 +18,7 @@ const blogSchema = new mongoose.Schema({
 blogSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toHexString()
-    returnedObject.likes
-      ? returnedObject.likes = returnedObject.likes
-      : returnedObject.likes = 0
+    delete returnedObject.__v
     delete returnedObject._id
   }
 })

@@ -3,13 +3,15 @@ const usersRouter = require('express').Router()
 const User = require('../models/user')
 
 usersRouter.get('/', async (request, response) => {
-  const users = await User.find({})
+  const users = await User
+    .find({}).populate('blogs', { user: 0, likes: 0})
+
   response.json(users)
 })
 
 usersRouter.post('/', async (request, response) => {
   const { username, name, password } = request.body
-  
+
   if (username.length < 3) {
     response.status(401).json({ error: 'Invalid username(minimum length: 3)' })
   } else if (password.length < 3) {

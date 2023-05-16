@@ -2,8 +2,8 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-  "title": "I love Jeff Basil",
-  "author": "Maya",
-  "url": "www.amazon.com/blog/amazedballs",
-  "likes": "6000009"
+  "title": "FSO",
+  "author": "DOPE",
+  "url": "www.hey.com",
+  "userId": "6463136a2adcd5c00e8b05a6"
 }
