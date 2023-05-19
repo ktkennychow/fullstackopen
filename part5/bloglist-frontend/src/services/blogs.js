@@ -13,15 +13,19 @@ const setConfig = token => {
 
 const getAll = async () => {
   const request = await axios.get(baseUrl, config)
-  console.log(123)
   return request.data
 }
 
 const create = async (newBlog) => {
-  console.log(321)
   const response = await axios.post(baseUrl, newBlog, config)
   return response.data
 }
 
+const update = async (updatedBlog) => {
+  console.log(updatedBlog)
+  const response = await axios.put(`${baseUrl}/${updatedBlog.id}`, updatedBlog, config)
+  return response.data
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll, setToken, create }
+export default { setToken, getAll, create ,update}
