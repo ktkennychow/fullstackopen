@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
-const BlogFrom = ({ handleNewBlog }) => {
+const BlogForm = ({ handleNewBlog }) => {
   const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
   const addBlog = (event) => {
     event.preventDefault()
@@ -42,4 +43,7 @@ const BlogFrom = ({ handleNewBlog }) => {
   )
 }
 
-export default BlogFrom
+BlogForm.propTypes = {
+  handleNewBlog: PropTypes.func.isRequired,
+}
+export default BlogForm
