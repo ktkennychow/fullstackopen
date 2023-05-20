@@ -96,21 +96,20 @@ const App = () => {
 	};
 
 	const handleLikes = async (blog) => {
-    blog.likes++
-    console.log(blog)
-    try {
-      const updatedBlog = await blogService.update(blog)
-      console.log(updatedBlog)
-      const updatedBlogs = blogs.fitler(blog => blog.id !== updatedBlog.id).concat(updatedBlog);
-      setBlogs(updatedBlogs)
-      handleNotification(
-				`you liked ${blog.title} by ${blog.author} !`,
-				good
-			);
-    } catch (err) {
-      console.log(err)
-      handleNotification(err.response.data.error, bad);
-    }
+		blog.likes++;
+		console.log(blog);
+		try {
+			const updatedBlog = await blogService.update(blog);
+			console.log(updatedBlog);
+			console.log(blogs);
+			const targetBlog = blogs.filter((blog) => blog.id === updatedBlog.id);
+			targetBlog.likes = updatedBlog.likes;
+			setBlogs(blogs);
+			handleNotification(`you liked ${blog.title} by ${blog.author} !`, good);
+		} catch (err) {
+			console.log(err);
+			handleNotification(err.response.data.error, bad);
+		}
 	};
 
 	const blogsDisplay = () => (
