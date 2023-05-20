@@ -22,10 +22,14 @@ const create = async (newBlog) => {
 }
 
 const update = async (updatedBlog) => {
-  console.log(updatedBlog)
   const response = await axios.put(`${baseUrl}/${updatedBlog.id}`, updatedBlog, config)
   return response.data
 }
 
+const remove = async (blog) => {
+  const response = await axios.delete(`${baseUrl}/${blog.id}`, config)
+  return response.data
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { setToken, getAll, create ,update}
+export default { setToken, getAll, create ,update, remove}

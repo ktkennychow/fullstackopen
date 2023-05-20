@@ -28,11 +28,15 @@ const App = () => {
 		borderRadius: '5px',
 	};
 
+	const sortByLikes = (blogs) => {
+		return blogs.sort((a, b) => b.likes - a.likes);
+	};
+
 	useEffect(() => {
 		user &&
 			blogService
 				.getAll()
-				.then((blogs) => setBlogs(blogs))
+				.then((blogs) => setBlogs(sortByLikes(blogs)))
 				.then(() => {});
 	}, [user]);
 
@@ -80,9 +84,6 @@ const App = () => {
 			handleNotification(err.response.data.error, bad);
 		}
 	};
-	const sortByLikes = (blogs) => {
-		return blogs.sort((a, b) => b.likes - a.likes);
-	};
 	const handleNewBlog = async (blog) => {
 		blogFormRef.current.toggleVisibility();
 		try {
@@ -99,13 +100,11 @@ const App = () => {
 	};
 	const handleLikes = async (blog) => {
 		blog.likes++;
-		console.log(blog);
 		try {
 			const updatedBlog = await blogService.update(blog);
 			const targetBlog = blogs.filter((blog) => blog.id === updatedBlog.id);
 			targetBlog.likes = updatedBlog.likes;
 			const sortedBlogs = sortByLikes(blogs);
-
 			setBlogs(sortedBlogs);
 			handleNotification(`you liked ${blog.title} by ${blog.author} !`, good);
 		} catch (err) {
@@ -113,25 +112,48 @@ const App = () => {
 			handleNotification(err.response.data.error, bad);
 		}
 	};
-
+	const handleDeleteBlog = async (blog) => {
+    console.log(blog)
+		if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
+			try {
+				await blogService.remove(blog);
+        console.log('passed!')
+				const targetBlog = blog;
+				const updatedBlogs = blogs.filter((blog) => blog.id !== targetBlog.id);
+				const sortedBlogs = sortByLikes(updatedBlogs);
+				setBlogs(sortedBlogs);
+				handleNotification(
+					`successfully deleted ${blog.title} by ${blog.author}!`,
+					good
+				);
+			} catch (err) {
+				console.log(err);
+				handleNotification(err.response.data.error, bad);
+			}
+		}
+	};
 	const blogsDisplay = () => (
 		<div>
-			<h2>blogs</h2>
-			<h3 style={status}>{notification}</h3>
-			<p>
-				{user.name} logged in <button onClick={handleLogout}>logout</button>
-			</p>
-			<ToggleVisibility
-				buttonLabel='new blog'
-				ref={blogFormRef}>
-				<BlogForm handleNewBlog={handleNewBlog} />
-			</ToggleVisibility>
+			<div>
+				<h2>blogs</h2>
+				<h3 style={status}>{notification}</h3>
+				<p>
+					{user.name} logged in <button onClick={handleLogout}>logout</button>
+				</p>
+				<ToggleVisibility
+					buttonLabel='new blog'
+					ref={blogFormRef}>
+					<BlogForm handleNewBlog={handleNewBlog} />
+				</ToggleVisibility>
+			</div>
 			{blogs.map((blog) => (
 				<Blog
 					key={blog.id}
 					blog={blog}
 					name={user.name}
+          username={user.username}
 					handleLikes={handleLikes}
+					handleDeleteBlog={handleDeleteBlog}
 				/>
 			))}
 		</div>
