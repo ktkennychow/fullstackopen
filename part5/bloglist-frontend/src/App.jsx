@@ -80,12 +80,15 @@ const App = () => {
 			handleNotification(err.response.data.error, bad);
 		}
 	};
-
+	const sortByLikes = (blogs) => {
+		return blogs.sort((a, b) => b.likes - a.likes);
+	};
 	const handleNewBlog = async (blog) => {
 		blogFormRef.current.toggleVisibility();
 		try {
 			const newBlog = await blogService.create(blog);
-			setBlogs(blogs.concat(newBlog));
+			const sortedBlogs = sortByLikes(blogs.concat(newBlog));
+			setBlogs(sortedBlogs);
 			handleNotification(
 				`a new blog ${blog.title} by ${blog.author} added.`,
 				good
@@ -94,17 +97,16 @@ const App = () => {
 			handleNotification(err.response.data.error, bad);
 		}
 	};
-
 	const handleLikes = async (blog) => {
 		blog.likes++;
 		console.log(blog);
 		try {
 			const updatedBlog = await blogService.update(blog);
-			console.log(updatedBlog);
-			console.log(blogs);
 			const targetBlog = blogs.filter((blog) => blog.id === updatedBlog.id);
 			targetBlog.likes = updatedBlog.likes;
-			setBlogs(blogs);
+			const sortedBlogs = sortByLikes(blogs);
+
+			setBlogs(sortedBlogs);
 			handleNotification(`you liked ${blog.title} by ${blog.author} !`, good);
 		} catch (err) {
 			console.log(err);
