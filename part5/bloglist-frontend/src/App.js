@@ -85,6 +85,7 @@ const App = () => {
       handleNotification(err.response.data.error, bad)
     }
   }
+
   const handleNewBlog = async (blog) => {
     blogFormRef.current.toggleVisibility()
     try {
@@ -99,8 +100,9 @@ const App = () => {
       handleNotification(err.response.data.error, bad)
     }
   }
+
   const handleLikes = async (blog) => {
-    blog.likes++
+    blog.likes = blog.likes + 1
     try {
       const updatedBlog = await blogService.update(blog)
       const targetBlog = blogs.filter((blog) => blog.id === updatedBlog.id)
@@ -113,6 +115,7 @@ const App = () => {
       handleNotification(err.response.data.error, bad)
     }
   }
+
   const handleDeleteBlog = async (blog) => {
     console.log(blog)
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
@@ -133,7 +136,7 @@ const App = () => {
       }
     }
   }
-  console.log(user)
+
   const blogsDisplay = () => (
     <div>
       <div>
