@@ -8,22 +8,19 @@ const Blog = ({ blog, name, id, handleLikes, handleDeleteBlog }) => {
     border: '1px black solid',
   }
 
-  console.log(1,blog.user)
-  console.log(2,id)
-
   return (
-    <div style={blogStyle}>
+    <div style={blogStyle} className='blog'>
       <div><em>{blog.title}</em>{` by ${blog.author} `}
-        <button onClick={() => setShowDetails(!showDetails)}>
+        <button onClick={() => setShowDetails(!showDetails)} id='viewButton'>
           {showDetails ? 'hide' : 'view'}
         </button>
       </div>
       {showDetails && (
         <div>
           <a href={blog.url} style={{ textDecoration: 'none' }}>{blog.url}</a>
-          <div>likes {blog.likes} <button onClick={() => { handleLikes(blog) }}>like</button></div>
+          <div>likes {blog.likes} <button onClick={() => { handleLikes(blog) }} id='likeButton'>like</button></div>
           <div>{name}</div>
-          {blog.user === id
+          {blog.user === id || blog.user.id === id
             ? <button onClick={() => { handleDeleteBlog(blog) }}>remove</button>
             : null}
         </div>
