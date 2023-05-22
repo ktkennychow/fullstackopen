@@ -165,7 +165,7 @@ const App = () => {
   )
 
   return (
-    <div>
+    <div id='main'>
       {user ? <h2>blogs</h2> : <h2>log in to application</h2>}
       <Notification status={status} notification={notification} />
       {!user

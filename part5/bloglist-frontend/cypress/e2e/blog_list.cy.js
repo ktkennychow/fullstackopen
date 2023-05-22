@@ -1,12 +1,18 @@
 describe('Blog app', function () {
   beforeEach(function () {
     cy.request('POST', 'http://localhost:3003/api/testing/reset')
-    const user = {
+    const user1 = {
       name: 'Benny Cho',
       username: 'bencho',
       password: 'okayokay'
     }
-    cy.request('POST', 'http://localhost:3003/api/users', user)
+    cy.request('POST', 'http://localhost:3003/api/users', user1)
+    const user2 = {
+      name: 'Wendy Maria',
+      username: 'wenma',
+      password: 'sososo'
+    }
+    cy.request('POST', 'http://localhost:3003/api/users', user2)
     cy.visit('http://localhost:3000')
   })
 
@@ -48,33 +54,45 @@ describe('Blog app', function () {
         cy.contains('create').click()
         cy.contains('this is the title')
         cy.contains('May Cho')
+
+      })
+      describe('When a blog is created', function () {
+        beforeEach(function () {
+          cy.contains('new blog').click()
+          cy.get('#title-input').type('this is the title')
+          cy.get('#author-input').type('May Cho')
+          cy.get('#url-input').type('www.example.com')
+          cy.contains('create').click()
+        })
+
+        it('allows users to like a blog', function () {
+          cy.contains('this is the title')
+          cy.contains('May Cho')
+          cy.contains('view').click()
+          cy.contains('like').click()
+          cy.contains('likes 1')
+        })
+
+        it('allows the user who created a blog to delete it', function () {
+          cy.contains('this is the title')
+          cy.contains('May Cho')
+          cy.contains('view').click()
+          cy.contains('remove').click()
+          cy.get('#main').should('not.contain', 'this is the title')
+        })
+
+        it('only shows the delete button for the creator of the blog', function () {
+          cy.contains('view').click()
+          cy.contains('remove')
+          cy.contains('logout').click()
+          cy.get('#username').type('wenma')
+          cy.get('#password').type('sososo')
+          cy.get('#login-button').click()
+          cy.contains('view').click()
+          cy.get('.blog').should('not.contain', 'remove')
+        })
       })
 
-      it('allows users to like a blog', function () {
-        cy.contains('new blog').click()
-        cy.get('#title-input').type('this is the title')
-        cy.get('#author-input').type('May Cho')
-        cy.get('#url-input').type('www.example.com')
-        cy.contains('create').click()
-        cy.contains('this is the title')
-        cy.contains('May Cho')
-        cy.contains('view').click()
-        cy.contains('like').click()
-        cy.contains('likes 1')
-      })
-
-      it.only('allows the user who created a blog can delete it', function () {
-        cy.contains('new blog').click()
-        cy.get('#title-input').type('this is the title')
-        cy.get('#author-input').type('May Cho')
-        cy.get('#url-input').type('www.example.com')
-        cy.contains('create').click()
-        cy.contains('this is the title')
-        cy.contains('May Cho')
-        cy.contains('view').click()
-        cy.contains('remove').click()
-        cy.get('html').should('not.contain','this is the title')
-      })
     })
 
 
