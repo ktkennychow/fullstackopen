@@ -18,7 +18,7 @@ const nonExistingId = async () => {
   await note.save()
   await note.deleteOne()
 
-  return note._id.toHexString()
+  return note._id.toString()
 }
 
 const notesInDb = async () => {
