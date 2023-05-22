@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 const BlogForm = ({ handleNewBlog }) => {
   const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
+
   const addBlog = (event) => {
     event.preventDefault()
     handleNewBlog(newBlog)
@@ -19,6 +20,7 @@ const BlogForm = ({ handleNewBlog }) => {
           name='title'
           onChange={({ target }) => setNewBlog({ ...newBlog, title: target.value })}
           placeholder='I am a title'
+          id='title-input'
         />
       </div>
       <div>
@@ -29,6 +31,7 @@ const BlogForm = ({ handleNewBlog }) => {
           name='author'
           onChange={({ target }) => setNewBlog({ ...newBlog, author: target.value })}
           placeholder='I am a name'
+          id='author-input'
         />
       </div>
       <div>
@@ -39,6 +42,7 @@ const BlogForm = ({ handleNewBlog }) => {
           name='url'
           onChange={({ target }) => setNewBlog({ ...newBlog, url: target.value })}
           placeholder='I am the URL'
+          id='url-input'
         />
       </div>
       <button type='submit'>create</button>

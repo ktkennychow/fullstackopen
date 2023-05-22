@@ -64,12 +64,10 @@ test('like button is clicked twice and mock eventHandler is called twice', async
   const div = container.querySelector('.blog')
 
   const viewButton = screen.getByText('view')
-  console.log(viewButton)
   await user.click(viewButton)
   expect(div).toHaveTextContent('www.example.com')
 
   const likeButton = screen.getByText('like')
-  console.log(likeButton)
   fireEvent.click(likeButton)
   fireEvent.click(likeButton)
 

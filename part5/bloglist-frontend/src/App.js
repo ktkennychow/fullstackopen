@@ -5,6 +5,8 @@ import blogService from './services/blogs'
 import loginService from './services/login'
 import ToggleVisibility from './components/ToggleVisibility'
 import LoginForm from './components/LoginForm'
+import Notification from './components/Notification'
+
 
 const App = () => {
   const blogFormRef = useRef()
@@ -165,7 +167,7 @@ const App = () => {
   return (
     <div>
       {user ? <h2>blogs</h2> : <h2>log in to application</h2>}
-      <h3 style={status}>{notification}</h3>
+      <Notification status={status} notification={notification} />
       {!user
         ? <LoginForm
           handleLogin={handleLogin}
