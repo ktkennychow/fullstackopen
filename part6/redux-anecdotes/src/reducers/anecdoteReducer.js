@@ -21,6 +21,9 @@ const initialState = anecdotesAtStart.map(asObject)
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'NEW_ANECDOTE':
+      const newAnecdote = asObject(action.payload.content)
+      return [...state, newAnecdote]
     case 'VOTE':
       const id = action.payload.id
       const targetAnecdote = state.find(anecdote => anecdote.id === id)
@@ -33,6 +36,12 @@ const reducer = (state = initialState, action) => {
   }
 }
 
+export const createAnecdote = (content) => {
+  return {
+    type: 'NEW_ANECDOTE',
+    payload: { content }
+  }
+}
 export const voteFor = (id) => {
   return {
     type: 'VOTE',
