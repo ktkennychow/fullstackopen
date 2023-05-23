@@ -23,7 +23,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'NEW_ANECDOTE':
       const newAnecdote = asObject(action.payload.content)
-      return [...state, newAnecdote]
+      return [...state, newAnecdote].sort((a, b) => b.votes - a.votes)
     case 'VOTE':
       const id = action.payload.id
       const targetAnecdote = state.find(anecdote => anecdote.id === id)
@@ -31,7 +31,7 @@ const reducer = (state = initialState, action) => {
         ...targetAnecdote,
         votes: targetAnecdote.votes + 1
       }
-      return state.map(anecdote => anecdote.id !== id ? anecdote : changedAnecode)
+      return state.map(anecdote => anecdote.id !== id ? anecdote : changedAnecode).sort((a,b) => b.votes - a.votes)
     default: return state
   }
 }
