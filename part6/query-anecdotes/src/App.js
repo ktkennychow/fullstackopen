@@ -1,17 +1,16 @@
 import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 import { useQuery } from 'react-query'
-import axios from 'axios'
+import { getAnecdotes} from './request'
 
 const App = () => {
-
   const handleVote = (anecdote) => {
     console.log('vote')
   }
 
   const result = useQuery(
     'anecdotes',
-    () => axios.get('http://localhost:3001/anecdotes').then(res => res.data),
+    getAnecdotes,
     { retry: 3 }
   )
 
