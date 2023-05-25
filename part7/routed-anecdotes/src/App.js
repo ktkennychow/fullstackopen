@@ -27,7 +27,6 @@ const Anecdote = ({ anecdotes }) => {
   )
 }
 
-
 const About = () => (
   <div>
     <h2>About anecdote app</h2>
@@ -56,7 +55,6 @@ const CreateNew = ({ addNew, setNotification }) => {
   const info = useField('text')
   const navigate = useNavigate()
 
-
   const handleSubmit = (e) => {
     e.preventDefault()
     addNew({
@@ -76,7 +74,6 @@ const CreateNew = ({ addNew, setNotification }) => {
     author.onReset()
     info.onReset()
   }
-
 
   return (
     <div>
