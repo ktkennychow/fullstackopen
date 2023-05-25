@@ -1,6 +1,5 @@
 import { useState } from 'react'
 
-// custom hook
 export const useField = (type) => {
   const [value, setValue] = useState('')
 

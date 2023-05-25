@@ -28,6 +28,7 @@ const Anecdote = ({ anecdotes }) => {
   )
 }
 
+
 const About = () => (
   <div>
     <h2>About anecdote app</h2>
@@ -60,13 +61,13 @@ const CreateNew = ({ addNew, setNotification }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     addNew({
-      content,
-      author,
-      info,
+      content: content.value,
+      author: author.value,
+      info: info.value,
       votes: 0
     })
     navigate('/')
-    setNotification(`a new anecdote ${content} created!`)
+    setNotification(`a new anecdote "${content.value}" created!`)
     setTimeout(() => { setNotification('') }, 5000)
   }
 
