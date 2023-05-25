@@ -16,7 +16,6 @@ const AnecdoteList = ({ anecdotes }) => (
 )
 
 const Anecdote = ({ anecdotes }) => {
-  console.log(anecdotes)
   const id = useParams().id
   const anecdote = anecdotes.find(n => n.id === Number(id))
   return (
@@ -71,10 +70,18 @@ const CreateNew = ({ addNew, setNotification }) => {
     setTimeout(() => { setNotification('') }, 5000)
   }
 
+  const handleReset = (e) => {
+    e.preventDefault()
+    content.onReset()
+    author.onReset()
+    info.onReset()
+  }
+
+
   return (
     <div>
       <h2>create a new anecdote</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onReset={handleReset}>
         <div>
           content
           <input {...content} />
@@ -87,7 +94,8 @@ const CreateNew = ({ addNew, setNotification }) => {
           url for more info
           <input {...info} />
         </div>
-        <button>create</button>
+        <button type='submit'>create</button>
+        <button type='reset'>reset</button>
       </form>
     </div>
   )
