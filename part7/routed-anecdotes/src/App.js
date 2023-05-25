@@ -14,6 +14,7 @@ const AnecdoteList = ({ anecdotes }) => (
     </ul>
   </div>
 )
+
 const Anecdote = ({ anecdotes }) => {
   console.log(anecdotes)
   const id = useParams().id
@@ -26,7 +27,6 @@ const Anecdote = ({ anecdotes }) => {
     </div>
   )
 }
-
 
 const About = () => (
   <div>
