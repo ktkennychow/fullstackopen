@@ -35,9 +35,9 @@ describe('Blog app', function () {
       cy.get('#password').type('nononono')
       cy.get('#login-button').click()
 
-      cy.get('#err-msg').should('contain', 'invalid username or password')
-      cy.get('#err-msg').should('have.css', 'color', 'rgb(255, 0, 0)')
-      cy.get('#err-msg').should('have.css', 'border-style', 'solid')
+      cy.get('#notification').should('contain', 'invalid username or password')
+      cy.get('#notification').should('have.css', 'color', 'rgb(255, 0, 0)')
+      cy.get('#notification').should('have.css', 'border-style', 'solid')
     })
     describe('When logged in', function () {
       beforeEach(function () {
@@ -92,8 +92,8 @@ describe('Blog app', function () {
           cy.contains('view').click()
           cy.get('.blog').should('not.contain', 'remove')
         })
-        
-        it('shows blogs in a descending order of the likes they have', function() {
+
+        it('shows blogs in a descending order of the likes they have', function () {
           cy.get('.blog').eq(0).contains('view').click()// Blog One at the top
           cy.get('.blog').eq(1).contains('view').click()// Blog Two at the second
           cy.get('.blog').eq(1).contains('like').click()// Like Blog Two

@@ -1,12 +1,24 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useReducer } from 'react'
 import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
 import blogService from './services/blogs'
 import loginService from './services/login'
 import ToggleVisibility from './components/ToggleVisibility'
 import LoginForm from './components/LoginForm'
-import Notification from './components/Notification'
+import Notification from './Notification'
+import NotificationContext from './NotificationContext'
 
+const notificationReducer = (state, action) => {
+  switch (action.type) {
+    case 'SUCCESS':
+    case 'ERROR':
+      return action
+    case 'RESET':
+      return { style: '', content: '' }
+    default:
+      return state
+  }
+}
 
 const App = () => {
   const blogFormRef = useRef()
@@ -14,22 +26,7 @@ const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
-  const [notification, setNotification] = useState('')
-  const [status, setStatus] = useState({})
-  const good = {
-    color: 'green',
-    border: 'green 3px solid',
-    padding: '10px',
-    backgroundColor: '#ccc',
-    borderRadius: '5px',
-  }
-  const bad = {
-    color: 'red',
-    border: 'red 3px solid',
-    padding: '10px',
-    backgroundColor: '#ccc',
-    borderRadius: '5px',
-  }
+  const [notification, notificationDispatch] = useReducer(notificationReducer, { style: '', content: '' })
 
   const sortByLikes = (blogs) => {
     return blogs.sort((a, b) => b.likes - a.likes)
@@ -52,15 +49,11 @@ const App = () => {
     }
   }, [])
 
-  const handleNotification = (notification, newStatus) => {
-    setNotification(notification)
-    setStatus(newStatus)
+  const handleResetNotification = () => {
     setTimeout(() => {
-      setNotification('')
-      setStatus({})
+      notificationDispatch({ type: 'RESET' })
     }, 5000)
   }
-
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
@@ -68,11 +61,13 @@ const App = () => {
       window.localStorage.setItem('loggedUser', JSON.stringify(user))
       blogService.setToken(user.token)
       setUser(user)
-      handleNotification(`login successfully! welcome ${user.name}.`, good)
+      notificationDispatch({ type: 'SUCCESS', payload: `login successfully! welcome ${user.name}.` })
+      handleResetNotification()
       setUsername('')
       setPassword('')
     } catch (err) {
-      handleNotification(err.response.data.error, bad)
+      notificationDispatch({ type: 'ERROR', payload: err.response.data.error })
+      handleResetNotification()
     }
   }
 
@@ -82,9 +77,11 @@ const App = () => {
       window.localStorage.removeItem('loggedUser')
       blogService.setToken(null)
       setUser(null)
-      handleNotification('logout successfully! see you next time.', good)
+      notificationDispatch({ type: 'SUCCESS', payload: 'logout successfully! see you next time.' })
+      handleResetNotification()
     } catch (err) {
-      handleNotification(err.response.data.error, bad)
+      notificationDispatch({ type: 'ERROR', payload: err.response.data.error })
+      handleResetNotification()
     }
   }
 
@@ -94,12 +91,11 @@ const App = () => {
       const newBlog = await blogService.create(blog)
       const sortedBlogs = sortByLikes(blogs.concat(newBlog))
       setBlogs(sortedBlogs)
-      handleNotification(
-        `a new blog ${blog.title} by ${blog.author} added.`,
-        good
-      )
+      notificationDispatch({ type: 'SUCCESS', payload: `a new blog ${blog.title} by ${blog.author} added.` })
+      handleResetNotification()
     } catch (err) {
-      handleNotification(err.response.data.error, bad)
+      notificationDispatch({ type: 'ERROR', payload: err.response.data.error })
+      handleResetNotification()
     }
   }
 
@@ -111,10 +107,11 @@ const App = () => {
       targetBlog.likes = updatedBlog.likes
       const sortedBlogs = sortByLikes(blogs)
       setBlogs(sortedBlogs)
-      handleNotification(`you liked ${blog.title} by ${blog.author} !`, good)
+      notificationDispatch({ type: 'SUCCESS', payload: `you liked ${blog.title} by ${blog.author} !` })
+      handleResetNotification()
     } catch (err) {
-      console.log(err)
-      handleNotification(err.response.data.error, bad)
+      notificationDispatch({ type: 'ERROR', payload: err.response.data.error })
+      handleResetNotification()
     }
   }
 
@@ -128,13 +125,11 @@ const App = () => {
         const updatedBlogs = blogs.filter((blog) => blog.id !== targetBlog.id)
         const sortedBlogs = sortByLikes(updatedBlogs)
         setBlogs(sortedBlogs)
-        handleNotification(
-          `successfully deleted ${blog.title} by ${blog.author}!`,
-          good
-        )
+        notificationDispatch({ type: 'SUCCESS', payload: `successfully deleted ${blog.title} by ${blog.author}!` })
+        handleResetNotification()
       } catch (err) {
-        console.log(err)
-        handleNotification(err.response.data.error, bad)
+        notificationDispatch({ type: 'ERROR', payload: err.response.data.error })
+        handleResetNotification()
       }
     }
   }
@@ -165,9 +160,9 @@ const App = () => {
   )
 
   return (
-    <div id='main'>
+    <NotificationContext.Provider value={[notification, notificationDispatch]} id='main'>
       {user ? <h2>blogs</h2> : <h2>log in to application</h2>}
-      <Notification status={status} notification={notification} />
+      <Notification type={notification.style} content={notification.content} />
       {!user
         ? <LoginForm
           handleLogin={handleLogin}
@@ -177,8 +172,9 @@ const App = () => {
           setPassword={setPassword}
         />
         : blogsDisplay()}
-    </div>
+    </NotificationContext.Provider>
   )
 }
+
 
 export default App
