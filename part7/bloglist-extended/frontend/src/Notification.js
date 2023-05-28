@@ -18,6 +18,8 @@ const error = {
 
 const Notification = () => {
   const notification = useNoticationState()
+
+  console.log(notification)
   let style
   notification.type === 'SUCCESS'
     ? style = success

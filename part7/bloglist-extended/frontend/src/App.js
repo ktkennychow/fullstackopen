@@ -1,14 +1,16 @@
 import { useState, useEffect, useRef, useReducer } from 'react'
 import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
-import blogService from './services/blogs'
+import blogService, { getAll, update, create, remove } from './services/blogs'
 import loginService from './services/login'
 import ToggleVisibility from './components/ToggleVisibility'
 import LoginForm from './components/LoginForm'
 import Notification from './Notification'
 import NotificationContext from './NotificationContext'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 const notificationReducer = (state, action) => {
+  console.log(action, state)
   switch (action.type) {
     case 'SUCCESS':
     case 'ERROR':
@@ -22,23 +24,27 @@ const notificationReducer = (state, action) => {
 
 const App = () => {
   const blogFormRef = useRef()
-  const [blogs, setBlogs] = useState([])
+  let timeoutIdRef = useRef()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [notification, notificationDispatch] = useReducer(notificationReducer, { style: '', content: '' })
-
-  const sortByLikes = (blogs) => {
-    return blogs.sort((a, b) => b.likes - a.likes)
-  }
-
-  useEffect(() => {
-    user &&
-      blogService
-        .getAll()
-        .then((blogs) => setBlogs(sortByLikes(blogs)))
-        .then(() => { })
-  }, [user])
+  const newBlogMutation = useMutation(create, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('blogs')
+    }
+  })
+  const updateBlogMutation = useMutation(update, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('blogs')
+    }
+  })
+  const removeBlogMutation = useMutation(remove, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('blogs')
+    }
+  })
+  const queryClient = useQueryClient()
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser')
@@ -49,11 +55,22 @@ const App = () => {
     }
   }, [])
 
+  const result = useQuery({
+    queryKey: 'blogs',
+    queryFn: getAll,
+    enabled: !!user
+  })
+
+  const blogs = result.data
+
   const handleResetNotification = () => {
-    setTimeout(() => {
+    // loveeeeee this setup to clear the timer for the notification display from the pervious trigger
+    timeoutIdRef.current && clearTimeout(timeoutIdRef.current)
+    timeoutIdRef.current = setTimeout(() => {
       notificationDispatch({ type: 'RESET' })
     }, 5000)
   }
+
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
@@ -84,13 +101,11 @@ const App = () => {
       handleResetNotification()
     }
   }
-
+  // blog done
   const handleNewBlog = async (blog) => {
     blogFormRef.current.toggleVisibility()
     try {
-      const newBlog = await blogService.create(blog)
-      const sortedBlogs = sortByLikes(blogs.concat(newBlog))
-      setBlogs(sortedBlogs)
+      newBlogMutation.mutate(blog)
       notificationDispatch({ type: 'SUCCESS', payload: `a new blog ${blog.title} by ${blog.author} added.` })
       handleResetNotification()
     } catch (err) {
@@ -99,14 +114,11 @@ const App = () => {
     }
   }
 
+  // like done
   const handleLikes = async (blog) => {
     blog.likes = blog.likes + 1
     try {
-      const updatedBlog = await blogService.update(blog)
-      const targetBlog = blogs.filter((blog) => blog.id === updatedBlog.id)
-      targetBlog.likes = updatedBlog.likes
-      const sortedBlogs = sortByLikes(blogs)
-      setBlogs(sortedBlogs)
+      updateBlogMutation.mutate(blog)
       notificationDispatch({ type: 'SUCCESS', payload: `you liked ${blog.title} by ${blog.author} !` })
       handleResetNotification()
     } catch (err) {
@@ -114,17 +126,12 @@ const App = () => {
       handleResetNotification()
     }
   }
-
+  // delete done
   const handleDeleteBlog = async (blog) => {
     console.log(blog)
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
       try {
-        await blogService.remove(blog)
-        console.log('passed!')
-        const targetBlog = blog
-        const updatedBlogs = blogs.filter((blog) => blog.id !== targetBlog.id)
-        const sortedBlogs = sortByLikes(updatedBlogs)
-        setBlogs(sortedBlogs)
+        removeBlogMutation.mutate(blog)
         notificationDispatch({ type: 'SUCCESS', payload: `successfully deleted ${blog.title} by ${blog.author}!` })
         handleResetNotification()
       } catch (err) {
@@ -134,30 +141,37 @@ const App = () => {
     }
   }
 
-  const blogsDisplay = () => (
-    <div>
+
+  const blogsDisplay = () => {
+    return (
       <div>
-        <p>
-          {user.name} logged in <button onClick={handleLogout}>logout</button>
-        </p>
-        <ToggleVisibility
-          buttonLabel='new blog'
-          ref={blogFormRef}>
-          <BlogForm handleNewBlog={handleNewBlog} />
-        </ToggleVisibility>
+        <div>
+          <p>
+            {user.name} logged in <button onClick={handleLogout}>logout</button>
+          </p>
+          <ToggleVisibility
+            buttonLabel='new blog'
+            ref={blogFormRef}>
+            <BlogForm handleNewBlog={handleNewBlog} />
+          </ToggleVisibility>
+        </div>
+        {result.isLoading
+          ? <div>Loading data...</div>
+          :
+          blogs.sort((a, b) => b.likes - a.likes).map((blog) => (
+            <Blog
+              key={blog.id}
+              blog={blog}
+              id={user.id}
+              username={user.username}
+              handleLikes={handleLikes}
+              handleDeleteBlog={handleDeleteBlog}
+            />
+          ))
+        }
       </div>
-      {blogs.map((blog) => (
-        <Blog
-          key={blog.id}
-          blog={blog}
-          id={user.id}
-          username={user.username}
-          handleLikes={handleLikes}
-          handleDeleteBlog={handleDeleteBlog}
-        />
-      ))}
-    </div>
-  )
+    )
+  }
 
   return (
     <NotificationContext.Provider value={[notification, notificationDispatch]} id='main'>
