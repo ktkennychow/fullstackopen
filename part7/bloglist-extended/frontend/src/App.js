@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm'
 import Notification from './Notification'
 import NotificationContext from './NotificationContext'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 const notificationReducer = (state, action) => {
   switch (action.type) {
@@ -155,9 +156,7 @@ const App = () => {
     return (
       <div>
         <div>
-          <p>
-            {user.name} logged in <button onClick={handleLogout}>logout</button>
-          </p>
+          <h2>blog app</h2>
           <ToggleVisibility
             buttonLabel='new blog'
             ref={blogFormRef}>
@@ -182,20 +181,72 @@ const App = () => {
     )
   }
 
+  const usersDisplay = () => {
+    return (
+      <div>
+        <div>
+          <h2>blog app</h2>
+          <ToggleVisibility
+            buttonLabel='new blog'
+            ref={blogFormRef}>
+            <BlogForm handleNewBlog={handleNewBlog} />
+          </ToggleVisibility>
+        </div>
+        {result.isLoading
+          ? <div>Loading data...</div>
+          :
+          blogs.sort((a, b) => b.likes - a.likes).map((blog) => (
+            <Blog
+              key={blog.id}
+              blog={blog}
+              id={user.id}
+              username={user.username}
+              handleLikes={handleLikes}
+              handleDeleteBlog={handleDeleteBlog}
+            />
+          ))
+        }
+      </div>
+    )
+  }
+
+  const navbarStyle = {
+    display: 'flex',
+    gap: '5px',
+    backgroundColor: '#ccc',
+    padding: '5px',
+  }
+
   return (
-    <NotificationContext.Provider value={[notification, notificationDispatch]} id='main'>
-      {user ? <h2>blogs</h2> : <h2>log in to application</h2>}
-      <Notification type={notification.style} content={notification.content} />
-      {!user
-        ? <LoginForm
-          handleLogin={handleLogin}
-          username={username}
-          setUsername={setUsername}
-          password={password}
-          setPassword={setPassword}
-        />
-        : blogsDisplay()}
-    </NotificationContext.Provider>
+    <Router>
+      <NotificationContext.Provider value={[notification, notificationDispatch]} id='main'>
+        <Notification type={notification.style} content={notification.content} />
+        {!user
+          && <LoginForm
+            handleLogin={handleLogin}
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+          />}
+      </NotificationContext.Provider>
+
+      <div style={navbarStyle}>
+        <Link to='/'>blogs</Link>
+        <Link to='/users'>users</Link>
+        {user.name} logged in <button onClick={handleLogout}>logout</button>
+      </div>
+      {!user && <h2>log in to application</h2>}
+
+      <Routes>
+        <Route path='/' element={blogsDisplay()} />
+        {/* <Route path='/users' element={<Users />} /> */}
+      </Routes>
+
+
+
+
+    </Router>
   )
 }
 
