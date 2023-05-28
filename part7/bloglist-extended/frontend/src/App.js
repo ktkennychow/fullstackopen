@@ -9,7 +9,7 @@ import LoginForm from './components/LoginForm'
 import Notification from './Notification'
 import NotificationContext from './NotificationContext'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom'
 
 const notificationReducer = (state, action) => {
   switch (action.type) {
@@ -39,25 +39,37 @@ const App = () => {
   let timeoutIdRef = useRef()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [user, userDispatch] = useReducer(userReducer, { token: '', username: '', name: '', id: '' })
-  const [notification, notificationDispatch] = useReducer(notificationReducer, { style: '', content: '' })
+  const [user, userDispatch] = useReducer(userReducer, null)
+  const [notification, notificationDispatch] = useReducer(notificationReducer, {
+    style: '',
+    content: '',
+  })
   const queryClient = useQueryClient()
   const newBlogMutation = useMutation(create, {
     onSuccess: () => {
       queryClient.invalidateQueries('blogs')
-    }
+      queryClient.invalidateQueries('users')
+    },
   })
   const updateBlogMutation = useMutation(update, {
     onSuccess: () => {
       queryClient.invalidateQueries('blogs')
-    }
+    },
   })
   const removeBlogMutation = useMutation(remove, {
     onSuccess: () => {
       queryClient.invalidateQueries('blogs')
-    }
+    },
+  })
+  const blogsQuery = useQuery({
+    queryKey: 'blogs',
+    queryFn: getAll,
+    enabled: !!user,
   })
 
+  const blogs = blogsQuery.data
+  const usersQuery = useQuery('users', getAllUsers)
+  const users = usersQuery.data
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser')
     if (loggedUserJSON) {
@@ -66,8 +78,6 @@ const App = () => {
       setToken(user.token)
     }
   }, [])
-
-
 
   const handleResetNotification = () => {
     // loveeeeee this setup to clear the timer for the notification display from the pervious trigger
@@ -84,7 +94,10 @@ const App = () => {
       window.localStorage.setItem('loggedUser', JSON.stringify(user))
       setToken(user.token)
       userDispatch({ type: 'LOGIN', payload: user })
-      notificationDispatch({ type: 'SUCCESS', payload: `login successfully! welcome ${user.name}.` })
+      notificationDispatch({
+        type: 'SUCCESS',
+        payload: `login successfully! welcome ${user.name}.`,
+      })
       handleResetNotification()
       setUsername('')
       setPassword('')
@@ -100,9 +113,13 @@ const App = () => {
       window.localStorage.removeItem('loggedUser')
       setToken(null)
       userDispatch({ type: 'LOGOUT' })
-      notificationDispatch({ type: 'SUCCESS', payload: 'logout successfully! see you next time.' })
+      notificationDispatch({
+        type: 'SUCCESS',
+        payload: 'logout successfully! see you next time.',
+      })
       handleResetNotification()
     } catch (err) {
+      console.log(err, 'err in handleLogout')
       notificationDispatch({ type: 'ERROR', payload: err.response.data.error })
       handleResetNotification()
     }
@@ -112,7 +129,10 @@ const App = () => {
     blogFormRef.current.toggleVisibility()
     try {
       newBlogMutation.mutate(blog)
-      notificationDispatch({ type: 'SUCCESS', payload: `a new blog ${blog.title} by ${blog.author} added.` })
+      notificationDispatch({
+        type: 'SUCCESS',
+        payload: `a new blog ${blog.title} by ${blog.author} added.`,
+      })
       handleResetNotification()
     } catch (err) {
       notificationDispatch({ type: 'ERROR', payload: err.response.data.error })
@@ -124,7 +144,10 @@ const App = () => {
     blog.likes = blog.likes + 1
     try {
       updateBlogMutation.mutate(blog)
-      notificationDispatch({ type: 'SUCCESS', payload: `you liked ${blog.title} by ${blog.author} !` })
+      notificationDispatch({
+        type: 'SUCCESS',
+        payload: `you liked ${blog.title} by ${blog.author} !`,
+      })
       handleResetNotification()
     } catch (err) {
       notificationDispatch({ type: 'ERROR', payload: err.response.data.error })
@@ -137,73 +160,114 @@ const App = () => {
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
       try {
         removeBlogMutation.mutate(blog)
-        notificationDispatch({ type: 'SUCCESS', payload: `successfully deleted ${blog.title} by ${blog.author}!` })
+        notificationDispatch({
+          type: 'SUCCESS',
+          payload: `successfully deleted ${blog.title} by ${blog.author}!`,
+        })
         handleResetNotification()
       } catch (err) {
-        notificationDispatch({ type: 'ERROR', payload: err.response.data.error })
+        notificationDispatch({
+          type: 'ERROR',
+          payload: err.response.data.error,
+        })
         handleResetNotification()
       }
     }
   }
 
 
-  const blogsDisplay = () => {
-    const blogsQuery = useQuery({
-      queryKey: 'blogs',
-      queryFn: getAll,
-      enabled: !!user
-    })
-    const blogs = blogsQuery.data
+  const BlogsDisplay = () => {
     return (
-      <div>
-        <div>
-          <h2>blog app</h2>
-          <ToggleVisibility
-            buttonLabel='new blog'
-            ref={blogFormRef}>
-            <BlogForm handleNewBlog={handleNewBlog} />
-          </ToggleVisibility>
-        </div>
-        {blogsQuery.isLoading
-          ? <div>Loading blogs...</div>
-          : blogs.sort((a, b) => b.likes - a.likes).map((blog) => (
-            <Blog
-              key={blog.id}
-              blog={blog}
-              id={user.id}
-              username={user.username}
-              handleLikes={handleLikes}
-              handleDeleteBlog={handleDeleteBlog}
-            />
-          ))
+      <>
+        {user &&
+          <div>
+            <div>
+              <h2>blog app</h2>
+              <ToggleVisibility
+                buttonLabel='new blog'
+                ref={blogFormRef}>
+                <BlogForm handleNewBlog={handleNewBlog} />
+              </ToggleVisibility>
+            </div>
+            {blogsQuery.isLoading ? (
+              <div>Loading blogs...</div>
+            ) : (
+              blogs
+                .sort((a, b) => b.likes - a.likes)
+                .map((blog) => (
+                  <Blog
+                    key={blog.id}
+                    blog={blog}
+                    id={user.id}
+                    username={user.username}
+                    handleLikes={handleLikes}
+                    handleDeleteBlog={handleDeleteBlog}
+                  />
+                ))
+            )}
+          </div>
         }
-      </div>
+      </>
     )
   }
 
-  const usersDisplay = () => {
-    const usersQuery = useQuery(
-      'users', getAllUsers
-    )
-    const users = usersQuery.data
+
+  const UsersDisplay = () => {
     return (
-      < div >
-        <h2>Users</h2>
-        <table>
-          <tr>
-            <th></th>
-            <th>blogs created</th>
-          </tr>
-          {usersQuery.isLoading
-            ? <div>Loading users...</div>
-            : users.sort((a, b) => a.name - b.name).map((user) => (
-              <tr key={user.name}>
-                <td>{user.name}</td>
-                <td>{user.blogs.length}</td>
-              </tr>
-            ))}
-        </table>
-      </div >
+      <>
+        {user &&
+          <div>
+            <h2>Users</h2>
+            {usersQuery.isLoading
+              ? <div>Loading users...</div>
+              : <table>
+                <tbody>
+                  <tr>
+                    <th></th>
+                    <th>blogs created</th>
+                  </tr>
+                  {
+                    users.sort((a, b) => a.name - b.name)
+                      .map((user) => (
+                        <tr key={user.id}>
+                          <td>
+                            <Link to={`/users/${user.id}`}>{user.name}</Link>
+                          </td>
+                          <td>{user.blogs.length}</td>
+                        </tr>
+                      ))
+                  }
+                </tbody>
+              </table >
+            }
+          </div>
+        }
+      </>
+    )
+  }
+
+  const IndividualDisplay = () => {
+    const userId = useParams().id
+    const targetBlogs = blogs.filter(blog => blog.user.id === userId)
+    return (
+      <>
+        {targetBlogs.length
+          ? <div>
+            <h2>{targetBlogs[0].user.name}</h2>
+            <h3>added blogs</h3>
+            {usersQuery.isLoading || blogsQuery.isLoading
+              ? <div>Loading blogs...</div>
+              : <ul>
+                {targetBlogs.map(blog => <li key={blog.title}>{blog.title}</li>)}
+              </ul>
+            }
+          </div>
+          : <div>
+            <h2>{targetBlogs[0].user.name}</h2>
+            <h3>added blogs</h3>
+          </div>
+        }
+      </>
     )
   }
 
@@ -216,36 +280,42 @@ const App = () => {
 
   return (
     <Router>
-      <NotificationContext.Provider value={[notification, notificationDispatch]} id='main'>
-        <Notification type={notification.style} content={notification.content} />
-        {!user
-          && <LoginForm
+      {!user
+        ? <div>
+          <h2>log in to application</h2>
+          <LoginForm
             handleLogin={handleLogin}
             username={username}
             setUsername={setUsername}
             password={password}
             setPassword={setPassword}
-          />}
+          />
+        </div>
+        : <>
+          <div style={navbarStyle}>
+            <Link to='/'>blogs</Link>
+            <Link to='/users'>users</Link>
+            {user.name} logged in <button onClick={handleLogout}>logout</button>
+          </div>
+        </>
+      }
+
+      <NotificationContext.Provider
+        value={[notification, notificationDispatch]}
+        id='main'>
+        <Notification
+          type={notification.style}
+          content={notification.content}
+        />
       </NotificationContext.Provider>
 
-      <div style={navbarStyle}>
-        <Link to='/'>blogs</Link>
-        <Link to='/users'>users</Link>
-        {user.name} logged in <button onClick={handleLogout}>logout</button>
-      </div>
-      {!user && <h2>log in to application</h2>}
-
       <Routes>
-        <Route path='/' element={blogsDisplay()} />
-        <Route path='/users' element={usersDisplay()} />
+        <Route path='/' element={<BlogsDisplay />} />
+        <Route path='/users' element={<UsersDisplay />} />
+        <Route path='/users/:id' element={<IndividualDisplay />} />
       </Routes>
-
-
-
-
     </Router>
   )
 }
-
 
 export default App

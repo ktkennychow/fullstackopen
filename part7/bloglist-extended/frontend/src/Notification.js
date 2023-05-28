@@ -7,6 +7,7 @@ const success = {
   padding: '10px',
   backgroundColor: '#ccc',
   borderRadius: '5px',
+  margin: '5px 0'
 }
 const error = {
   color: 'red',
@@ -14,12 +15,12 @@ const error = {
   padding: '10px',
   backgroundColor: '#ccc',
   borderRadius: '5px',
+  margin: '5px 0'
 }
 
 const Notification = () => {
   const notification = useNoticationState()
 
-  console.log(notification)
   let style
   notification.type === 'SUCCESS'
     ? style = success
