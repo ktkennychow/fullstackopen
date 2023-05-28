@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, useReducer } from 'react'
 import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
-import blogService, { getAll, update, create, remove } from './services/blogs'
-import loginService from './services/login'
+import { getAll, update, create, remove, setToken } from './services/blogs'
+import { getAllUsers } from './services/users'
+import { login } from './services/login'
 import ToggleVisibility from './components/ToggleVisibility'
 import LoginForm from './components/LoginForm'
 import Notification from './Notification'
@@ -62,16 +63,11 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       userDispatch({ type: 'LOGIN', payload: user })
-      blogService.setToken(user.token)
+      setToken(user.token)
     }
   }, [])
 
-  const result = useQuery({
-    queryKey: 'blogs',
-    queryFn: getAll,
-    enabled: !!user
-  })
-  const blogs = result.data
+
 
   const handleResetNotification = () => {
     // loveeeeee this setup to clear the timer for the notification display from the pervious trigger
@@ -84,10 +80,9 @@ const App = () => {
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
-      const user = await loginService.login({ username, password })
+      const user = await login({ username, password })
       window.localStorage.setItem('loggedUser', JSON.stringify(user))
-      blogService.setToken(user.token)
-      console.log(11111, user)
+      setToken(user.token)
       userDispatch({ type: 'LOGIN', payload: user })
       notificationDispatch({ type: 'SUCCESS', payload: `login successfully! welcome ${user.name}.` })
       handleResetNotification()
@@ -103,7 +98,7 @@ const App = () => {
     event.preventDefault()
     try {
       window.localStorage.removeItem('loggedUser')
-      blogService.setToken(null)
+      setToken(null)
       userDispatch({ type: 'LOGOUT' })
       notificationDispatch({ type: 'SUCCESS', payload: 'logout successfully! see you next time.' })
       handleResetNotification()
@@ -153,6 +148,12 @@ const App = () => {
 
 
   const blogsDisplay = () => {
+    const blogsQuery = useQuery({
+      queryKey: 'blogs',
+      queryFn: getAll,
+      enabled: !!user
+    })
+    const blogs = blogsQuery.data
     return (
       <div>
         <div>
@@ -163,10 +164,9 @@ const App = () => {
             <BlogForm handleNewBlog={handleNewBlog} />
           </ToggleVisibility>
         </div>
-        {result.isLoading
-          ? <div>Loading data...</div>
-          :
-          blogs.sort((a, b) => b.likes - a.likes).map((blog) => (
+        {blogsQuery.isLoading
+          ? <div>Loading blogs...</div>
+          : blogs.sort((a, b) => b.likes - a.likes).map((blog) => (
             <Blog
               key={blog.id}
               blog={blog}
@@ -182,31 +182,28 @@ const App = () => {
   }
 
   const usersDisplay = () => {
+    const usersQuery = useQuery(
+      'users', getAllUsers
+    )
+    const users = usersQuery.data
     return (
-      <div>
-        <div>
-          <h2>blog app</h2>
-          <ToggleVisibility
-            buttonLabel='new blog'
-            ref={blogFormRef}>
-            <BlogForm handleNewBlog={handleNewBlog} />
-          </ToggleVisibility>
-        </div>
-        {result.isLoading
-          ? <div>Loading data...</div>
-          :
-          blogs.sort((a, b) => b.likes - a.likes).map((blog) => (
-            <Blog
-              key={blog.id}
-              blog={blog}
-              id={user.id}
-              username={user.username}
-              handleLikes={handleLikes}
-              handleDeleteBlog={handleDeleteBlog}
-            />
-          ))
-        }
-      </div>
+      < div >
+        <h2>Users</h2>
+        <table>
+          <tr>
+            <th></th>
+            <th>blogs created</th>
+          </tr>
+          {usersQuery.isLoading
+            ? <div>Loading users...</div>
+            : users.sort((a, b) => a.name - b.name).map((user) => (
+              <tr key={user.name}>
+                <td>{user.name}</td>
+                <td>{user.blogs.length}</td>
+              </tr>
+            ))}
+        </table>
+      </div >
     )
   }
 
@@ -240,7 +237,7 @@ const App = () => {
 
       <Routes>
         <Route path='/' element={blogsDisplay()} />
-        {/* <Route path='/users' element={<Users />} /> */}
+        <Route path='/users' element={usersDisplay()} />
       </Routes>
 
 

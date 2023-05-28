@@ -4,7 +4,7 @@ const baseUrl = '/api/blogs'
 let token = null
 let config = null
 
-const setToken = newToken => {
+export const setToken = newToken => {
   token = `Bearer ${newToken}`
   token && setConfig(token)
 }
