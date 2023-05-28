@@ -25,12 +25,12 @@ export const create = async (newBlog) => {
 
 export const update = async (updatedBlog) => {
   const response = await axios.put(`${baseUrl}/${updatedBlog.id}`, updatedBlog, config)
-  console.log(response.data)
   return response.data
 }
 
 export const remove = async (blog) => {
   const response = await axios.delete(`${baseUrl}/${blog.id}`, config)
+  console.log(response.data)
   return response.data
 }
 

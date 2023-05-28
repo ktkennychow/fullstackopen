@@ -10,7 +10,6 @@ import NotificationContext from './NotificationContext'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 const notificationReducer = (state, action) => {
-  console.log(action, state)
   switch (action.type) {
     case 'SUCCESS':
     case 'ERROR':
@@ -22,13 +21,25 @@ const notificationReducer = (state, action) => {
   }
 }
 
+const userReducer = (state, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return action.payload
+    case 'LOGOUT':
+      return null
+    default:
+      return null
+  }
+}
+
 const App = () => {
   const blogFormRef = useRef()
   let timeoutIdRef = useRef()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [user, setUser] = useState(null)
+  const [user, userDispatch] = useReducer(userReducer, { token: '', username: '', name: '', id: '' })
   const [notification, notificationDispatch] = useReducer(notificationReducer, { style: '', content: '' })
+  const queryClient = useQueryClient()
   const newBlogMutation = useMutation(create, {
     onSuccess: () => {
       queryClient.invalidateQueries('blogs')
@@ -44,13 +55,12 @@ const App = () => {
       queryClient.invalidateQueries('blogs')
     }
   })
-  const queryClient = useQueryClient()
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      setUser(user)
+      userDispatch({ type: 'LOGIN', payload: user })
       blogService.setToken(user.token)
     }
   }, [])
@@ -60,7 +70,6 @@ const App = () => {
     queryFn: getAll,
     enabled: !!user
   })
-
   const blogs = result.data
 
   const handleResetNotification = () => {
@@ -77,7 +86,8 @@ const App = () => {
       const user = await loginService.login({ username, password })
       window.localStorage.setItem('loggedUser', JSON.stringify(user))
       blogService.setToken(user.token)
-      setUser(user)
+      console.log(11111, user)
+      userDispatch({ type: 'LOGIN', payload: user })
       notificationDispatch({ type: 'SUCCESS', payload: `login successfully! welcome ${user.name}.` })
       handleResetNotification()
       setUsername('')
@@ -93,7 +103,7 @@ const App = () => {
     try {
       window.localStorage.removeItem('loggedUser')
       blogService.setToken(null)
-      setUser(null)
+      userDispatch({ type: 'LOGOUT' })
       notificationDispatch({ type: 'SUCCESS', payload: 'logout successfully! see you next time.' })
       handleResetNotification()
     } catch (err) {
@@ -101,7 +111,7 @@ const App = () => {
       handleResetNotification()
     }
   }
-  // blog done
+
   const handleNewBlog = async (blog) => {
     blogFormRef.current.toggleVisibility()
     try {
@@ -114,7 +124,6 @@ const App = () => {
     }
   }
 
-  // like done
   const handleLikes = async (blog) => {
     blog.likes = blog.likes + 1
     try {
@@ -126,7 +135,7 @@ const App = () => {
       handleResetNotification()
     }
   }
-  // delete done
+
   const handleDeleteBlog = async (blog) => {
     console.log(blog)
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
