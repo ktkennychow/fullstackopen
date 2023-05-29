@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef, useReducer } from 'react'
-import Blog from './components/Blog'
-import BlogForm from './components/BlogForm'
 import { getAll, update, create, remove, comment, setToken, getAllComments } from './services/blogs'
 import { login } from './services/login'
-import ToggleVisibility from './components/ToggleVisibility'
+import BlogsDisplay from './components/BlogsDisplay'
 import LoginForm from './components/LoginForm'
 import UsersDisplay from './components/UsersDisplay'
 import UserDetails from './components/UserDetails'
@@ -12,6 +10,7 @@ import Notification from './Notification'
 import NotificationContext from './NotificationContext'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+
 
 const notificationReducer = (state, action) => {
   switch (action.type) {
@@ -204,42 +203,6 @@ const App = () => {
   }
 
 
-  const BlogsDisplay = () => {
-    return (
-      <>
-        {user &&
-          <div>
-            <div>
-              <h2>blog app</h2>
-              <ToggleVisibility
-                buttonLabel='new blog'
-                ref={blogFormRef}>
-                <BlogForm handleNewBlog={handleNewBlog} />
-              </ToggleVisibility>
-            </div>
-            {blogsQuery.isLoading ? (
-              <div>Loading blogs...</div>
-            ) : (
-              blogs
-                .sort((a, b) => b.likes - a.likes)
-                .map((blog) => (
-                  <Blog
-                    key={blog.id}
-                    blog={blog}
-                    id={user.id}
-                    username={user.username}
-                    handleLikes={handleLikes}
-                    handleDeleteBlog={handleDeleteBlog}
-                  />
-                ))
-            )}
-          </div>
-        }
-      </>
-    )
-  }
-
-
   const navbarStyle = {
     display: 'flex',
     gap: '5px',
@@ -279,7 +242,7 @@ const App = () => {
       </NotificationContext.Provider>
 
       <Routes>
-        <Route path='/' element={<BlogsDisplay />} />
+        <Route path='/' element={<BlogsDisplay user={user} blogFormRef={blogFormRef} handleNewBlog={handleNewBlog} blogs={blogs} />} />
         <Route path='/blogs/:id' element={<BlogDetails blogs={blogs} user={user} comments={comments} handleLikes={handleLikes} handleDeleteBlog={handleDeleteBlog} handleNewComment={handleNewComment} />} />
         <Route path='/users' element={<UsersDisplay user={user} />} />
         <Route path='/users/:id' element={<UserDetails user={user} blogs={blogs} />} />

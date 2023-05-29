@@ -1,38 +1,16 @@
 import { useNoticationState } from './NotificationContext'
-
-
-const success = {
-  color: 'green',
-  border: 'green 3px solid',
-  padding: '10px',
-  backgroundColor: '#ccc',
-  borderRadius: '5px',
-  margin: '5px 0'
-}
-const error = {
-  color: 'red',
-  border: 'red 3px solid',
-  padding: '10px',
-  backgroundColor: '#ccc',
-  borderRadius: '5px',
-  margin: '5px 0'
-}
+import { Alert } from '@mui/material'
 
 const Notification = () => {
   const notification = useNoticationState()
-
-  let style
-  notification.type === 'SUCCESS'
-    ? style = success
-    : notification.type === 'ERROR'
-      ? style = error
-      : ''
+  if (!notification.type) {
+    return null
+  }
+  const status = notification.type.toLowerCase()
   return (
-    <div
-      style={style}
-      id='notification'>
+    <Alert style={{ position: 'absolute', top: '0', right: '10px' }} sx={{ mt: 1 }} severity={status}>
       {notification.payload}
-    </div>
+    </Alert>
   )
 }
 

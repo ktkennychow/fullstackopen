@@ -2,7 +2,7 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import Blog from './Blog'
+import Blog from './BlogsDisplay'
 import BlogForm from './BlogForm'
 
 test('shows title and author but not url or likes', () => {

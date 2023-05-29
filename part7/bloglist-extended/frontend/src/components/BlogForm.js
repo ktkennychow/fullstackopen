@@ -1,5 +1,9 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
+import {
+  TextField,
+  Button
+} from '@mui/material'
 
 const BlogForm = ({ handleNewBlog }) => {
   const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
@@ -13,8 +17,9 @@ const BlogForm = ({ handleNewBlog }) => {
   return (
     <form onSubmit={addBlog}>
       <div>
-        title:
-        <input
+        <TextField
+          sx={{ mt: 1 }}
+          label='title'
           type='text'
           value={newBlog.title}
           name='title'
@@ -24,8 +29,9 @@ const BlogForm = ({ handleNewBlog }) => {
         />
       </div>
       <div>
-        author:
-        <input
+        <TextField
+          sx={{ mt: 1 }}
+          label='author'
           type='text'
           value={newBlog.author}
           name='author'
@@ -35,9 +41,10 @@ const BlogForm = ({ handleNewBlog }) => {
         />
       </div>
       <div>
-        url:
-        <input
-          type='text'
+        <TextField
+          sx={{ mt: 1 }}
+          label='url'
+          type='url'
           value={newBlog.url}
           name='url'
           onChange={({ target }) => setNewBlog({ ...newBlog, url: target.value })}
@@ -45,7 +52,7 @@ const BlogForm = ({ handleNewBlog }) => {
           id='url-input'
         />
       </div>
-      <button type='submit'>create</button>
+      <Button type='submit' sx={{ mt: 1 }} variant="contained" color="primary">create</Button>
     </form>
   )
 }
