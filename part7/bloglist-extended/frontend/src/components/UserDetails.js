@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom'
 
 const UserDetails = ({ user, blogs }) => {
-  if (!user) {
+  console.log(blogs)
+  if (!user || !blogs) {
     return null
   }
   const userId = useParams().id

@@ -19,6 +19,8 @@ const BlogDetails = ({ user, blogs, comments, handleLikes, handleDeleteBlog, han
   }
   const blogId = useParams().id
   const targetBlog = blogs.find(blog => blog.id === blogId)
+
+  const targetComments = comments.filter(comment => targetBlog.comments.includes(comment.id) )
   return (
     <>
       <h1>
@@ -37,7 +39,7 @@ const BlogDetails = ({ user, blogs, comments, handleLikes, handleDeleteBlog, han
         <h3>comments</h3>
         <input type="text" value={newComment} onChange={e => setNewComment(e.target.value)} /> <button onClick={addComment}>add comment</button>
         <ul>
-          {comments.map(comment => <li key={comment.id}>{comment.comment}</li>)}
+          {targetComments.map(comment => <li key={comment.id}>{comment.comment}</li>)}
         </ul>
       </div>
     </>

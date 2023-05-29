@@ -50,6 +50,7 @@ const App = () => {
   const newCommentMutation = useMutation(comment, {
     onSuccess: () => {
       queryClient.invalidateQueries('blogs')
+      queryClient.invalidateQueries('comments')
     },
   })
   const newBlogMutation = useMutation(create, {
@@ -139,7 +140,6 @@ const App = () => {
   }
 
   const handleNewComment = async (payload) => {
-    console.log(payload)
     try {
       newCommentMutation.mutate(payload)
       notificationDispatch({
