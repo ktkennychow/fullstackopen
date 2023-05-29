@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom'
 
 const BlogDetails = ({ user, blogs, comments, handleLikes, handleDeleteBlog, handleNewComment }) => {
   const [newComment, setNewComment] = useState('')
-  if (!user) {
+  const blogId = useParams().id
+  if (!user || !blogs) {
     return null
   }
   const likeBlog = (blog) => {
@@ -17,7 +18,6 @@ const BlogDetails = ({ user, blogs, comments, handleLikes, handleDeleteBlog, han
     handleNewComment(payload)
     setNewComment('')
   }
-  const blogId = useParams().id
   const targetBlog = blogs.find(blog => blog.id === blogId)
 
   const targetComments = comments.filter(comment => targetBlog.comments.includes(comment.id) )
