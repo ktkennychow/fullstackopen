@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useReducer } from 'react'
 import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
-import { getAll, update, create, remove, setToken } from './services/blogs'
+import { getAll, update, create, remove, comment, setToken, getAllComments } from './services/blogs'
 import { login } from './services/login'
 import ToggleVisibility from './components/ToggleVisibility'
 import LoginForm from './components/LoginForm'
@@ -47,6 +47,11 @@ const App = () => {
     content: '',
   })
   const queryClient = useQueryClient()
+  const newCommentMutation = useMutation(comment, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('blogs')
+    },
+  })
   const newBlogMutation = useMutation(create, {
     onSuccess: () => {
       queryClient.invalidateQueries('blogs')
@@ -63,13 +68,21 @@ const App = () => {
       queryClient.invalidateQueries('blogs')
     },
   })
+
   const blogsQuery = useQuery({
     queryKey: 'blogs',
     queryFn: getAll,
     enabled: !!user,
   })
-
   const blogs = blogsQuery.data
+
+  const commentsQuery = useQuery({
+    queryKey: 'comments',
+    queryFn: getAllComments,
+    enabled: !!user,
+  })
+  const comments = commentsQuery.data
+
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser')
     if (loggedUserJSON) {
@@ -120,6 +133,21 @@ const App = () => {
       handleResetNotification()
     } catch (err) {
       console.log(err, 'err in handleLogout')
+      notificationDispatch({ type: 'ERROR', payload: err.response.data.error })
+      handleResetNotification()
+    }
+  }
+
+  const handleNewComment = async (payload) => {
+    console.log(payload)
+    try {
+      newCommentMutation.mutate(payload)
+      notificationDispatch({
+        type: 'SUCCESS',
+        payload: 'a new comment added.',
+      })
+      handleResetNotification()
+    } catch (err) {
       notificationDispatch({ type: 'ERROR', payload: err.response.data.error })
       handleResetNotification()
     }
@@ -252,7 +280,7 @@ const App = () => {
 
       <Routes>
         <Route path='/' element={<BlogsDisplay />} />
-        <Route path='/blogs/:id' element={<BlogDetails blogs={blogs} user={user} handleLikes={handleLikes} handleDeleteBlog={handleDeleteBlog} />} />
+        <Route path='/blogs/:id' element={<BlogDetails blogs={blogs} user={user} comments={comments} handleLikes={handleLikes} handleDeleteBlog={handleDeleteBlog} handleNewComment={handleNewComment} />} />
         <Route path='/users' element={<UsersDisplay user={user} />} />
         <Route path='/users/:id' element={<UserDetails user={user} blogs={blogs} />} />
       </Routes>
