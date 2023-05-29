@@ -2,14 +2,16 @@ import { useState, useEffect, useRef, useReducer } from 'react'
 import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
 import { getAll, update, create, remove, setToken } from './services/blogs'
-import { getAllUsers } from './services/users'
 import { login } from './services/login'
 import ToggleVisibility from './components/ToggleVisibility'
 import LoginForm from './components/LoginForm'
+import UsersDisplay from './components/UsersDisplay'
+import UserDetails from './components/UserDetails'
+import BlogDetails from './components/BlogDetails'
 import Notification from './Notification'
 import NotificationContext from './NotificationContext'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 const notificationReducer = (state, action) => {
   switch (action.type) {
@@ -68,8 +70,6 @@ const App = () => {
   })
 
   const blogs = blogsQuery.data
-  const usersQuery = useQuery('users', getAllUsers)
-  const users = usersQuery.data
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser')
     if (loggedUserJSON) {
@@ -212,65 +212,6 @@ const App = () => {
   }
 
 
-  const UsersDisplay = () => {
-    return (
-      <>
-        {user &&
-          <div>
-            <h2>Users</h2>
-            {usersQuery.isLoading
-              ? <div>Loading users...</div>
-              : <table>
-                <tbody>
-                  <tr>
-                    <th></th>
-                    <th>blogs created</th>
-                  </tr>
-                  {
-                    users.sort((a, b) => a.name - b.name)
-                      .map((user) => (
-                        <tr key={user.id}>
-                          <td>
-                            <Link to={`/users/${user.id}`}>{user.name}</Link>
-                          </td>
-                          <td>{user.blogs.length}</td>
-                        </tr>
-                      ))
-                  }
-                </tbody>
-              </table >
-            }
-          </div>
-        }
-      </>
-    )
-  }
-
-  const IndividualDisplay = () => {
-    const userId = useParams().id
-    const targetBlogs = blogs.filter(blog => blog.user.id === userId)
-    return (
-      <>
-        {targetBlogs.length
-          ? <div>
-            <h2>{targetBlogs[0].user.name}</h2>
-            <h3>added blogs</h3>
-            {usersQuery.isLoading || blogsQuery.isLoading
-              ? <div>Loading blogs...</div>
-              : <ul>
-                {targetBlogs.map(blog => <li key={blog.title}>{blog.title}</li>)}
-              </ul>
-            }
-          </div>
-          : <div>
-            <h2>{targetBlogs[0].user.name}</h2>
-            <h3>added blogs</h3>
-          </div>
-        }
-      </>
-    )
-  }
-
   const navbarStyle = {
     display: 'flex',
     gap: '5px',
@@ -311,8 +252,9 @@ const App = () => {
 
       <Routes>
         <Route path='/' element={<BlogsDisplay />} />
-        <Route path='/users' element={<UsersDisplay />} />
-        <Route path='/users/:id' element={<IndividualDisplay />} />
+        <Route path='/blogs/:id' element={<BlogDetails blogs={blogs} user={user} handleLikes={handleLikes} handleDeleteBlog={handleDeleteBlog} />} />
+        <Route path='/users' element={<UsersDisplay user={user} />} />
+        <Route path='/users/:id' element={<UserDetails user={user} blogs={blogs} />} />
       </Routes>
     </Router>
   )
