@@ -12,7 +12,7 @@ interface ArrayOfValuesAndAValue {
   value2: number[];
 }
 
-const parseArgs = (args: string[]): ArrayOfValuesAndAValue => {
+const ExerciseParseArgs = (args: string[]): ArrayOfValuesAndAValue => {
   if (args.length < 4) throw new Error("Not enough arguments");
 
   if (!isNaN(Number(args[2])) && !args.slice(3).every(Number)) {
@@ -34,8 +34,8 @@ const exerciseCalculator = (targetHours: number, record: number[]): Result => {
   const average: number =
     record.reduce((acc, dailyRecord) => acc + dailyRecord, 0) / periodLength;
   const success = average >= target;
-  let rating: number;
-  let ratingDescription: string;
+  let rating: number = 0
+  let ratingDescription: string = ""
 
   if (average >= target * 1.5) {
     rating = 3;
@@ -62,7 +62,7 @@ const exerciseCalculator = (targetHours: number, record: number[]): Result => {
 };
 
 try {
-  const { value1, value2 } = parseArgs(process.argv);
+  const { value1, value2 } = ExerciseParseArgs(process.argv);
   console.log(exerciseCalculator(value1, value2));
 } catch (error: unknown) {
   let errMsg = "Something went wrong";

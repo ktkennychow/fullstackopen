@@ -3,7 +3,7 @@ interface MultipleValues {
   value2: number;
 }
 
-const parseArguments = (args: string[]): MultipleValues => {
+const bmiParseArgs = (args: string[]): MultipleValues => {
   if (args.length < 4) throw new Error("Not enough arguments");
   if (args.length > 4) throw new Error("Too many arguments");
 
@@ -17,30 +17,33 @@ const parseArguments = (args: string[]): MultipleValues => {
   }
 };
 
-const calculateBmi = (height: number, weight: number) => {
+export const calculateBmi = (height: number, weight: number) => {
   const bmi: number = weight / (height / 100) ** 2;
 
   if (bmi < 18.5) {
-    return "Underweight";
+    return "Abnormal (underweight)";
   }
   if (bmi >= 18.5 && bmi <= 24.9) {
-    return "Healthy weight";
+    return "Normal (healthy weight)";
   }
   if (bmi >= 25 && bmi <= 29.9) {
-    return "Overweight";
+    return "Abnormal (overweight)";
   }
   if (bmi >= 30) {
-    return "Obesity";
+    return "Abnormal (obesity)";
   }
+  return null;
 };
 
-try {
-  const { value1, value2 } = parseArguments(process.argv);
-  console.log(calculateBmi(value1, value2));
-} catch (error: unknown) {
-  let errMsg = "Something went wrong";
-  if (error instanceof Error) {
-    errMsg += " Error: " + error.message;
+export const bmiCalculator = (props: string[]) => {
+  try {
+    const { value1, value2 } = bmiParseArgs(props);
+    return calculateBmi(value1, value2);
+  } catch (error: unknown) {
+    let errMsg = "Something went wrong";
+    if (error instanceof Error) {
+      errMsg += " Error: " + error.message;
+    }
+    return errMsg;
   }
-  console.log(errMsg);
-}
+};
