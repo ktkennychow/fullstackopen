@@ -7,8 +7,25 @@ interface Result {
   target: number;
   average: number;
 }
+interface ArrayOfValuesAndAValue {
+  value1: number;
+  value2: number[];
+}
 
-const exerciseCalculator = (record: number[], targetHours: number): Result => {
+const parseArgs = (args: string[]): ArrayOfValuesAndAValue => {
+  if (args.length < 4) throw new Error("Not enough arguments");
+
+  if (!isNaN(Number(args[2])) && !args.slice(3).every(Number)) {
+    return {
+      value1: Number(args[2]),
+      value2: args.slice(3).map((arg) => Number(arg)),
+    };
+  } else {
+    throw new Error("Provided values were not numbers!");
+  }
+};
+
+const exerciseCalculator = (targetHours: number, record: number[]): Result => {
   const target: number = targetHours;
   const periodLength: number = record.length;
   const trainingDays: number = record.filter(
@@ -35,7 +52,7 @@ const exerciseCalculator = (record: number[], targetHours: number): Result => {
 
   return {
     periodLength: periodLength,
-    trainingDays:trainingDays,
+    trainingDays: trainingDays,
     success: success,
     rating: rating,
     ratingDescription: ratingDescription,
@@ -44,4 +61,13 @@ const exerciseCalculator = (record: number[], targetHours: number): Result => {
   };
 };
 
-console.log(exerciseCalculator([3,0,3,4.5,1,0,1], 1))
+try {
+  const { value1, value2 } = parseArgs(process.argv);
+  console.log(exerciseCalculator(value1, value2));
+} catch (error: unknown) {
+  let errMsg = "Something went wrong";
+  if (error instanceof Error) {
+    errMsg += " Error: " + error.message;
+  }
+  console.log(errMsg);
+}
