@@ -35,15 +35,13 @@ export const calculateBmi = (height: number, weight: number) => {
   return null;
 };
 
-export const bmiCalculator = (props: string[]) => {
-  try {
-    const { value1, value2 } = bmiParseArgs(props);
-    return calculateBmi(value1, value2);
-  } catch (error: unknown) {
-    let errMsg = "Something went wrong";
-    if (error instanceof Error) {
-      errMsg += " Error: " + error.message;
-    }
-    return errMsg;
+try {
+  const { value1, value2 } = bmiParseArgs(process.argv);
+  console.log(calculateBmi(value1, value2));
+} catch (error: unknown) {
+  let errMsg = "Something went wrong";
+  if (error instanceof Error) {
+    errMsg += " Error: " + error.message;
   }
-};
+  console.log(errMsg);
+}

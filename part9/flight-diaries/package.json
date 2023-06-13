@@ -1,23 +1,27 @@
 {
-  "name": "exercrises",
+  "name": "flight-diaries",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ts-node": "ts-node",
-    "calculateBmi": "ts-node bmiCalculator.ts",
-    "calculateExercises": "ts-node exerciseCalculator.ts",
-    "start": "ts-node index.ts",
-    "dev": "ts-node-dev index.ts"
+    "tsc": "tsc",
+    "dev": "ts-node-dev index.ts",
+    "lint": "eslint --ext .ts .",
+    "start": "node build/index.js"
   },
   "author": "",
   "license": "ISC",
   "prettier": {
     "semi": true
   },
+  "eslintConfig": {
+    "root": true
+  },
   "devDependencies": {
     "@types/express": "^4.17.17",
-    "ts-node": "^10.9.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.11",
+    "@typescript-eslint/parser": "^5.59.11",
+    "eslint": "^8.42.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.1.3"
   },

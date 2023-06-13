@@ -25,7 +25,7 @@ const ExerciseParseArgs = (args: string[]): ArrayOfValuesAndAValue => {
   }
 };
 
-const exerciseCalculator = (targetHours: number, record: number[]): Result => {
+export const exerciseCalculator = (targetHours: number, record: number[]): Result => {
   const target: number = targetHours;
   const periodLength: number = record.length;
   const trainingDays: number = record.filter(
@@ -34,8 +34,8 @@ const exerciseCalculator = (targetHours: number, record: number[]): Result => {
   const average: number =
     record.reduce((acc, dailyRecord) => acc + dailyRecord, 0) / periodLength;
   const success = average >= target;
-  let rating: number = 0
-  let ratingDescription: string = ""
+  let rating = 0;
+  let ratingDescription = "";
 
   if (average >= target * 1.5) {
     rating = 3;
