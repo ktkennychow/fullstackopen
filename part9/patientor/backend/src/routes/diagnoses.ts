@@ -1,14 +1,14 @@
-import express from 'express'
-import diagnoseService from '../services/diagnoseService'
+import express from "express";
+import diagnoseService from "../services/diagnoseService";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', (_req, res) => {
-  res.send(diagnoseService.getEntries())
-})
+router.get("/", (_req, res) => {
+  res.send(diagnoseService.getEntries());
+});
 
-router.post('/', (_req, res) => {
-  res.send('Saving a diagnose!')
-})
+router.post("/", (_req, res) => {
+  res.send("Saving a diagnose!");
+});
 
-export default router
+export default router;

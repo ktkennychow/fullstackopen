@@ -9,6 +9,9 @@
     "lint": "eslint --ext .ts .",
     "start": "node build/index.js"
   },
+  "prettier": {
+    "semi": true
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
