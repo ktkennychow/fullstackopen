@@ -1,11 +1,11 @@
-import Content from './components/Content'
+import Course from './components/Content'
 import Header from './components/Header'
 import Total from './components/Total'
-import { ContentProps } from './types'
+import { CourseProps } from './types'
 
 const App = () => {
   const courseName = 'Half Stack application development'
-  const courseParts: ContentProps[] = [
+  const courseParts: CourseProps[] = [
     {
       name: 'Fundamentals',
       exerciseCount: 10,
@@ -23,8 +23,8 @@ const App = () => {
   return (
     <div>
       <Header name={courseName} />
-      <Content content={courseParts} />
-      <Total content={courseParts} />
+      <Course courseParts={courseParts} />
+      <Total courseParts={courseParts} />
     </div>
   )
 }

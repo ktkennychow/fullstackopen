@@ -2,11 +2,11 @@ export interface HeaderProps {
   name: string
 }
 
-export interface ContentList {
-  content: ContentProps[]
+export interface CourseList {
+  courseParts: CourseProps[]
 }
 
-export interface ContentProps {
+export interface CourseProps {
   name: string
   exerciseCount: number
 }

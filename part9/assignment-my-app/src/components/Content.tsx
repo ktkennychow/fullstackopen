@@ -1,9 +1,9 @@
-import { ContentList } from '../types'
+import { CourseList } from '../types'
 
-export const Content = ({ content }: ContentList) => {
+export const Course = ({ courseParts }: CourseList) => {
   return (
     <>
-      {content.map((item) => (
+      {courseParts.map((item) => (
         <p key={item.name}>
           {item.name} {item.exerciseCount}
         </p>
@@ -12,4 +12,4 @@ export const Content = ({ content }: ContentList) => {
   )
 }
 
-export default Content
+export default Course
