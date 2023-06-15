@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createDiaryEntry, getDiaryEntries } from "./services";
 import { DiaryEntry, Visibility, Weather } from "./types";
-import { AxiosError } from 'axios';
+import { AxiosError } from "axios";
 
 function App() {
   const [diaries, setDiaries] = useState<DiaryEntry[]>([]);
@@ -9,7 +9,7 @@ function App() {
   const [visibility, setVisibility] = useState<Visibility>("" as Visibility);
   const [weather, setWeather] = useState<Weather>("" as Weather);
   const [comment, setComment] = useState("");
-  const [errorMsg, setErrorMsg] = useState<string>('');
+  const [errorMsg, setErrorMsg] = useState<string>("");
   useEffect(() => {
     getDiaryEntries().then((data) => {
       setDiaries(data);
@@ -33,9 +33,12 @@ function App() {
         setWeather(Weather.Sunny);
         setComment("");
       })
-      .catch((res)=> {
-        const error = res.response.data as AxiosError
+      .catch((res) => {
+        const error = res.response.data as AxiosError;
         setErrorMsg(`Error: ${error}`);
+        setTimeout(() => {
+          setErrorMsg("");
+        }, 5000);
       });
   };
 
@@ -55,18 +58,68 @@ function App() {
         <p>
           visibility
           <input
-            value={visibility}
+            type="radio"
+            id="good"
+            value="good"
+            name="visibility"
             onChange={(event) =>
               setVisibility(event.target.value as Visibility)
             }
           />
+          <label htmlFor="good">good</label>
+          <input
+            type="radio"
+            id="poor"
+            value="poor"
+            name="visibility"
+            onChange={(event) =>
+              setVisibility(event.target.value as Visibility)
+            }
+          />
+          <label htmlFor="poor">poor</label>
         </p>
         <p>
           weather
           <input
-            value={weather}
-            onChange={(event) => setWeather(event.target.value as Weather)}
+            type="radio"
+            id="sunny"
+            value="sunny"
+            name="weather"
+            onChange={(event) =>
+              setWeather(event.target.value as Weather)
+            }
           />
+          <label htmlFor="sunny">sunny</label>
+          <input
+            type="radio"
+            id="cloudy"
+            value="cloudy"
+            name="weather"
+            onChange={(event) =>
+              setWeather(event.target.value as Weather)
+            }
+          />
+          <label htmlFor="cloudy">cloudy</label>
+          <input
+            type="radio"
+            id="windy"
+            value="windy"
+            name="weather"
+            onChange={(event) =>
+              setWeather(event.target.value as Weather)
+            }
+          />
+          <label htmlFor="windy">windy</label>
+          <input
+            type="radio"
+            id="rainy"
+            value="rainy"
+            name="weather"
+            onChange={(event) =>
+              setWeather(event.target.value as Weather)
+            }
+          />
+          <label htmlFor="rainy">rainy</label>
         </p>
         <p>
           comment
