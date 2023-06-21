@@ -1,69 +1,75 @@
 import { useParams } from 'react-router-dom'
 import patientsService from '../../services/patients'
-import diagnosesService from '../../services/diagnoses'
+import { Container } from '@mui/material'
+import Stack from '@mui/material/Stack'
 import { useEffect, useState } from 'react'
-import { Diagnosis, Patient } from '../../types'
+import { Entry, Patient } from '../../types'
+import assertNever from 'assert-never'
 import MaleIcon from '@mui/icons-material/Male'
 import FemaleIcon from '@mui/icons-material/Female'
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
+import HospitalEntries from './HospitalEntry'
+import HealthCheckEntries from './HealthCheckEntry'
+import OccupationalHealthcareEntries from './OccupationalHealthcareEntry'
+
+const EntryDetails = ({entry}: {entry: Entry}) => {
+  switch (entry.type) {
+    case 'Hospital':
+      return <HospitalEntries entry={entry}/>
+    case 'OccupationalHealthcare':
+      return <OccupationalHealthcareEntries entry={entry} />
+    case 'HealthCheck':
+      return <HealthCheckEntries entry={entry} />
+    default:
+      return assertNever(entry)
+  }
+}
 
 const PatitentInfoPage = () => {
   const { id } = useParams()
   const [patientInfo, setPatientInfo] = useState<Patient>()
-  const [diagnosesInfo, setDiagnosesInfo] = useState<Diagnosis[]>()
   useEffect(() => {
     const fetchPatientInfo = async () => {
       const result = await patientsService.getSingle(id as string)
       setPatientInfo(result)
     }
-    const fetchDiagnosesInfo = async () => {
-      const result = await diagnosesService.getAll()
-      setDiagnosesInfo(result)
-    }
     fetchPatientInfo()
-    fetchDiagnosesInfo()
   }, [])
 
   if (!patientInfo) {
     return <></>
   }
-  if (!diagnosesInfo) {
-    return <>loading</>
-  }
+
   return (
     <div>
-      <h2>
-        {patientInfo.name}{' '}
-        <span>
-          {patientInfo.gender === 'male' ? (
-            <MaleIcon />
-          ) : patientInfo.gender === 'female' ? (
-            <FemaleIcon />
-          ) : (
-            <QuestionMarkIcon />
-          )}
-        </span>
-      </h2>
-      <p>SSN: {patientInfo.ssn}</p>
-      <p>Occupation: {patientInfo.occupation}</p>
+      <Container>
+        <h2>
+          {patientInfo.name}{' '}
+          <span>
+            {patientInfo.gender === 'male' ? (
+              <MaleIcon />
+            ) : patientInfo.gender === 'female' ? (
+              <FemaleIcon />
+            ) : (
+              <QuestionMarkIcon />
+            )}
+          </span>
+        </h2>
+        <p>SSN: {patientInfo.ssn}</p>
+        <p>Occupation: {patientInfo.occupation}</p>
 
-      <h3>entries</h3>
-      <div>
-        {patientInfo.entries.map((entry) => {
-          return (
-            <div key={entry.id}>
-              <p>
-                {entry.date} {entry.description}
-              </p>
-              <ul>
-                {entry.diagnosisCodes?.map((code) => (
-                  <li key={code}>{code} {diagnosesInfo.find(obj => obj.code === code)?.name}</li>
-                ))}
-              </ul>
-            </div>
-          )
-        })}
-      </div>
+        <h3>entries</h3>
+        <Stack spacing={1}>
+          {patientInfo.entries.map((entry) => {
+            return (
+              <EntryDetails
+                key={entry.id}
+                entry={entry}
+              />
+            )
+          })}
+        </Stack>
+      </Container>
     </div>
   )
 }
