@@ -3,7 +3,11 @@ import { useEffect, useState } from 'react'
 import diagnosesService from '../../services/diagnoses'
 import { Diagnosis, OccupationalHealthcareEntry } from '../../types'
 
-const OccupationalHealthcareEntries = ({ entry }: { entry: OccupationalHealthcareEntry }) => {
+const OccupationalHealthcareEntries = ({
+  entry,
+}: {
+  entry: OccupationalHealthcareEntry
+}) => {
   const [diagnosesInfo, setDiagnosesInfo] = useState<Diagnosis[]>()
   useEffect(() => {
     const fetchDiagnosesInfo = async () => {
@@ -25,8 +29,7 @@ const OccupationalHealthcareEntries = ({ entry }: { entry: OccupationalHealthcar
       }}
       key={entry.id}>
       <p>
-        {entry.date} <MedicalInformationIcon />{' '}
-        {entry.employerName}
+        {entry.date} <MedicalInformationIcon /> {entry.employerName}
       </p>
       <p>
         <em>{entry.description}</em>
@@ -39,6 +42,13 @@ const OccupationalHealthcareEntries = ({ entry }: { entry: OccupationalHealthcar
           </li>
         ))}
       </ul>
+      {entry.sickLeave ? (
+        <div>
+          <p>sick leave:</p>
+          <p>start date: {entry.sickLeave.startDate}</p>
+          <p>end date: {entry.sickLeave.endDate}</p>
+        </div>
+      ) : null}
     </div>
   )
 }

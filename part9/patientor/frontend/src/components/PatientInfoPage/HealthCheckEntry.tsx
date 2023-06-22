@@ -4,7 +4,6 @@ import diagnosesService from '../../services/diagnoses'
 import { Diagnosis, HealthCheckEntry, HealthCheckRating } from '../../types'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { green, orange, red, yellow } from '@mui/material/colors';
-import assertNever from 'assert-never';
 
 const HealthRating = ({rating }: { rating: HealthCheckRating }) => {
   switch (rating) {

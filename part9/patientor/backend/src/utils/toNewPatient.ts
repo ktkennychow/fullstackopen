@@ -46,6 +46,8 @@ const parseSsn = (ssn: unknown): string => {
   return ssn;
 };
 
+
+
 const toNewPatient = (object: unknown): NewPatient => {
   if (!object || typeof object !== "object") {
     throw new Error("Incorrect or missing data");
@@ -64,11 +66,11 @@ const toNewPatient = (object: unknown): NewPatient => {
       gender: parseGender(object.gender),
       ssn: parseSsn(object.ssn),
       occupation: parseOccupation(object.occupation),
-      entries: object.entries as Entry[],
+      entries: object.entries as Entry[]
     };
+  
     return newEntry;
   }
-
   throw new Error("Incorrect data: some fields are missing");
 };
 

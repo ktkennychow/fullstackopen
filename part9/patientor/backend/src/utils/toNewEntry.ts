@@ -81,8 +81,7 @@ const toNewEntry = (object: unknown): NewEntry => {
     "description" in object &&
     "date" in object &&
     "specialist" in object &&
-    "type" in object &&
-    "diagnosisCodes" in object
+    "type" in object 
   ) {
     switch (object.type) {
       case "HealthCheck":
@@ -92,9 +91,11 @@ const toNewEntry = (object: unknown): NewEntry => {
             description: parseDescription(object.description),
             date: parseDate(object.date),
             specialist: parseSpecialist(object.specialist),
-            diagnosisCodes: parseDiagnosisCodes(object.diagnosisCodes),
+            
             healthCheckRating: parseHealthRating(object.healthCheckRating),
           };
+          if ("diagnosisCodes" in object) {
+            newEntry.diagnosisCodes = parseDiagnosisCodes(object.diagnosisCodes)}
           return newEntry;
         }
         throw new Error("Incorrect or missing health check rating");
@@ -112,12 +113,15 @@ const toNewEntry = (object: unknown): NewEntry => {
             description: parseDescription(object.description),
             date: parseDate(object.date),
             specialist: parseSpecialist(object.specialist),
-            diagnosisCodes: parseDiagnosisCodes(object.diagnosisCodes),
+            
             discharge: {
               date: parseDate(object.discharge.date),
               criteria: parseCriteria(object.discharge.criteria),
             },
+
           };
+          if ("diagnosisCodes" in object) {
+            newEntry.diagnosisCodes = parseDiagnosisCodes(object.diagnosisCodes)}
           return newEntry;
         }
         throw new Error("Incorrect or missing discharge information");
@@ -129,7 +133,7 @@ const toNewEntry = (object: unknown): NewEntry => {
             description: parseDescription(object.description),
             date: parseDate(object.date),
             specialist: parseSpecialist(object.specialist),
-            diagnosisCodes: parseDiagnosisCodes(object.diagnosisCodes),
+          
             employerName: parseEmployerName(object.employerName),
           };
           if ("sickLeave" in object && object.sickLeave && typeof object.sickLeave === "object" && "startDate" in object.sickLeave && "endDate" in object.sickLeave) {
@@ -138,6 +142,8 @@ const toNewEntry = (object: unknown): NewEntry => {
               endDate: parseDate(object.sickLeave.endDate),
             };
           }
+          if ("diagnosisCodes" in object) {
+            newEntry.diagnosisCodes = parseDiagnosisCodes(object.diagnosisCodes)}
           return newEntry;
         }
         throw new Error("Incorrect or missing employer name");

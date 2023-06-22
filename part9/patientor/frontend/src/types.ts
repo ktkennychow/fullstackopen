@@ -68,6 +68,12 @@ export interface OccupationalHealthcareEntry extends BaseEntry {
 
 export type NonSensitivePatient = Omit<Patient, 'ssn' | 'entries'>
 
-export type NewPatientEntry = Omit<Patient, 'id'>
+export type NewPatient = Omit<Patient, 'id'>
 
 export type PatientFormValues = Omit<Patient, 'id' | 'entries'>
+
+type UnionOmit<T, K extends string | number | symbol> = T extends unknown
+  ? Omit<T, K>
+  : never
+
+export type EntryFormValues = UnionOmit<Entry, 'id'>
