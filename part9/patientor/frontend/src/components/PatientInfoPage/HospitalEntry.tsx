@@ -1,31 +1,32 @@
-import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
-import { useEffect, useState } from 'react'
-import diagnosesService from '../../services/diagnoses'
-import { Diagnosis, HospitalEntry } from '../../types'
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import { useEffect, useState } from "react";
+import diagnosesService from "../../services/diagnoses";
+import { Diagnosis, HospitalEntry } from "../../types";
 
 const HospitalEntries = ({ entry }: { entry: HospitalEntry }) => {
-  const [diagnosesInfo, setDiagnosesInfo] = useState<Diagnosis[]>()
+  const [diagnosesInfo, setDiagnosesInfo] = useState<Diagnosis[]>();
   useEffect(() => {
     const fetchDiagnosesInfo = async () => {
-      const result = await diagnosesService.getAll()
-      setDiagnosesInfo(result)
-    }
-    fetchDiagnosesInfo()
-  }, [])
+      const result = await diagnosesService.getAll();
+      setDiagnosesInfo(result);
+    };
+    fetchDiagnosesInfo();
+  }, []);
 
   if (!diagnosesInfo) {
-    return <>loading</>
+    return <>loading</>;
   }
   return (
     <div
       style={{
-        border: '0.25rem solid black',
-        borderRadius: '1rem',
-        padding: '10px',
+        border: "0.25rem solid black",
+        borderRadius: "1rem",
+        padding: "10px",
       }}
-      key={entry.id}>
+      key={entry.id}
+    >
       <p>
-        {entry.date} <LocalHospitalIcon />{' '}
+        {entry.date} <LocalHospitalIcon />{" "}
       </p>
       <p>
         <em>{entry.description}</em>
@@ -38,8 +39,15 @@ const HospitalEntries = ({ entry }: { entry: HospitalEntry }) => {
           </li>
         ))}
       </ul>
+      {entry.discharge ? (
+        <>
+          <p>discharge:</p>
+          <p>date: {entry.discharge.date}</p>
+          <p>criteria: {entry.discharge.criteria}</p>
+        </>
+      ) : null}
     </div>
-  )
-}
+  );
+};
 
-export default HospitalEntries
+export default HospitalEntries;
