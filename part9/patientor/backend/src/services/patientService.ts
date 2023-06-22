@@ -2,13 +2,19 @@ import { v1 as uuid } from "uuid";
 
 import patients from "../../data/patients";
 
-import { NewPatientEntry, NonSensitivePatient, Patient } from "../types";
+import {
+  Entry,
+  NewEntry,
+  NewPatient,
+  NonSensitivePatient,
+  Patient,
+} from "../types";
 
-const getEntries = (): Patient[] => {
+const getPatients = (): Patient[] => {
   return patients;
 };
 
-const getNonSensitiveEntries = (): NonSensitivePatient[] => {
+const getNonSensitivePatient = (): NonSensitivePatient[] => {
   return patients.map(({ id, name, dateOfBirth, gender, occupation }) => ({
     id,
     name,
@@ -18,24 +24,37 @@ const getNonSensitiveEntries = (): NonSensitivePatient[] => {
   }));
 };
 
-const getSingleEntry = (id: string): Patient => {
+const getSinglePatient = (id: string): Patient => {
   const targetPatient = patients.find((patient) => patient.id === id);
-  return targetPatient as Patient
+  return targetPatient as Patient;
 };
 
-const addPatient = (entry: NewPatientEntry): NonSensitivePatient => {
-  const newPatientEntry = {
+const addPatient = (patient: NewPatient): NonSensitivePatient => {
+  const NewPatient = {
+    id: uuid(),
+    ...patient,
+  };
+
+  patients.push(NewPatient);
+  return NewPatient;
+};
+
+const addEntry = (entry: NewEntry, id: string): Entry => {
+  const targetPatientIndex = patients.findIndex((patient) => patient.id === id);
+  const NewEntry = {
     id: uuid(),
     ...entry,
   };
 
-  patients.push(newPatientEntry);
-  return newPatientEntry;
+  patients[targetPatientIndex].entries.push(NewEntry);
+
+  return NewEntry;
 };
 
 export default {
-  getEntries,
+  getPatients,
   addPatient,
-  getNonSensitiveEntries,
-  getSingleEntry,
+  getNonSensitivePatient,
+  getSinglePatient,
+  addEntry,
 };
