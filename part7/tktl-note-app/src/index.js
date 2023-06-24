@@ -147,10 +147,6 @@ const App = () => {
     }, 10000)
   }
 
-  const padding = {
-    padding: 5
-  }
-
   return (
     <Container>
       <div>
