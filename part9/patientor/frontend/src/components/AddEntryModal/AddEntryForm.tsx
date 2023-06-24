@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent } from "react";
+import { useState, SyntheticEvent, useEffect } from "react";
 
 import {
   TextField,
@@ -8,9 +8,11 @@ import {
   Grid,
   Button,
   SelectChangeEvent,
+  Input,
 } from "@mui/material";
 
-import { EntryFormValues, HealthCheckRating } from "../../types";
+import { EntryFormValues, HealthCheckRating, Diagnosis } from "../../types";
+import diagnosesService from "../../services/diagnoses";
 
 interface Props {
   onCancel: () => void;
@@ -50,10 +52,22 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
   const [employerName, setEmployerName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [diagnosisCodes, setDiagnosisCodes] = useState<string[]>([]);
   const [healthCheckRating, setHealthCheckRating] = useState(
     HealthCheckRating.Healthy
   );
   const [entryType, setEntryType] = useState(entryTypes[0]);
+  const [diagnosesInfo, setDiagnosesInfo] = useState<Diagnosis[]>();
+  useEffect(() => {
+    const fetchDiagnosesInfo = async () => {
+      const result = await diagnosesService.getAll();
+      setDiagnosesInfo(result);
+    };
+    fetchDiagnosesInfo();
+  }, []);
+  if (!diagnosesInfo) {
+    return <>loading</>;
+  }
 
   const onHealthCheckRatingChange = (event: SelectChangeEvent<number>) => {
     event.preventDefault();
@@ -65,6 +79,14 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
       if (healthCheckRating) {
         setHealthCheckRating(healthCheckRating as HealthCheckRating);
       }
+    }
+  };
+
+  const onDiagnosisCodesChange = (event: SelectChangeEvent<string[]>) => {
+    event.preventDefault();
+    if (typeof event.target.value === "object") {
+      const value = event.target.value;
+      setDiagnosisCodes(value);
     }
   };
 
@@ -83,46 +105,70 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
     event.preventDefault();
     switch (entryType) {
       case "HealthCheck":
-        onSubmit({
+        const newHealthCheckEntry: EntryFormValues = {
           type: entryType,
           description,
           date,
           specialist,
           healthCheckRating,
-        });
+        };
+        if (diagnosisCodes.length > 0) {
+          newHealthCheckEntry.diagnosisCodes = diagnosisCodes;
+        }
+        onSubmit(newHealthCheckEntry);
         break;
-        case "Hospital":
-          onSubmit({
-            type: entryType,
-            description,
-            date,
-            specialist,
-            discharge:{
-              date: dischargeDate,
-              criteria: dischargeCriteria
-            },
-          });
-          break;
+      case "Hospital":
+        const newHospitalEntry: EntryFormValues = {
+          type: entryType,
+          description,
+          date,
+          specialist,
+          diagnosisCodes,
+          discharge: {
+            date: dischargeDate,
+            criteria: dischargeCriteria,
+          },
+        };
+        if (diagnosisCodes.length > 0) {
+          newHospitalEntry.diagnosisCodes = diagnosisCodes;
+        }
+        onSubmit(newHospitalEntry);
+        break;
       case "OccupationalHealthcare":
-        onSubmit({
+        const newOccupationalHealthcareEntry: EntryFormValues = {
           type: entryType,
           description,
           date,
           specialist,
           employerName,
-          sickLeave: {
+        };
+        if (diagnosisCodes.length > 0) {
+          newOccupationalHealthcareEntry.diagnosisCodes = diagnosisCodes;
+        }
+        if (startDate && endDate) {
+          newOccupationalHealthcareEntry.sickLeave = {
             startDate: startDate,
             endDate: endDate,
-          }
-        });
+          };
+        }
+        onSubmit(newOccupationalHealthcareEntry);
     }
-    
   };
 
   return (
     <div>
       <form onSubmit={addEntry}>
-        <InputLabel style={{ marginTop: 20 }}>Entry type</InputLabel>
+        <InputLabel style={{ fontWeight: "bold" }}>Date *</InputLabel>
+        <Input
+          type="date"
+          fullWidth
+          required
+          value={date}
+          onChange={({ target }) => setDate(target.value)}
+        />
+        <InputLabel style={{ marginTop: 20, fontWeight: "bold" }}>
+          Entry type *
+        </InputLabel>
         <Select
           label="entry type"
           fullWidth
@@ -138,26 +184,40 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
         <TextField
           label="description"
           fullWidth
+          required
           value={description}
           onChange={({ target }) => setDescription(target.value)}
         />
         <TextField
-          label="date"
-          placeholder="YYYY-MM-DD"
-          fullWidth
-          value={date}
-          onChange={({ target }) => setDate(target.value)}
-        />
-        <TextField
           label="specialist"
           fullWidth
+          required
           value={specialist}
           onChange={({ target }) => setSpecialist(target.value)}
         />
+        <InputLabel style={{ marginTop: 20, fontWeight: "bold" }}>
+          Diagnose Codes
+        </InputLabel>
+        <Select
+          label="diagnosisCodes"
+          fullWidth
+          multiple
+          value={diagnosisCodes}
+          onChange={onDiagnosisCodesChange}
+        >
+          {diagnosesInfo.map((option) => (
+            <MenuItem key={option.code} value={option.code}>
+              {option.code}
+            </MenuItem>
+          ))}
+        </Select>
+        <InputLabel style={{ marginTop: 20, fontWeight: "bold" }}>
+          Details
+        </InputLabel>
         {entryType === "HealthCheck" ? (
           <>
-            <InputLabel style={{ marginTop: 20 }}>
-              Health Check Rating
+            <InputLabel style={{ fontWeight: "bold" }}>
+              Health Check Rating *
             </InputLabel>
             <Select
               label="healthCheckRating"
@@ -174,15 +234,17 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
           </>
         ) : entryType === "Hospital" ? (
           <>
-            <TextField
-              label="discharge date"
-              placeholder="YYYY-MM-DD"
+            <InputLabel style={{ fontWeight: "bold" }}>Discharge</InputLabel>
+            <InputLabel>Date *</InputLabel>
+            <Input
+              type="date"
               fullWidth
               value={dischargeDate}
               onChange={({ target }) => setDischargeDate(target.value)}
             />
+            <InputLabel>Criteria *</InputLabel>
             <TextField
-              label="discharge criteria"
+              label="date"
               fullWidth
               value={dischargeCriteria}
               onChange={({ target }) => setDischargeCriteria(target.value)}
@@ -193,19 +255,21 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
             <TextField
               label="employer name"
               fullWidth
+              required
               value={employerName}
               onChange={({ target }) => setEmployerName(target.value)}
             />
-            <TextField
-              label="start date"
-              placeholder="YYYY-MM-DD"
+            <InputLabel style={{ fontWeight: "bold" }}>Sick leave</InputLabel>
+            <InputLabel>Start date</InputLabel>
+            <Input
+              type="date"
               fullWidth
               value={startDate}
               onChange={({ target }) => setStartDate(target.value)}
             />
-            <TextField
-              label="end date"
-              placeholder="YYYY-MM-DD"
+            <InputLabel>End date</InputLabel>
+            <Input
+              type="date"
               fullWidth
               value={endDate}
               onChange={({ target }) => setEndDate(target.value)}
@@ -243,4 +307,3 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
 };
 
 export default AddEntryForm;
-// ToDo: 9.28 - add field for diagnoseCodes, error handling for invaild values

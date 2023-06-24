@@ -5,7 +5,7 @@ import {
 } from "../types";
 
 const isString = (text: unknown): text is string => {
-  return typeof text === "string" || text instanceof String;
+  return typeof text === "string" || text instanceof String ;
 };
 const isDate = (date: string): boolean => {
   return Boolean(Date.parse(date));
@@ -20,41 +20,38 @@ const parseDate = (date: unknown): string => {
   return date;
 };
 const parseDescription = (description: unknown): string => {
-  if (!isString(description)) {
+  if (!isString(description) || description.length === 0) {
     throw new Error("Incorrect or missing description");
   }
   return description;
 };
 
 const parseSpecialist = (specialist: unknown): string => {
-  if (!isString(specialist)) {
+  if (!isString(specialist) || specialist.length === 0) {
     throw new Error("Incorrect or missing specialist");
   }
   return specialist;
 };
 
 const parseCriteria = (criteria: unknown): string => {
-  if (!isString(criteria)) {
+  if (!isString(criteria) || criteria.length === 0) {
     throw new Error("Incorrect or missing criteria");
   }
   return criteria;
 };
 const parseEmployerName = (employerName: unknown): string => {
-  if (!isString(employerName)) {
+  if (!isString(employerName) || employerName.length === 0) {
     throw new Error("Incorrect or missing employer name");
   }
   return employerName;
 };
 
 const parseDiagnosisCodes = (object: unknown): Array<Diagnosis["code"]> => {
-  console.log(object,typeof object, )
-
   if (!object || typeof object !== "object" ) {
     console.log(3213)
     // we will just trust the data to be in correct form
     return [] as Array<Diagnosis["code"]>;
   }
-
   return object as Array<Diagnosis["code"]>;
 };
 
@@ -70,8 +67,6 @@ const parseHealthRating = (healthCheckRating: unknown): HealthCheckRating => {
   }
   return healthCheckRating;
 };
-
-
 
 const toNewEntry = (object: unknown): NewEntry => {
   if (!object || typeof object !== "object") {
@@ -113,7 +108,6 @@ const toNewEntry = (object: unknown): NewEntry => {
             description: parseDescription(object.description),
             date: parseDate(object.date),
             specialist: parseSpecialist(object.specialist),
-            
             discharge: {
               date: parseDate(object.discharge.date),
               criteria: parseCriteria(object.discharge.criteria),
@@ -133,7 +127,6 @@ const toNewEntry = (object: unknown): NewEntry => {
             description: parseDescription(object.description),
             date: parseDate(object.date),
             specialist: parseSpecialist(object.specialist),
-          
             employerName: parseEmployerName(object.employerName),
           };
           if ("sickLeave" in object && object.sickLeave && typeof object.sickLeave === "object" && "startDate" in object.sickLeave && "endDate" in object.sickLeave) {
