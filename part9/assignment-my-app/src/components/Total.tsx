@@ -1,11 +1,10 @@
-import { CourseList } from '../types'
 
-const Total = ({ courseParts }: CourseList) => {
+
+const Total = ({total}: {total:number}) => {
   return (
     <div>
       <p>
-        Number of exercises{' '}
-        {courseParts.reduce((carry, part) => carry + part.exerciseCount, 0)}
+        Number of exercises {total}
       </p>
     </div>
   )
