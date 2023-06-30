@@ -5,6 +5,7 @@ import { Link } from 'react-router-native'
 const AppBarTab = ({ name, link }) => {
   return (
     <Pressable
+    style={{marginRight: 10}}
       onPress={() => {
         Alert.alert('1212')
       }}>
