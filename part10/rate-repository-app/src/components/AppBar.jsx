@@ -5,31 +5,35 @@ import theme from '../theme'
 import AppBarTab from './AppBarTab'
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: theme.backgroundColor.dark,
+  },
   contentContainer: {
     paddingTop: Constants.statusBarHeight,
     height: 100,
-
-    backgroundColor: theme.backgroundColor.dark,
     paddingLeft: 20,
   },
 })
 
 const AppBar = () => {
   return (
-    <ScrollView
-      horizontal
-      directionalLockEnabled
-      bounces={false}
-      contentContainerStyle={styles.contentContainer}>
-      <AppBarTab
-        name='Repository'
-        link='/'
-      />
-      <AppBarTab
-        name='Sign in'
-        link='signin'
-      />
-    </ScrollView>
+    <View style={styles.container}>
+      <ScrollView
+        horizontal
+        directionalLockEnabled
+        bounces={false}
+        contentContainerStyle={styles.contentContainer}>
+        <AppBarTab
+          name='Repository'
+          link='/'
+        />
+        <AppBarTab
+          name='Sign in'
+          link='signin'
+        />
+        
+      </ScrollView>
+    </View>
   )
 }
 
