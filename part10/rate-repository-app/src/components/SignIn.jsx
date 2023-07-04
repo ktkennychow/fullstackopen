@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 5,
-    marginBottom: 20
+    marginBottom: 20,
   },
   button: {
     padding: 20,
@@ -28,29 +28,48 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: theme.fontSizes.subheading,
     fontStyle: theme.fontWeights.bold,
-    color: theme.colors.textWhite
+    color: theme.colors.textWhite,
   },
 })
 
+const initialValues = {
+  username: '',
+  password: '',
+}
+
+const onSubmit = (values) => {
+  console.log(values)
+}
+
+const SignInFrom = ({ onSubmit }) => {
+  return (
+    <View style={styles.container}>
+      <FormikTextInput
+        name='username'
+        placeholder='Username'
+        style={styles.inputField}
+      />
+      <FormikTextInput
+        secureTextEntry={true}
+        name='password'
+        placeholder='Password'
+        style={styles.inputField}
+      />
+      <Pressable
+        onPress={onSubmit}
+        style={styles.button}>
+        <Text style={styles.buttonText}>Sign in</Text>
+      </Pressable>
+    </View>
+  )
+}
+
 const SignIn = () => {
   return (
-    <Formik>
-      <View style={styles.container}>
-        <FormikTextInput
-          name='username'
-          placeholder='Username'
-          style={styles.inputField}
-        />
-        <FormikTextInput
-          secureTextEntry={true}
-          name='password'
-          placeholder='Password'
-          style={styles.inputField}
-        />
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Sign in</Text>
-        </Pressable>
-      </View>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}>
+      {({ handleSubmit }) => <SignInFrom onSubmit={handleSubmit} />}
     </Formik>
   )
 }
