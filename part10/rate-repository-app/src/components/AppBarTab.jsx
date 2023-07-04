@@ -7,7 +7,6 @@ const AppBarTab = ({ name, link }) => {
     <Pressable
     style={{marginRight: 10}}
       onPress={() => {
-        Alert.alert('1212')
       }}>
       <Link to={link}>
         <Text

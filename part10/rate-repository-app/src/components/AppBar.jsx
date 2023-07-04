@@ -31,7 +31,6 @@ const AppBar = () => {
           name='Sign in'
           link='signin'
         />
-        
       </ScrollView>
     </View>
   )
