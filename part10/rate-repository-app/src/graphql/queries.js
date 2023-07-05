@@ -21,3 +21,10 @@ export const GET_REPOSITORIES = gql`
   }
 }
 `;
+
+export const AUTHENTICATION = gql`
+mutation {
+  authenticate(credentials: { username: "kalle", password: "password" }) {
+    accessToken
+  }
+}`
