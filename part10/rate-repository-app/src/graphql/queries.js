@@ -23,8 +23,8 @@ export const GET_REPOSITORIES = gql`
 `;
 
 export const AUTHENTICATION = gql`
-mutation {
-  authenticate(credentials: { username: "kalle", password: "password" }) {
+mutation($credentials: AuthenticateInput) {
+  authenticate(credentials: $credentials) {
     accessToken
-  }
+  },
 }`
