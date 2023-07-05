@@ -2,12 +2,23 @@ import { Pressable, Alert } from 'react-native'
 import Text from './Text'
 import { Link } from 'react-router-native'
 
-const AppBarTab = ({ name, link }) => {
+const AppBarTab = ({ name, link, onPress }) => {
   return (
-    <Pressable
+    onPress
+    ? <Pressable
     style={{marginRight: 10}}
-      onPress={() => {
-      }}>
+      onPress={onPress}>
+        <Text
+          fontSize='subheading'
+          fontWeight='bold'
+          color='textWhite'>
+          {name}
+        </Text>
+    </Pressable>
+    : link 
+    ? <Pressable
+    style={{marginRight: 10}}
+      onPress={onPress}>
       <Link to={link}>
         <Text
           fontSize='subheading'
@@ -17,6 +28,7 @@ const AppBarTab = ({ name, link }) => {
         </Text>
       </Link>
     </Pressable>
+    : null
   )
 }
 

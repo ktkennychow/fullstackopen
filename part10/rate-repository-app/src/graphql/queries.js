@@ -28,3 +28,12 @@ mutation($credentials: AuthenticateInput) {
     accessToken
   },
 }`
+
+export const CHECK_USER = gql`
+{
+  me {
+    id
+    username
+  }
+}
+`
