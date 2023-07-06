@@ -11,15 +11,11 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />
 
-const RepositoryList = () => {
-  const { data, loading} = useRepositories()
+export const RepositoryListContainer = ( {repositories} ) => {
 
-  if (loading) { 
-    return <View><Text>Loading</Text></View>
-  }
-
-  const repositoryNodes = data.repositories
-    ? data.repositories.edges.map((edge) => edge.node)
+  console.log(111,repositories)
+  const repositoryNodes = repositories
+    ? repositories.edges.map((edge) => edge.node)
     : []
 
   return (
@@ -31,6 +27,20 @@ const RepositoryList = () => {
       fontSize='subheading'
     />
   )
+}
+
+const RepositoryList = () => {
+  const {data,error,loading} = useRepositories()
+  
+  if (loading) {
+    return (
+      <View>
+        <Text>Loading</Text>
+      </View>
+    )
+  }
+
+  return <RepositoryListContainer repositories={data.repositories} />
 }
 
 export default RepositoryList

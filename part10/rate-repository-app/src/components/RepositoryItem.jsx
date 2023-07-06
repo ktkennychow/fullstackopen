@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 
 const Item = ({ props }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID='repositoryItem'>
       <View style={styles.top}>
         <Image
           style={styles.tinyLogo}
@@ -56,7 +56,8 @@ const Item = ({ props }) => {
           <Text
             style={styles.info}
             fontWeight='bold'
-            fontSize='subheading'>
+            fontSize='subheading'
+            testID='fullName'>
             {props.item.fullName}
           </Text>
           <Text style={styles.info}>{props.item.description}</Text>
@@ -85,7 +86,7 @@ const Item = ({ props }) => {
           <Text style={{ alignSelf: 'center' }}>Stars</Text>
         </View>
         <View style={styles.badges}>
-          {props.item.stargazersCount > 999 ? (
+          {props.item.forksCount > 999 ? (
             <Text
               style={{ alignSelf: 'center' }}
               fontWeight='bold'>
