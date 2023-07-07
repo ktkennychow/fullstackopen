@@ -37,3 +37,22 @@ export const CHECK_USER = gql`
   }
 }
 `
+
+export const GET_SINGLE_REPO = gql`
+query ($repositoryId: ID!){
+  repository(id: $repositoryId) {
+    language
+    ratingAverage
+    reviewCount
+    stargazersCount
+    forksCount
+    description
+    fullName
+    name
+    ownerAvatarUrl
+    ownerName
+    id
+    url
+  }
+}
+`

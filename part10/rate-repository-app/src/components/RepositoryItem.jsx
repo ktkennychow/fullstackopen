@@ -1,4 +1,5 @@
-import { View, Image, StyleSheet } from 'react-native'
+import { View, Image, StyleSheet, Pressable } from 'react-native'
+import * as Linking from 'expo-linking'
 import Text from './Text'
 import theme from '../theme'
 
@@ -37,6 +38,16 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.primary,
     overflow: 'hidden',
   },
+  fullButton: {
+    marginTop: 10,
+    padding: 20,
+    width: '100%',
+    backgroundColor: theme.colors.primary,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: theme.colors.primary,
+    overflow: 'hidden',
+  },
   tinyLogo: {
     width: 50,
     height: 50,
@@ -44,13 +55,19 @@ const styles = StyleSheet.create({
   },
 })
 
-const Item = ({ props }) => {
+const Item = ({ props, single }) => {
+  const LinkHandler = (url) => {
+    Linking.openURL(url)
+  }
+
   return (
-    <View style={styles.container} testID='repositoryItem'>
+    <View
+      style={styles.container}
+      testID='repositoryItem'>
       <View style={styles.top}>
         <Image
           style={styles.tinyLogo}
-          source={{ url: props.item.ownerAvatarUrl }}
+          source={{ url: props.ownerAvatarUrl }}
         />
         <View style={styles.infoContainer}>
           <Text
@@ -58,45 +75,45 @@ const Item = ({ props }) => {
             fontWeight='bold'
             fontSize='subheading'
             testID='fullName'>
-            {props.item.fullName}
+            {props.fullName}
           </Text>
-          <Text style={styles.info}>{props.item.description}</Text>
+          <Text style={styles.info}>{props.description}</Text>
           <Text
             style={styles.tag}
             color='textWhite'>
-            {props.item.language}
+            {props.language}
           </Text>
         </View>
       </View>
       <View style={styles.bottom}>
         <View style={styles.badges}>
-          {props.item.stargazersCount > 999 ? (
+          {props.stargazersCount > 999 ? (
             <Text
               style={{ alignSelf: 'center' }}
               fontWeight='bold'>
-              {(props.item.stargazersCount / 1000).toFixed(1)}k
+              {(props.stargazersCount / 1000).toFixed(1)}k
             </Text>
           ) : (
             <Text
               style={{ alignSelf: 'center' }}
               fontWeight='bold'>
-              {props.item.stargazersCount}
+              {props.stargazersCount}
             </Text>
           )}
           <Text style={{ alignSelf: 'center' }}>Stars</Text>
         </View>
         <View style={styles.badges}>
-          {props.item.forksCount > 999 ? (
+          {props.forksCount > 999 ? (
             <Text
               style={{ alignSelf: 'center' }}
               fontWeight='bold'>
-              {(props.item.forksCount / 1000).toFixed(1)}k
+              {(props.forksCount / 1000).toFixed(1)}k
             </Text>
           ) : (
             <Text
               style={{ alignSelf: 'center' }}
               fontWeight='bold'>
-              {props.item.forksCount}
+              {props.forksCount}
             </Text>
           )}
           <Text style={{ alignSelf: 'center' }}>Forks</Text>
@@ -105,7 +122,7 @@ const Item = ({ props }) => {
           <Text
             style={{ alignSelf: 'center' }}
             fontWeight='bold'>
-            {props.item.reviewCount}
+            {props.reviewCount}
           </Text>
           <Text style={{ alignSelf: 'center' }}>Reviews</Text>
         </View>
@@ -113,11 +130,21 @@ const Item = ({ props }) => {
           <Text
             style={{ alignSelf: 'center' }}
             fontWeight='bold'>
-            {props.item.ratingAverage}
+            {props.ratingAverage}
           </Text>
           <Text style={{ alignSelf: 'center' }}>Rating</Text>
         </View>
       </View>
+      {single ? (
+        <Pressable
+          onPress={() => {
+            LinkHandler(props.url)
+          }}>
+          <View style={styles.fullButton}>
+            <Text color='textWhite' style={{alignSelf:'center'}}>Open in GitHub</Text>
+          </View>
+        </Pressable>
+      ) : null}
     </View>
   )
 }
