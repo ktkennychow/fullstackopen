@@ -3,7 +3,7 @@ import RepositoryList from './RepositoryList'
 import AppBar from './AppBar'
 import { Route, Routes, Navigate } from 'react-router-native'
 import SignIn from './SignIn'
-import SingleRepoItem from './SingleRepoItem'
+import SingleRepoItem from './SingleRepository'
 
 const styles = StyleSheet.create({
   container: {

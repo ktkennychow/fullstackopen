@@ -59,7 +59,7 @@ const Item = ({ props, single }) => {
   const LinkHandler = (url) => {
     Linking.openURL(url)
   }
-
+  console.log(props)
   return (
     <View
       style={styles.container}
@@ -141,7 +141,12 @@ const Item = ({ props, single }) => {
             LinkHandler(props.url)
           }}>
           <View style={styles.fullButton}>
-            <Text color='textWhite' style={{alignSelf:'center'}}>Open in GitHub</Text>
+            <Text
+              color='textWhite'
+              style={{ alignSelf: 'center' }}
+              >
+              Open in GitHub
+            </Text>
           </View>
         </Pressable>
       ) : null}
