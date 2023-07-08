@@ -6,6 +6,7 @@ import AppBarTab from './AppBarTab'
 import useCheckUser from '../hooks/useCheckUser'
 import useSignOut from '../hooks/useSignOut'
 import Text from './Text'
+import { useNavigate } from 'react-router-native'
 
 const styles = StyleSheet.create({
   container: {
@@ -20,6 +21,7 @@ const styles = StyleSheet.create({
 
 const AppBar = () => {
   const [signOut] = useSignOut()
+  const navigate = useNavigate()
   const { data, loading } = useCheckUser()
 
   if (loading) {
@@ -30,7 +32,6 @@ const AppBar = () => {
     )
   }
   const signOutHandler = async () => {
-    console.log(312)
     try {
       await signOut()
       navigate('/')
