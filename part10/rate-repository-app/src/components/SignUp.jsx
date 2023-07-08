@@ -76,7 +76,7 @@ const SignUpFrom = ({ onSubmit }) => {
       <Pressable
         onPress={onSubmit}
         style={styles.button}>
-        <Text style={styles.buttonText}>Create a review</Text>
+        <Text style={styles.buttonText}>Sign up</Text>
       </Pressable>
     </View>
   )
