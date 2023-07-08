@@ -5,7 +5,8 @@ import { Formik } from 'formik'
 import theme from '../theme'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-native'
-import useCreateReview from '../hooks/useCreateReview'
+import useCreateUser from '../hooks/useCreateUser'
+import useSignIn from '../hooks/useSignIn'
 
 const styles = StyleSheet.create({
   container: {
@@ -38,44 +39,38 @@ const styles = StyleSheet.create({
 })
 
 const initialValues = {
-  ownerName: '',
-  repositoryName: '',
-  rating: '',
-  text: ''
-
+  username: '',
+  password: '',
+  passwordConfirmation: '',
 }
 
 const validationSchema = yup.object().shape({
-  ownerName: yup
+  username: yup.string().min(5).max(30).required('Username is required'),
+  password: yup.string().min(5).max(50).required('Password is required'),
+  passwordConfirmation: yup
     .string()
-    .required('Repository owner name is required'),
-  repositoryName: yup.string().required('Repository name is required'),
-  rating: yup.number().min(0).max(100).integer().required('Rating is required'),
-  text: yup.string(),
+    .oneOf([yup.ref('password'), null],"Passwords do not match")
+    .required('Password confirmation is required'),
 })
 
-const CreateReviewFrom = ({ onSubmit }) => {
+const SignUpFrom = ({ onSubmit }) => {
   return (
     <View style={styles.container}>
       <FormikTextInput
-        name='ownerName'
-        placeholder='Repository owner name'
+        name='username'
+        placeholder='Username'
         style={styles.inputField}
       />
       <FormikTextInput
-        name='repositoryName'
-        placeholder='Repository name'
+        secureTextEntry={true}
+        name='password'
+        placeholder='Password'
         style={styles.inputField}
       />
       <FormikTextInput
-        name='rating'
-        placeholder='Rating between 0 and 100'
-        style={styles.inputField}
-      />
-      <FormikTextInput
-        name='text'
-        placeholder='Review'
-        multiline={true}
+        secureTextEntry={true}
+        name='passwordConfirmation'
+        placeholder='Password Confirmation'
         style={styles.inputField}
       />
       <Pressable
@@ -87,37 +82,37 @@ const CreateReviewFrom = ({ onSubmit }) => {
   )
 }
 
-export const CreateReviewContainer = ({ onSubmit }) => {
+export const SignUpContainer = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}>
-      {({ handleSubmit }) => <CreateReviewFrom onSubmit={handleSubmit} />}
+      {({ handleSubmit }) => <SignUpFrom onSubmit={handleSubmit} />}
     </Formik>
   )
 }
-const CreateReview = () => {
-  const [createReview] = useCreateReview()
+const SignUp = () => {
+  const [createUser] = useCreateUser()
+  const [signIn] = useSignIn()
   const navigate = useNavigate()
 
   const onSubmit = async (values) => {
-    const { ownerName, rating, repositoryName, text } = values
+    const { username, password } = values
 
     try {
-      const data  = await createReview({
-        ownerName,
-        rating: Number(rating),
-        repositoryName,
-        text,
+      const createUserData = await createUser({
+        username,
+        password
       })
-      navigate(`/${data.repositoryId}`)
+      const signInData = await signIn({username, password})
+      navigate('/')
     } catch (err) {
       console.log(JSON.stringify(err, null, 2))
     }
   }
 
-  return <CreateReviewContainer onSubmit={onSubmit} />
+  return <SignUpContainer onSubmit={onSubmit} />
 }
 
-export default CreateReview
+export default SignUp

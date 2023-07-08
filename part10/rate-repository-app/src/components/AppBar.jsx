@@ -20,10 +20,14 @@ const styles = StyleSheet.create({
 
 const AppBar = () => {
   const [signOut] = useSignOut()
-  const {data, loading} = useCheckUser()
+  const { data, loading } = useCheckUser()
 
-  if(loading){
-    return <View><Text>Loading...</Text></View>
+  if (loading) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    )
   }
   const signOutHandler = async () => {
     console.log(312)
@@ -46,22 +50,30 @@ const AppBar = () => {
           name='Repository'
           link='/'
         />
-        <AppBarTab
-          name='Create a review'
-          link='/create-review'
-        />
         {data.me ? (
-          <AppBarTab
-            name='Sign out'
-            onPress={() => {
-              signOutHandler()
-            }}
-          />
+          <>
+            <AppBarTab
+              name='Create a review'
+              link='/create-review'
+            />
+            <AppBarTab
+              name='Sign out'
+              onPress={() => {
+                signOutHandler()
+              }}
+            />
+          </>
         ) : (
-          <AppBarTab
-            name='Sign in'
-            link='signin'
-          />
+          <>
+            <AppBarTab
+              name='Sign in'
+              link='signin'
+            />
+            <AppBarTab
+              name='Sign up'
+              link='signup'
+            />
+          </>
         )}
       </ScrollView>
     </View>
