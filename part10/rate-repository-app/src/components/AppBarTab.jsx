@@ -1,4 +1,4 @@
-import { Pressable, Alert } from 'react-native'
+import { Pressable } from 'react-native'
 import Text from './Text'
 import { Link } from 'react-router-native'
 

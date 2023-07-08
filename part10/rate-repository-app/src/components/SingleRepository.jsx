@@ -49,8 +49,6 @@ const styles = StyleSheet.create({
     color: theme.colors.primary
   },
   bottom: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
     paddingTop: 20,
   },
   separator: {
@@ -59,6 +57,7 @@ const styles = StyleSheet.create({
 })
 
 const ReviewItem = ({ review }) => {
+  console.log(10000,review)
   return (
     <View
       style={styles.container}

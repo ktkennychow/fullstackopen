@@ -80,3 +80,10 @@ export const GET_REPO_REVIEW = gql`
     }
   }
 `
+
+export const CREATE_REVIEW = gql`
+  mutation Mutation($review: CreateReviewInput) {
+    createReview(review: $review) {
+      repositoryId
+    }
+}`
