@@ -1,4 +1,5 @@
 import { FlatList, View, StyleSheet, Pressable, Modal } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import Constants from 'expo-constants'
 import { useNavigate } from 'react-router-native'
 import Item from './RepositoryItem'
@@ -6,6 +7,8 @@ import useRepositories from '../hooks/useRepositories'
 import Text from './Text'
 import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react'
+import TextInput from './TextInput'
+import theme from '../theme'
 
 const styles = StyleSheet.create({
   separator: {
@@ -38,6 +41,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#ddd',
     marginTop: Constants.statusBarHeight + 50,
     width: '100%',
+  },
+  searchBar: {
+    padding: 15,
+    backgroundColor: theme.colors.textWhite,
+    fontSize: theme.fontSizes.subheading,
+    borderRadius: 5,
+    marginHorizontal: 20,
+    marginTop: 20,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 })
 
@@ -93,13 +110,34 @@ export const RepositoryListContainer = ({
         }}
         ListHeaderComponent={
           <View>
+            <View style={styles.searchBar}>
+              <View style={{flex:1, flexDirection: 'row'}}>
+                <Icon
+                  name='search'
+                  size={15}
+                  style={{marginRight: 10}}
+                />
+                <TextInput
+                  name='searchKeyword'
+                  placeholder='Search'></TextInput>
+              </View>
+              <Pressable>
+                <Icon
+                  name='times'
+                  size={15}
+                />
+              </Pressable>
+            </View>
             <Pressable
               onPress={() => {
                 setShowSortOptions(true)
               }}>
               <View style={styles.sortBar}>
                 <Text style={{ fontSize: 18 }}>{sortBy}</Text>
-                <Text style={{ fontSize: 18 }}>▼</Text>
+                <Icon
+                  name='caret-down'
+                  size={20}
+                />
               </View>
             </Pressable>
           </View>
