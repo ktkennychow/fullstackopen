@@ -48,7 +48,7 @@ const AppBar = () => {
         bounces={false}
         contentContainerStyle={styles.contentContainer}>
         <AppBarTab
-          name='Repository'
+          name='Repositories'
           link='/'
         />
         {data.me ? (
