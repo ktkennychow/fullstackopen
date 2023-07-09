@@ -59,7 +59,6 @@ const Item = ({ props, single }) => {
   const LinkHandler = (url) => {
     Linking.openURL(url)
   }
-  console.log(props)
   return (
     <View
       style={styles.container}

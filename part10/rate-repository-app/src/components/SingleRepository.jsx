@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
 })
 
 const ReviewItem = ({ review }) => {
-  console.log(10000,review)
   return (
     <View
       style={styles.container}
@@ -103,7 +102,6 @@ const SingleRepository = () => {
   const reviewsNodes = reviews
     ? reviews.data.repository.reviews.edges.map((edge) => edge.node)
     : []
-  console.log('comp return', repository)
   return (
     <FlatList
       data={reviewsNodes}
