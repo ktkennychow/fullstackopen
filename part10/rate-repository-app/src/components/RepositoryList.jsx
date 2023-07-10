@@ -9,6 +9,7 @@ import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react'
 import TextInput from './TextInput'
 import theme from '../theme'
+import { useDebounce } from 'use-debounce'
 
 const styles = StyleSheet.create({
   separator: {
@@ -65,17 +66,31 @@ export const RepositoryListContainer = ({
   navigate,
   sortBy,
   setSortBy,
+  searchKeyword,
+  setSearchKeyword,
 }) => {
   const [showSortOptions, setShowSortOptions] = useState(false)
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : []
+  const newState = {}
+  const setSearch = () => {
+    this.setSearchKeyword({ searchKeyword: newState.value })
+    newState.value = {}
+  }
   return (
     <>
       <Modal
         animationType='fade'
         visible={showSortOptions}
-        transparent={true}>
+        transparent={true}
+        style={{ flex: 1 }}>
+        <Pressable
+          style={{
+            zIndex: -1,
+            backgroundColor: 'transparent',
+          }}
+          onPressOut={() => setShowSortOptions(false)}></Pressable>
         <Picker
           style={styles.picker}
           selectedValue={sortBy}
@@ -93,6 +108,13 @@ export const RepositoryListContainer = ({
             label='Lowest Rated Repositories'
             value='Lowest Rated Repositories'></Picker.Item>
         </Picker>
+        <Pressable
+          style={{
+            zIndex: -1,
+            backgroundColor: 'transparent',
+            height: '100%'
+          }}
+          onPressOut={() => setShowSortOptions(false)}></Pressable>
       </Modal>
 
       <FlatList
@@ -111,17 +133,20 @@ export const RepositoryListContainer = ({
         ListHeaderComponent={
           <View>
             <View style={styles.searchBar}>
-              <View style={{flex:1, flexDirection: 'row'}}>
+              <View style={{ flex: 1, flexDirection: 'row' }}>
                 <Icon
                   name='search'
                   size={15}
-                  style={{marginRight: 10}}
+                  style={{ marginRight: 10 }}
                 />
                 <TextInput
                   name='searchKeyword'
-                  placeholder='Search'></TextInput>
+                  placeholder='Search'
+                  value={searchKeyword.searchKeyword}
+                  onChangeText={(value) => (newState.value = value)}
+                  onEndEditing={setSearch}></TextInput>
               </View>
-              <Pressable>
+              <Pressable onPress={() => setSearchKeyword('')}>
                 <Icon
                   name='times'
                   size={15}
@@ -151,7 +176,13 @@ export const RepositoryListContainer = ({
 
 const RepositoryList = () => {
   const [sortBy, setSortBy] = useState('Lastest Repositories')
-  const { data, error, loading } = useRepositories(sortBy)
+  const [searchKeyword, setSearchKeyword] = useState({ searchKeyword: '' })
+  const [debouncedSearchKeyword] = useDebounce(searchKeyword.searchKeyword, 500)
+  const { data, error, loading } = useRepositories({
+    sortBy,
+    debouncedSearchKeyword,
+  })
+  console.log(111, searchKeyword)
 
   const navigate = useNavigate()
 
@@ -167,6 +198,8 @@ const RepositoryList = () => {
     <RepositoryListContainer
       sortBy={sortBy}
       setSortBy={setSortBy}
+      searchKeyword={searchKeyword}
+      setSearchKeyword={setSearchKeyword}
       repositories={data.repositories}
       navigate={navigate}
     />
