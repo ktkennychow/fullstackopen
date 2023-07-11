@@ -154,9 +154,7 @@ export const RepositoryListContainer = ({
                 setShowSortOptions(true)
               }}>
               <View style={styles.sortBar}>
-                <Text style={{ fontSize: 16  }}>
-                  {sortBy}
-                </Text>
+                <Text style={{ fontSize: 16 }}>{sortBy}</Text>
                 <Icon
                   name='caret-down'
                   size={16}

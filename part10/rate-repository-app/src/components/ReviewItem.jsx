@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     fontWeights: theme.fontWeights.bold,
     color: theme.colors.primary,
   },
-
 })
 
 const ReviewItem = ({ review }) => {
@@ -61,7 +60,12 @@ const ReviewItem = ({ review }) => {
               {review.repository.fullName}
             </Text>
           )}
-          <Text style={{ marginBottom: 10, marginTop: 5, color: theme.colors.textSecondary }}>
+          <Text
+            style={{
+              marginBottom: 10,
+              marginTop: 5,
+              color: theme.colors.textSecondary,
+            }}>
             {format(new Date(review.createdAt), 'dd.MM.yyyy')}
           </Text>
           <Text>{review.text}</Text>

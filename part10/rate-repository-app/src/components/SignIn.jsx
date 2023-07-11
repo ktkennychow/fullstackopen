@@ -69,8 +69,7 @@ const SignInFrom = ({ onSubmit }) => {
   )
 }
 
-
-export const SignInContainer = ({onSubmit}) => {
+export const SignInContainer = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={initialValues}
@@ -95,9 +94,7 @@ const SignIn = () => {
     }
   }
 
-  return (
-    <SignInContainer onSubmit={onSubmit}/>
-  )
+  return <SignInContainer onSubmit={onSubmit} />
 }
 
 export default SignIn

@@ -49,7 +49,7 @@ const validationSchema = yup.object().shape({
   password: yup.string().min(5).max(50).required('Password is required'),
   passwordConfirmation: yup
     .string()
-    .oneOf([yup.ref('password'), null],"Passwords do not match")
+    .oneOf([yup.ref('password'), null], 'Passwords do not match')
     .required('Password confirmation is required'),
 })
 
@@ -103,9 +103,9 @@ const SignUp = () => {
     try {
       const createUserData = await createUser({
         username,
-        password
+        password,
       })
-      const signInData = await signIn({username, password})
+      const signInData = await signIn({ username, password })
       navigate('/')
     } catch (err) {
       console.log(JSON.stringify(err, null, 2))

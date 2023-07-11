@@ -1,4 +1,4 @@
-import { StyleSheet, View} from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import RepositoryList from './RepositoryList'
 import AppBar from './AppBar'
 import { Route, Routes, Navigate } from 'react-router-native'
@@ -19,10 +19,9 @@ const styles = StyleSheet.create({
 })
 
 const Main = () => {
-  
   return (
     <View style={styles.container}>
-      <AppBar/>
+      <AppBar />
       <Routes>
         <Route
           path='/'
@@ -51,7 +50,7 @@ const Main = () => {
           path='/my-reviews'
           element={<MyReviews />}
         />
-        
+
         <Route
           path='*'
           element={

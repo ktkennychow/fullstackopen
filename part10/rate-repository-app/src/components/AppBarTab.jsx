@@ -3,21 +3,20 @@ import Text from './Text'
 import { Link } from 'react-router-native'
 
 const AppBarTab = ({ name, link, onPress }) => {
-  return (
-    onPress
-    ? <Pressable
-    style={{marginRight: 20}}
+  return onPress ? (
+    <Pressable
+      style={{ marginRight: 20 }}
       onPress={onPress}>
-        <Text
-          fontSize='subheading'
-          fontWeight='bold'
-          color='textWhite'>
-          {name}
-        </Text>
+      <Text
+        fontSize='subheading'
+        fontWeight='bold'
+        color='textWhite'>
+        {name}
+      </Text>
     </Pressable>
-    : link 
-    ? <Pressable
-    style={{marginRight: 20}}
+  ) : link ? (
+    <Pressable
+      style={{ marginRight: 20 }}
       onPress={onPress}>
       <Link to={link}>
         <Text
@@ -28,8 +27,7 @@ const AppBarTab = ({ name, link, onPress }) => {
         </Text>
       </Link>
     </Pressable>
-    : null
-  )
+  ) : null
 }
 
 export default AppBarTab

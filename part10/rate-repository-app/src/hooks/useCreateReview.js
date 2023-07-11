@@ -1,5 +1,5 @@
 import { useApolloClient, useMutation } from '@apollo/client';
-import {CREATE_REVIEW } from '../graphql/queries';
+import { CREATE_REVIEW } from '../graphql/queries';
 
 
 const useCreateReview = () => {

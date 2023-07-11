@@ -42,14 +42,11 @@ const initialValues = {
   ownerName: '',
   repositoryName: '',
   rating: '',
-  text: ''
-
+  text: '',
 }
 
 const validationSchema = yup.object().shape({
-  ownerName: yup
-    .string()
-    .required('Repository owner name is required'),
+  ownerName: yup.string().required('Repository owner name is required'),
   repositoryName: yup.string().required('Repository name is required'),
   rating: yup.number().min(0).max(100).integer().required('Rating is required'),
   text: yup.string(),
@@ -106,7 +103,7 @@ const CreateReview = () => {
     const { ownerName, rating, repositoryName, text } = values
 
     try {
-      const data  = await createReview({
+      const data = await createReview({
         ownerName,
         rating: Number(rating),
         repositoryName,

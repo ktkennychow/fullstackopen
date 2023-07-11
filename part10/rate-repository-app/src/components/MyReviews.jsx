@@ -1,4 +1,4 @@
-import { FlatList,StyleSheet, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 import useGetCurrentUser from '../hooks/useGetCurrentUser'
 import Text from './Text'
 import ReviewItem from './ReviewItem'
@@ -6,7 +6,8 @@ import ReviewItem from './ReviewItem'
 const styles = StyleSheet.create({
   separator: {
     height: 10,
-  },})
+  },
+})
 
 const ItemSeparator = () => <View style={styles.separator} />
 
@@ -19,7 +20,9 @@ const MyReviews = () => {
       </View>
     )
   }
-  const reviewsNodes = data ? data.me.reviews.edges.map((edge) => edge.node) : []
+  const reviewsNodes = data
+    ? data.me.reviews.edges.map((edge) => edge.node)
+    : []
 
   return (
     <View>

@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     margin: 5,
     color: '#d73a4a',
   },
-
 })
 
 const FormikTextInput = ({ name, ...props }) => {
