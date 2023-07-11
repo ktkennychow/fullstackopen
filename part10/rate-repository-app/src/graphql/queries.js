@@ -41,9 +41,11 @@ export const GET_CURRENT_USER = gql`
               text
               rating
               createdAt
+              id
               repository {
                 fullName
                 ownerName
+                id
               }
             }
           }
@@ -51,7 +53,6 @@ export const GET_CURRENT_USER = gql`
     }
   }
 `
-
 
 export const GET_SINGLE_REPO = gql`
   query ($repositoryId: ID!){
@@ -110,4 +111,8 @@ export const CREATE_USER = gql`
     }
   }
 `
-
+export const DELETE_REVIEW = gql`
+  mutation Mutation($deleteReviewId: ID!) {
+    deleteReview(id: $deleteReviewId)
+  }
+`

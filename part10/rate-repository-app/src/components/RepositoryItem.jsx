@@ -37,9 +37,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: theme.colors.primary,
     overflow: 'hidden',
+    fontWeight: theme.fontWeights.bold,
   },
   fullButton: {
-    marginTop: 10,
+    marginTop: 20,
     padding: 20,
     width: '100%',
     backgroundColor: theme.colors.primary,
@@ -142,7 +143,7 @@ const Item = ({ props, single }) => {
           <View style={styles.fullButton}>
             <Text
               color='textWhite'
-              style={{ alignSelf: 'center' }}
+              style={{ alignSelf: 'center',fontWeight: theme.fontWeights.bold }}
               >
               Open in GitHub
             </Text>

@@ -4,7 +4,6 @@ import useSingleRepo from '../hooks/useSingleRepo'
 import Item from './RepositoryItem'
 import Text from './Text'
 import useReviews from '../hooks/useReviews'
-import theme from '../theme'
 import ReviewItem from './ReviewItem'
 
 const RepositoryInfo = ({ repository }) => {

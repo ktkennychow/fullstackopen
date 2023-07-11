@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />
 
 const MyReviews = () => {
-  const { data, loading } = useGetCurrentUser(true)
+  const { data, loading,refetch} = useGetCurrentUser(true)
   if (loading) {
     return (
       <View>
@@ -29,7 +29,12 @@ const MyReviews = () => {
       <FlatList
         data={reviewsNodes}
         ItemSeparatorComponent={ItemSeparator}
-        renderItem={({ item }) => <ReviewItem review={item} />}
+        renderItem={({ item }) => (
+          <ReviewItem
+            review={item}
+            refetch={refetch}
+          />
+        )}
         keyExtractor={(item) => item.id}
         fontSize='subheading'
       />

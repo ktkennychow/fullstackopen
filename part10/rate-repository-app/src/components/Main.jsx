@@ -6,8 +6,7 @@ import SignIn from './SignIn'
 import SingleRepository from './SingleRepository'
 import CreateReview from './CreateReview'
 import SignUp from './SignUp'
-import useGetCurrentUser from '../hooks/useGetCurrentUser'
-import Text from './Text'
+
 import MyReviews from './MyReviews'
 
 const styles = StyleSheet.create({
