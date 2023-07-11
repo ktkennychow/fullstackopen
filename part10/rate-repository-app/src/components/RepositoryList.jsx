@@ -73,11 +73,7 @@ export const RepositoryListContainer = ({
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : []
-  const newState = {}
-  const setSearch = () => {
-    this.setSearchKeyword({ searchKeyword: newState.value })
-    newState.value = {}
-  }
+
   return (
     <>
       <Modal
@@ -112,7 +108,7 @@ export const RepositoryListContainer = ({
           style={{
             zIndex: -1,
             backgroundColor: 'transparent',
-            height: '100%'
+            height: '100%',
           }}
           onPressOut={() => setShowSortOptions(false)}></Pressable>
       </Modal>
@@ -142,9 +138,8 @@ export const RepositoryListContainer = ({
                 <TextInput
                   name='searchKeyword'
                   placeholder='Search'
-                  value={searchKeyword.searchKeyword}
-                  onChangeText={(value) => (newState.value = value)}
-                  onEndEditing={setSearch}></TextInput>
+                  value={searchKeyword}
+                  onChangeText={(value) => setSearchKeyword(value)}></TextInput>
               </View>
               <Pressable onPress={() => setSearchKeyword('')}>
                 <Icon
@@ -158,10 +153,12 @@ export const RepositoryListContainer = ({
                 setShowSortOptions(true)
               }}>
               <View style={styles.sortBar}>
-                <Text style={{ fontSize: 18 }}>{sortBy}</Text>
+                <Text style={{ fontSize: 16, paddingHorizontal: 10 }}>
+                  {sortBy}
+                </Text>
                 <Icon
                   name='caret-down'
-                  size={20}
+                  size={16}
                 />
               </View>
             </Pressable>
@@ -176,13 +173,12 @@ export const RepositoryListContainer = ({
 
 const RepositoryList = () => {
   const [sortBy, setSortBy] = useState('Lastest Repositories')
-  const [searchKeyword, setSearchKeyword] = useState({ searchKeyword: '' })
-  const [debouncedSearchKeyword] = useDebounce(searchKeyword.searchKeyword, 500)
+  const [searchKeyword, setSearchKeyword] = useState('')
+  const [debouncedSearchKeyword] = useDebounce(searchKeyword, 800)
   const { data, error, loading } = useRepositories({
     sortBy,
-    debouncedSearchKeyword,
+    searchKeyword: debouncedSearchKeyword,
   })
-  console.log(111, searchKeyword)
 
   const navigate = useNavigate()
 

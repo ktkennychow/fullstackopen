@@ -2,8 +2,7 @@ import { useQuery } from '@apollo/client';
 import { GET_REPOSITORIES } from '../graphql/queries';
 import { useEffect, useState } from 'react';
 
-const useRepositories = ({ sortBy, debouncedSearchKeyword }) => {
-  console.log(debouncedSearchKeyword)
+const useRepositories = ({ sortBy, searchKeyword }) => {
   const [sortFilter, setSortFilter] = useState(["CREATED_AT", "DESC"])
   const sorts = {
     "Lastest Repositories": ["CREATED_AT", "DESC"],
@@ -15,7 +14,7 @@ const useRepositories = ({ sortBy, debouncedSearchKeyword }) => {
   }, [sortBy])
 
   const { data, error, loading } = useQuery(GET_REPOSITORIES, {
-    variables: { orderBy: sortFilter[0], orderDirection: sortFilter[1], searchKeyword: debouncedSearchKeyword },
+    variables: { orderBy: sortFilter[0], orderDirection: sortFilter[1], searchKeyword },
     fetchPolicy: 'cache-and-network',
   });
   return { data, error, loading };
