@@ -1,12 +1,11 @@
 import { View, StyleSheet, ScrollView } from 'react-native'
 import Constants from 'expo-constants'
-
 import theme from '../theme'
 import AppBarTab from './AppBarTab'
-import useCheckUser from '../hooks/useCheckUser'
 import useSignOut from '../hooks/useSignOut'
-import Text from './Text'
 import { useNavigate } from 'react-router-native'
+import useGetCurrentUser from '../hooks/useGetCurrentUser'
+import Text from './Text'
 
 const styles = StyleSheet.create({
   container: {
@@ -22,8 +21,7 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   const [signOut] = useSignOut()
   const navigate = useNavigate()
-  const { data, loading } = useCheckUser()
-
+  const { data, loading } = useGetCurrentUser(false)
   if (loading) {
     return (
       <View>
@@ -31,6 +29,7 @@ const AppBar = () => {
       </View>
     )
   }
+
   const signOutHandler = async () => {
     try {
       await signOut()
@@ -56,6 +55,10 @@ const AppBar = () => {
             <AppBarTab
               name='Create a review'
               link='/create-review'
+            />
+            <AppBarTab
+              name='My reviews'
+              link='/my-reviews'
             />
             <AppBarTab
               name='Sign out'

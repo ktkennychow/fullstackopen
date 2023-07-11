@@ -6,7 +6,7 @@ const AppBarTab = ({ name, link, onPress }) => {
   return (
     onPress
     ? <Pressable
-    style={{marginRight: 10}}
+    style={{marginRight: 20}}
       onPress={onPress}>
         <Text
           fontSize='subheading'
@@ -17,7 +17,7 @@ const AppBarTab = ({ name, link, onPress }) => {
     </Pressable>
     : link 
     ? <Pressable
-    style={{marginRight: 10}}
+    style={{marginRight: 20}}
       onPress={onPress}>
       <Link to={link}>
         <Text

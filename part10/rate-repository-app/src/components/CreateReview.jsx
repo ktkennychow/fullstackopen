@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     padding: 20,
     fontSize: theme.fontSizes.subheading,
+    backgroundColor: theme.colors.textWhite,
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 5,

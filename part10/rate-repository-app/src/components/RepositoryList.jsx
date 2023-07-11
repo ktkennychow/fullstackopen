@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 20,
+    paddingHorizontal: 30,
+    paddingVertical: 20,
     fontSize: 24,
   },
   modalView: {
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
   },
   picker: {
     backgroundColor: '#ddd',
-    marginTop: Constants.statusBarHeight + 50,
+    marginTop: Constants.statusBarHeight + 53,
     width: '100%',
   },
   searchBar: {
@@ -153,7 +154,7 @@ export const RepositoryListContainer = ({
                 setShowSortOptions(true)
               }}>
               <View style={styles.sortBar}>
-                <Text style={{ fontSize: 16, paddingHorizontal: 10 }}>
+                <Text style={{ fontSize: 16  }}>
                   {sortBy}
                 </Text>
                 <Icon

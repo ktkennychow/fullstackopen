@@ -6,6 +6,9 @@ import SignIn from './SignIn'
 import SingleRepository from './SingleRepository'
 import CreateReview from './CreateReview'
 import SignUp from './SignUp'
+import useGetCurrentUser from '../hooks/useGetCurrentUser'
+import Text from './Text'
+import MyReviews from './MyReviews'
 
 const styles = StyleSheet.create({
   container: {
@@ -16,9 +19,10 @@ const styles = StyleSheet.create({
 })
 
 const Main = () => {
+  
   return (
     <View style={styles.container}>
-      <AppBar />
+      <AppBar/>
       <Routes>
         <Route
           path='/'
@@ -43,6 +47,11 @@ const Main = () => {
           path='/create-review'
           element={<CreateReview />}
         />
+        <Route
+          path='/my-reviews'
+          element={<MyReviews />}
+        />
+        
         <Route
           path='*'
           element={
