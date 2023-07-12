@@ -6,7 +6,7 @@ const useSingleRepo = (id) => {
     fetchPolicy: 'cache-and-network',
     variables: { repositoryId: id },
   });
-  return { data, error, loading };
+  return { repository: data?.repository, error, loading };
 };
 
 export default useSingleRepo;

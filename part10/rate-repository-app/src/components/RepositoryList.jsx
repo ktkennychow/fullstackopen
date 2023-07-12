@@ -69,6 +69,7 @@ export const RepositoryListContainer = ({
   setSortBy,
   searchKeyword,
   setSearchKeyword,
+  onEndReach,
 }) => {
   const [showSortOptions, setShowSortOptions] = useState(false)
   const repositoryNodes = repositories
@@ -165,6 +166,8 @@ export const RepositoryListContainer = ({
         }
         keyExtractor={(item) => item.id}
         fontSize='subheading'
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.3}
       />
     </>
   )
@@ -174,7 +177,8 @@ const RepositoryList = () => {
   const [sortBy, setSortBy] = useState('Lastest Repositories')
   const [searchKeyword, setSearchKeyword] = useState('')
   const [debouncedSearchKeyword] = useDebounce(searchKeyword, 800)
-  const { data, error, loading } = useRepositories({
+  const { repositories, loading, fetchMore } = useRepositories({
+    first:3,
     sortBy,
     searchKeyword: debouncedSearchKeyword,
   })
@@ -189,14 +193,19 @@ const RepositoryList = () => {
     )
   }
 
+  const onEndReach = () => {
+    fetchMore()
+  }
+
   return (
     <RepositoryListContainer
       sortBy={sortBy}
       setSortBy={setSortBy}
       searchKeyword={searchKeyword}
       setSearchKeyword={setSearchKeyword}
-      repositories={data.repositories}
+      repositories={repositories}
       navigate={navigate}
+      onEndReach={onEndReach}
     />
   )
 }

@@ -8,8 +8,12 @@ const useCreateReview = () => {
   const apolloClient = useApolloClient()
 
   const createReview = async ({ ownerName, rating, repositoryName, text }) => {
-    const { data } = await mutate({ variables: { review: { ownerName, rating, repositoryName, text } } })
-    apolloClient.resetStore()
+    const { data } = await mutate({
+      variables: { review: { ownerName, rating, repositoryName, text } }
+    })
+
+    apolloClient.resetStore();
+
     return data.createReview
   }
   return [createReview, result]

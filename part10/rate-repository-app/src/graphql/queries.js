@@ -2,8 +2,13 @@ import { gql } from '@apollo/client';
 
 
 export const GET_REPOSITORIES = gql`
-  query Query($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $searchKeyword: String) {
-    repositories(orderBy: $orderBy, orderDirection: $orderDirection, searchKeyword: $searchKeyword) {
+  query Query($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $searchKeyword: String, $after: String, $first: Int) {
+    repositories(orderBy: $orderBy, orderDirection: $orderDirection, searchKeyword: $searchKeyword, after: $after, first: $first) {
+      pageInfo {
+      endCursor
+      hasNextPage
+      startCursor
+      }
       edges {
         node {
           language
@@ -74,26 +79,31 @@ export const GET_SINGLE_REPO = gql`
 `
 
 export const GET_REPO_REVIEW = gql`
-  query ($repositoryId: ID!){
-    repository(id: $repositoryId) {
-      id
-      fullName
-      reviews {
-        edges {
-          node {
+  query Query($repositoryId: ID!, $first: Int, $after: String) {
+  repository(id: $repositoryId) {
+    reviews(first: $first, after: $after) {
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
+      }
+      edges {
+        node {
+          id
+          rating
+          createdAt
+          repositoryId
+          text
+          user {
             id
-            text
-            rating
-            createdAt
-            user {
-              id
-              username
-            }
+            username
           }
         }
+        cursor
       }
     }
   }
+}
 `
 
 export const CREATE_REVIEW = gql`
