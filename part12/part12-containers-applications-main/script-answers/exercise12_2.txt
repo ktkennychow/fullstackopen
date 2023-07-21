@@ -824,4 +824,373 @@ remote:      https://github.com/kennychowpd/fullstackopen/security/dependabot[K
 remote: 
 To github.com:kennychowpd/fullstackopen.git
    dcb90234..cd9c6385  main -> main
-[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air part12-containers-applications-main % [K[?2004h
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air part12-containers-applications-main % [K[?2004hgit pushcommit -m"12b"[14Dadd .         [9D[?2004l
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air part12-containers-applications-main % [K[?2004hgit add .[?2004l
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air part12-containers-applications-main % [K[?2004hgit add .push commit -m"12b"[?2004l
+husky > pre-commit (node v20.2.0)
+[34mℹ[39m No staged files match any configured task.
+[main 0d0d7857] 12b
+ 1 file changed, 71 insertions(+), 1 deletion(-)
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air part12-containers-applications-main % [K[?2004hgit commit -m"12b"[14Dadd .         [9Dpush [?2004l
+Enumerating objects: 11, done.
+Counting objects:   9% (1/11)Counting objects:  18% (2/11)Counting objects:  27% (3/11)Counting objects:  36% (4/11)Counting objects:  45% (5/11)Counting objects:  54% (6/11)Counting objects:  63% (7/11)Counting objects:  72% (8/11)Counting objects:  81% (9/11)Counting objects:  90% (10/11)Counting objects: 100% (11/11)Counting objects: 100% (11/11), done.
+Delta compression using up to 8 threads
+Compressing objects:  16% (1/6)Compressing objects:  33% (2/6)Compressing objects:  50% (3/6)Compressing objects:  66% (4/6)Compressing objects:  83% (5/6)Compressing objects: 100% (6/6)Compressing objects: 100% (6/6), done.
+Writing objects:  16% (1/6)Writing objects:  33% (2/6)Writing objects:  50% (3/6)Writing objects:  66% (4/6)Writing objects:  83% (5/6)Writing objects: 100% (6/6)Writing objects: 100% (6/6), 2.74 KiB | 934.00 KiB/s, done.
+Total 6 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas:   0% (0/4)[Kremote: Resolving deltas:  25% (1/4)[Kremote: Resolving deltas:  50% (2/4)[Kremote: Resolving deltas:  75% (3/4)[Kremote: Resolving deltas: 100% (4/4)[Kremote: Resolving deltas: 100% (4/4), completed with 4 local objects.[K
+remote: 
+remote: GitHub found 136 vulnerabilities on kennychowpd/fullstackopen's default branch (7 critical, 8 high, 120 moderate, 1 low). To find out more, visit:[K
+remote:      https://github.com/kennychowpd/fullstackopen/security/dependabot[K
+remote: 
+To github.com:kennychowpd/fullstackopen.git
+   cd9c6385..0d0d7857  main -> main
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air part12-containers-applications-main % [K[?2004hrrun r  DDEVU BU   BUG_ - =playfron    ground:* npm start[?2004l
+
+> part12-containers-applications-main@0.0.0 start
+> node ./bin/www
+
+^C
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air part12-containers-applications-main % [K[?2004hDEBUG=playground:* npm start[19D                            [28DDEBUG=playground:* npm start[28Dgit push                    [20D[8DDEBUG=playground:* npm start[28D                            [28Dmmkdir playfround      fround     g  ground[?2004l
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air part12-containers-applications-main % [K[?2004hccd ..  pa  c  d ccd playground[1m/[0m[0m [?2004l
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hcd playground[13Dmkdir playground[16DDEBUG=[10C:* npm start[28Dgit push                    [20D[8DDEBUG=playground:* npm start[?2004l
+
+> part12-containers-applications-main@0.0.0 start
+> node ./bin/www
+
+
+
+^C
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hDEBUG=playground:* npm start[P[10C [11D3 npm start[10D0 npm start[10D0 npm start[10D0 npm start[10D[?2004l
+
+> part12-containers-applications-main@0.0.0 start
+> node ./bin/www
+
+^C
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hDEBUG=playground:3000 npm start[14D*[3P[10C   [28Dcd [3P[10C               [15D[13Dmkdir playground[16DDEBUG=[10C:* npm start[28Dgit push                    [20Dcommit -m"12b"[14Dadd .         [9Dpush commit -m"12b"[14Dadd .         [9D[9Dnano .gitignore[15Dtouch .gitignore[16Dnpm i           [11Dx express-generator[21Ddocker run -it fs-hello-world bash[?2004l
+root@892d9658bd32:/usr/src/app# npx express  = -generator
+[1G[0JNeed to install the following packages:
+  express-generator@4.16.1
+Ok to proceed? (y) [20Gy
+[?25l[[100;90m..................[0m] - idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] / idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:85bfc4373bfefd98: [32;40mtiming[0m [35midealTree:#root[0m Completed in 102ms[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:85bfc4373bfefd98: [32;40mtiming[0m [35midealTree:#root[0m Completed in 102ms[0m[K[[107;97m#########[0m[100;90m.........[0m] - reify:express-generator: [7msill[0m [35maudit[0m bulk request {[0m[K[K[?25h[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m mkdirp@0.5.1: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
+[0m[?25l[[107;97m#############[0m[100;90m.....[0m] \ reify:mkdirp: [30;43mWARN[0m [35mdeprecated[0m mkdirp@0.5.1: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has change[0m[K[[107;97m##################[0m] \ reify:express-generator: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/express-generator/-/express-generator-4.16.1.tgz 110ms (cache miss)[0m[K[K[?25h
+  warning: the default view engine will not be jade in future releases
+  warning: use `--view=jade' or `--help' for additional options
+
+[1G[0Jdestination is not empty, continue? [y/N] [43Gy
+
+   [36mcreate[0m : public/
+   [36mcreate[0m : public/javascripts/
+   [36mcreate[0m : public/images/
+   [36mcreate[0m : public/stylesheets/
+   [36mcreate[0m : public/stylesheets/style.css
+   [36mcreate[0m : routes/
+   [36mcreate[0m : routes/index.js
+   [36mcreate[0m : routes/users.js
+   [36mcreate[0m : views/
+   [36mcreate[0m : views/error.jade
+   [36mcreate[0m : views/index.jade
+   [36mcreate[0m : views/layout.jade
+   [36mcreate[0m : app.js
+   [36mcreate[0m : package.json
+   [36mcreate[0m : bin/
+   [36mcreate[0m : bin/www
+
+   install dependencies:
+     $ npm install
+
+   run the app:
+     $ DEBUG=app:* npm start
+
+[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m 
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m New [31mmajor[39m version of npm available! [31m8.19.4[39m -> [32m9.8.1[39m
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m Changelog: [36mhttps://github.com/npm/cli/releases/tag/v9.8.1[39m
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m Run [32mnpm install -g npm@9.8.1[39m to update!
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m 
+[0mroot@892d9658bd32:/usr/src/app# np  m i
+[?25l[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] / idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:express: [7msill[0m [35mplaceDep[0m ROOT cookie-signature@1.0.6 OK for: cookie-parser@1.4.6 want: 1.0.6[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:express: [7msill[0m [35mplaceDep[0m ROOT cookie-signature@1.0.6 OK for: cookie-parser@1.4.6 want: 1.0.6[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:express: [7msill[0m [35mplaceDep[0m ROOT cookie-signature@1.0.6 OK for: cookie-parser@1.4.6 want: 1.0.6[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:express: [32;40mtiming[0m [35midealTree:node_modules/express[0m Completed in 142ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:transformers: [7msill[0m [35mfetch manifest[0m uglify-js@~2.2.5[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:transformers: [7msill[0m [35mfetch manifest[0m uglify-js@~2.2.5[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:transformers: [7msill[0m [35mfetch manifest[0m uglify-js@~2.2.5[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:transformers: [7msill[0m [35mfetch manifest[0m uglify-js@~2.2.5[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:transformers: [7msill[0m [35mfetch manifest[0m uglify-js@~2.2.5[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:transformers: [7msill[0m [35mfetch manifest[0m uglify-js@~2.2.5[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:transformers: [7msill[0m [35mfetch manifest[0m uglify-js@~2.2.5[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#####[0m[100;90m.............[0m] | idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] \ idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] | idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] / idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] / idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] / idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] / idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m######[0m[100;90m............[0m] - idealTree:transformers: [32;40mtiming[0m [35midealTree:node_modules/transformers[0m Completed in 338ms[0m[K[[107;97m######[0m[100;90m............[0m] / idealTree:transformers: [32;40mtiming[0m [35midealTree:node_modules/transformers[0m Completed in 338ms[0m[K[[107;97m######[0m[100;90m............[0m] / idealTree:transformers: [32;40mtiming[0m [35midealTree:node_modules/transformers[0m Completed in 338ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 3ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree: [32;40mtiming[0m [35midealTree[0m Completed in 3732ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] - reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] / reify:kind-of: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/kind-of/-/kind-of-3.2.2.tgz 306ms (cache miss)[0m[K[[107;97m##########[0m[100;90m........[0m] / reify:css: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/css/-/css-1.0.8.tgz 359ms (cache miss)[0m[K[[107;97m#############[0m[100;90m.....[0m] / reify:range-parser: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz 380ms (cache miss)[0m[K[K[?25h[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m constantinople@3.0.2: Please update to at least constantinople 3.1.1
+[0m[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m transformers@2.1.0: Deprecated, use jstransformer
+[0m[?25l[[107;97m#################[0m[100;90m.[0m] - reify:qs: [32;40mtiming[0m [35mmetavuln:load:security-advisory:jade:iMGvPnQPibsv5sFRVwiwq5tChAgPgMixbCiMVnE7uOtiV7ihb7wX2nCVu/GtFsPTjz/NWWlr2eQ3/hntNL0aVQ==[0m Completed in 2ms[0m[K[K[?25h[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m jade@1.11.0: Jade has been renamed to pug, please install the latest version of pug instead of jade
+[0m[?25l[[107;97m##################[0m] | reify:jade: [30;43mWARN[0m [35mdeprecated[0m jade@1.11.0: Jade has been renamed to pug, please install the latest version of pug instead of jade[0m[K[[107;97m##################[0m] / reify:clean-css: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/clean-css/-/clean-css-3.4.28.tgz 515ms (cache miss)[0m[K[K[?25h
+added 99 packages, and audited 100 packages in 4s
+
+1 package is looking for funding
+  run `npm fund` for details
+
+[31m[1m8[22m[39m vulnerabilities (1 [1mlow[22m, 4 [31m[1mhigh[22m[39m, 3 [35m[1mcritical[22m[39m)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+root@892d9658bd32:/usr/src/app# De EBUG=playground; :  8 * npm start
+
+> app@0.0.0 start
+> node ./bin/www
+
+^C
+root@892d9658bd32:/usr/src/app# ls
+app.js	bin  index.js  node_modules  package-lock.json	package.json  public  routes  views
+root@892d9658bd32:/usr/src/app# lsDEBUG=playground:* npm start:*[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@a[1@p[1@p
+
+> app@0.0.0 start
+> node ./bin/www
+
+  [35;1mapp:server [0mListening on port 3000 [35m+0ms[0m
+^C
+root@892d9658bd32:/usr/src/app# exit
+exit
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hdocker run -it fs-hello-world bash[34DDEBUG=playground:3000 npm start   [31Ddocker run -it fs-hello-world bash[1C fs-hello-world bash[20D- fs-hello-world bash[20Dp fs-hello-world bash[20D[1C fs-hello-world bash[20D3 fs-hello-world bash[20D0 fs-hello-world bash[20D0 fs-hello-world bash[20D0 fs-hello-world bash[20D[?2004l
+root@e68cc0cd02e3:/usr/src/app# ls
+index.js
+root@e68cc0cd02e3:/usr/src/app# rm index.js 
+root@e68cc0cd02e3:/usr/src/app# npx express-generator
+[1G[0JNeed to install the following packages:
+  express-generator@4.16.1
+Ok to proceed? (y) [20Gy
+[?25l[[100;90m..................[0m] / idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:85bfc4373bfefd98: [32;40mtiming[0m [35midealTree:#root[0m Completed in 108ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:85bfc4373bfefd98: [32;40mtiming[0m [35midealTree:#root[0m Completed in 108ms[0m[K[[107;97m#########[0m[100;90m.........[0m] - reify:express-generator: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m###############[0m[100;90m...[0m] | reify:commander: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/commander/-/commander-2.15.1.tgz 71ms (cache miss)[0m[K[K[?25h[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m mkdirp@0.5.1: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
+[0m
+  warning: the default view engine will not be jade in future releases
+  warning: use `--view=jade' or `--help' for additional options
+
+
+   [36mcreate[0m : public/
+   [36mcreate[0m : public/javascripts/
+   [36mcreate[0m : public/images/
+   [36mcreate[0m : public/stylesheets/
+   [36mcreate[0m : public/stylesheets/style.css
+   [36mcreate[0m : routes/
+   [36mcreate[0m : routes/index.js
+   [36mcreate[0m : routes/users.js
+   [36mcreate[0m : views/
+   [36mcreate[0m : views/error.jade
+   [36mcreate[0m : views/index.jade
+   [36mcreate[0m : views/layout.jade
+   [36mcreate[0m : app.js
+   [36mcreate[0m : package.json
+   [36mcreate[0m : bin/
+   [36mcreate[0m : bin/www
+
+   install dependencies:
+     $ npm install
+
+   run the app:
+     $ DEBUG=app:* npm start
+
+[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m 
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m New [31mmajor[39m version of npm available! [31m8.19.4[39m -> [32m9.8.1[39m
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m Changelog: [36mhttps://github.com/npm/cli/releases/tag/v9.8.1[39m
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m Run [32mnpm install -g npm@9.8.1[39m to update!
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m 
+[0mroot@e68cc0cd02e3:/usr/src/app# np m  m i
+[?25l[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:express: [7msill[0m [35mplaceDep[0m ROOT cookie-signature@1.0.6 OK for: cookie-parser@1.4.6 want: 1.0.6[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:express: [32;40mtiming[0m [35midealTree:node_modules/express[0m Completed in 73ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:transformers: [7msill[0m [35mfetch manifest[0m uglify-js@~2.2.5[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:transformers: [7msill[0m [35mfetch manifest[0m uglify-js@~2.2.5[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:transformers: [7msill[0m [35mfetch manifest[0m uglify-js@~2.2.5[0m[K[[107;97m#####[0m[100;90m.............[0m] | idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] \ idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m######[0m[100;90m............[0m] / idealTree:transformers: [32;40mtiming[0m [35midealTree:node_modules/transformers[0m Completed in 36ms[0m[K[[107;97m######[0m[100;90m............[0m] / idealTree:transformers: [32;40mtiming[0m [35midealTree:node_modules/transformers[0m Completed in 36ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] - reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] / reify:align-text: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/align-text/-/align-text-0.1.4.tgz 265ms (cache miss)[0m[K[[107;97m##########[0m[100;90m........[0m] / reify:uglify-to-browserify: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz 324ms (cache miss)[0m[K[K[?25h[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m transformers@2.1.0: Deprecated, use jstransformer
+[0m[?25l[[107;97m############[0m[100;90m......[0m] \ reify:setprototypeof: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/setprototypeof/-/setprototypeof-1.1.0.tgz 357ms (cache miss)[0m[K[K[?25h[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m constantinople@3.0.2: Please update to at least constantinople 3.1.1
+[0m[?25l[[107;97m#################[0m[100;90m.[0m] - reify:qs: [32;40mtiming[0m [35mreifyNode:node_modules/debug[0m Completed in 467ms[0m[K[[107;97m##################[0m] - reify:source-map: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/jade/-/jade-1.11.0.tgz 437ms (cache miss)[0m[K[K[?25h[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m jade@1.11.0: Jade has been renamed to pug, please install the latest version of pug instead of jade
+[0m[?25l[[107;97m##################[0m] / reify:clean-css: [32;40mtiming[0m [35mreifyNode:node_modules/with/node_modules/acorn[0m Completed in 538ms[0m[K[K[?25h
+added 99 packages, and audited 100 packages in 3s
+
+1 package is looking for funding
+  run `npm fund` for details
+
+[31m[1m8[22m[39m vulnerabilities (1 [1mlow[22m, 4 [31m[1mhigh[22m[39m, 3 [35m[1mcritical[22m[39m)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+root@e68cc0cd02e3:/usr/src/app#     $ DEBUG=playground:* npm startplayground[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@a[1@p[1@p[1P[1P[1P[1P[1P[1P
+
+> app@0.0.0 start
+> node ./bin/www
+
+  [35;1mapp:server [0mListening on port 3000 [35m+0ms[0m
+^C
+root@e68cc0cd02e3:/usr/src/app# DEBUG=app:* npm startnpm i[K     exit
+exit
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hdocker run -it -p 3000 fs-hello-world bash[P[24C [25D[P[24C [25D[P[24C [25D[P[24C [25D[P[24C [25D[P[24C [25D[P[24C [25D[24C                         container         start epic_lalande[?2004l
+epic_lalande
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004heexit  e  ddocker kill exp  pix c_lalande[?2004l
+epic_lalande
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hddocker i -it exp  pic_lalande[?2004l
+unknown shorthand flag: 'i' in -it
+See 'docker --help'.
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Log in to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx (Docker Inc., v0.11.0)
+  compose*    Docker Compose (Docker Inc., v2.19.1)
+  container   Manage containers
+  context     Manage contexts
+  dev*        Docker Dev Environments (Docker Inc., v0.1.0)
+  extension*  Manages Docker extensions (Docker Inc., v0.2.20)
+  image       Manage images
+  init*       Creates Docker-related starter files for your project (Docker Inc., v0.1.0-beta.6)
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  sbom*       View the packaged-based Software Bill Of Materials (SBOM) for an image (Anchore Inc., 0.6.0)
+  scan*       Docker Scan (Docker Inc., v0.26.0)
+  scout*      Command line tool for Docker Scout (Docker Inc., 0.16.1)
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Global Options:
+      --config string      Location of client config files (default "/Users/kennychow/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket to connect to
+  -l, --log-level string   Set the logging level ("debug", "info", "warn", "error", "fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/kennychow/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/kennychow/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/kennychow/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Run 'docker COMMAND --help' for more information on a command.
+
+For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hdocker -it epic_lalande[12Ds-it epic_lalande[16Dt-it epic_lalande[16Da-it epic_lalande[16Dr-it epic_lalande[16Dt-it epic_lalande[16D -it epic_lalande[16D[?2004l
+unknown shorthand flag: 't' in -t
+See 'docker start --help'.
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hdocker start -it epic_lalande[P[13C [14D[?2004l
+root@e68cc0cd02e3:/usr/src/app# ls
+app.js	bin  node_modules  package-lock.json  package.json  public  routes  views
+root@e68cc0cd02e3:/usr/src/app# wxit    exit
+exit
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hdocker start -i epic_lalande[1C[1C[1C[1C[1C[P[16C [17D[P[16C [17D[P[16C [17D[P[16C [17D[P[16C [17Dr -i epic_lalande[16Dy -i epic_lalande[16D[P[16C [17D[P[16C [17Dr -i epic_lalande[16Du -i epic_lalande[16Dn -i epic_lalande[16D[1C -i epic_lalande[16D- -i epic_lalande[16Dp -i epic_lalande[16D# -i epic_lalande[16D0 -i epic_lalande[16D[P[16C [17D[P[16C [17D[P[16C [17D3 -i epic_lalande[16D0 -i epic_lalande[16D0 -i epic_lalande[16D0 -i epic_lalande[16D: -i epic_lalande[16D[P[16C [17D[1C -i epic_lalande[16D[P[15C [17D: -i epic_lalande[16D3 -i epic_lalande[16D9 -i epic_lalande[16D[P[16C [17D0 -i epic_lalande[16D0 -i epic_lalande[16D0 -i epic_lalande[16D[1C -i epic_lalande[16Dp3[2C0:3[2C0  -i epic_lalande[26D[1C 3[2C0:3[2C0  -i epic_lalande[26D[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[P[15C [16D[?2004l
+Unable to find image 'epic_lalande:latest' locally
+docker: Error response from daemon: pull access denied for epic_lalande, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hdocker run -p 3000:3000 -i epic_lalande[P[29C [30D[P[29C [30D[P[29C [30Ds -p 3[2C0:3[2C0 -i epic_lalande[29Dt -p 3[2C0:3[2C0 -i epic_lalande[29Da -p 3[2C0:3[2C0 -i epic_lalande[29Dr -p 3[2C0:3[2C0 -i epic_lalande[29Dt -p 3[2C0:3[2C0 -i epic_lalande[29D[?2004l
+unknown shorthand flag: 'p' in -p
+See 'docker start --help'.
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hdocker start -p 3000:3000 -i epic_lalande                             run -p 3000:3000 -i epic_lalande[32Dstart[11P[16C           [11D[21Drun -p 3000:3000 -i epic_lalande[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C          [22Dstart -i epic_lalande [13Dt epic_lalande[22D[6P[16C      [16Dkill epic_lalande[17Dstart epic_lalande[18Drun -it -p 3000 fs-hello-world bash: fs-hello-world bash[20D3 fs-hello-world bash[20D0 fs-hello-world bash[20D0 fs-hello-world bash[20D0 fs-hello-world bash[20D[?2004l
+root@57295bf19648:/usr/src/app# npm  px express-generator
+[1G[0JNeed to install the following packages:
+  express-generator@4.16.1
+Ok to proceed? (y) [20Gy
+[?25l[[100;90m..................[0m] / idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] / idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] / idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] / idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] / idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] / idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] / idealTree:85bfc4373bfefd98: [7msill[0m [35midealTree[0m buildDeps[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:85bfc4373bfefd98: [32;40mtiming[0m [35midealTree:#root[0m Completed in 433ms[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:85bfc4373bfefd98: [32;40mtiming[0m [35midealTree:#root[0m Completed in 433ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | reify:express-generator: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] - reify:express-generator: [7msill[0m [35maudit[0m bulk request {[0m[K[K[?25h[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m mkdirp@0.5.1: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
+[0m[?25l[[107;97m##################[0m] - reify:express-generator: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/express-generator/-/express-generator-4.16.1.tgz 82ms (cache miss)[0m[K[K[?25h
+  warning: the default view engine will not be jade in future releases
+  warning: use `--view=jade' or `--help' for additional options
+
+[1G[0Jdestination is not empty, continue? [y/N] [43Gy
+
+   [36mcreate[0m : public/
+   [36mcreate[0m : public/javascripts/
+   [36mcreate[0m : public/images/
+   [36mcreate[0m : public/stylesheets/
+   [36mcreate[0m : public/stylesheets/style.css
+   [36mcreate[0m : routes/
+   [36mcreate[0m : routes/index.js
+   [36mcreate[0m : routes/users.js
+   [36mcreate[0m : views/
+   [36mcreate[0m : views/error.jade
+   [36mcreate[0m : views/index.jade
+   [36mcreate[0m : views/layout.jade
+   [36mcreate[0m : app.js
+   [36mcreate[0m : package.json
+   [36mcreate[0m : bin/
+   [36mcreate[0m : bin/www
+
+   install dependencies:
+     $ npm install
+
+   run the app:
+     $ DEBUG=app:* npm start
+
+[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m 
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m New [31mmajor[39m version of npm available! [31m8.19.4[39m -> [32m9.8.1[39m
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m Changelog: [36mhttps://github.com/npm/cli/releases/tag/v9.8.1[39m
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m Run [32mnpm install -g npm@9.8.1[39m to update!
+[0m[37;40mnpm[0m [0m[36;40mnotice[0m[35m[0m 
+[0mroot@57295bf19648:/usr/src/app# npm i
+[?25l[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] \ idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] / idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] - idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[100;90m..................[0m] | idealTree:app: [7msill[0m [35midealTree[0m buildDeps[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:express: [7msill[0m [35mplaceDep[0m ROOT cookie-signature@1.0.6 OK for: cookie-parser@1.4.6 want: 1.0.6[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:express: [7msill[0m [35mplaceDep[0m ROOT cookie-signature@1.0.6 OK for: cookie-parser@1.4.6 want: 1.0.6[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:express: [32;40mtiming[0m [35midealTree:node_modules/express[0m Completed in 99ms[0m[K[[107;97m#########[0m[100;90m.........[0m] / idealTree:transformers: [7msill[0m [35mfetch manifest[0m uglify-js@~2.2.5[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:uglify-js: [7msill[0m [35mfetch manifest[0m graceful-readlink@>= 1.0.0[0m[K[[107;97m#####[0m[100;90m.............[0m] | idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] \ idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] / idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] / idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] / idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] / idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] / idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m#####[0m[100;90m.............[0m] / idealTree:with: [7msill[0m [35mplaceDep[0m ROOT acorn@2.7.0 OK for: constantinople@3.0.2 want: ^2.1.0[0m[K[[107;97m######[0m[100;90m............[0m] - idealTree:transformers: [32;40mtiming[0m [35midealTree:node_modules/transformers[0m Completed in 369ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] | idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] - idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ idealTree:with: [32;40mtiming[0m [35midealTree:node_modules/with[0m Completed in 2ms[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] - reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:cookie-parser: [7msill[0m [35maudit[0m bulk request {[0m[K[[107;97m#########[0m[100;90m.........[0m] \ reify:graceful-readlink: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/graceful-readlink/-/graceful-readlink-1.0.1.tgz 338ms (cache miss)[0m[K[[107;97m###########[0m[100;90m.......[0m] - reify:css-stringify: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/css-stringify/-/css-stringify-1.0.5.tgz 407ms (cache miss)[0m[K[K[?25h[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m constantinople@3.0.2: Please update to at least constantinople 3.1.1
+[0m[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m transformers@2.1.0: Deprecated, use jstransformer
+[0m[?25l[[107;97m##############[0m[100;90m....[0m] \ reify:accepts: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/accepts/-/accepts-1.3.8.tgz 398ms (cache miss)[0m[K[[107;97m#################[0m[100;90m.[0m] | reify:qs: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/qs/-/qs-6.5.2.tgz 458ms (cache miss)[0m[K[K[?25h[37;40mnpm[0m [0m[30;43mWARN[0m [0m[35mdeprecated[0m jade@1.11.0: Jade has been renamed to pug, please install the latest version of pug instead of jade
+[0m[?25l[[107;97m##################[0m] | reify:clean-css: [32;40mhttp[0m [35mfetch[0m GET 200 https://registry.npmjs.org/clean-css/-/clean-css-3.4.28.tgz 541ms (cache miss)[0m[K[K[?25h
+added 99 packages, and audited 100 packages in 3s
+
+1 package is looking for funding
+  run `npm fund` for details
+
+[31m[1m8[22m[39m vulnerabilities (1 [1mlow[22m, 4 [31m[1mhigh[22m[39m, 3 [35m[1mcritical[22m[39m)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+root@57295bf19648:/usr/src/app# np  run   DEBUG- =ply ayground:           a[[  ppL :* npm start
+
+> app@0.0.0 start
+> node ./bin/www
+
+  [35;1mapp:server [0mListening on port 3000 [35m+0ms[0m
+[0mGET / [32m200 [0m92.365 ms - 170[0m
+[0mGET /stylesheets/style.css [32m200 [0m8.432 ms - 111[0m
+ls  [0mGET / [36m304 [0m30.283 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m28.875 ms - -[0m
+^C
+root@57295bf19648:/usr/src/app# ei xit
+exit
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hlls[?2004l
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air playground % [K[?2004hccd [?2004l
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air ~ % [K[?2004hcd lscd   d lls[?2004l
+Applications		Downloads		Movies			Pictures		Public			destination_folder	repos
+Desktop			Google Drive		Music			Postman			binding.gyp		myWebsite
+Documents		Library			My Drive		Postman Agent		build			package.json
+[1m[7m%[27m[1m[0m                                                                                                                                                                                         [0m[27m[24m[Jkennychow@Kais-MacBook-Air ~ % [K[?2004hf 
