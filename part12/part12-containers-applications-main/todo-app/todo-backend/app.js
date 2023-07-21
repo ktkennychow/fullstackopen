@@ -14,5 +14,6 @@ app.use(express.json());
 
 app.use('/', indexRouter);
 app.use('/todos', todosRouter);
+app.use('/todos/:id', todosRouter);
 
 module.exports = app;
