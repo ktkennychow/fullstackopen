@@ -62,5 +62,6 @@ typings/
 
 # docker data
 /mongo_data
+/redis_data
 
 

@@ -1,6 +1,10 @@
 const express = require('express');
-const { Todo } = require('../mongo')
 const router = express.Router();
+const { createClient } = require('redis');
+const redisClient = createClient();
+const { Todo } = require('../mongo')
+
+redisClient.on('error', err => console.log('Redis Client Error', err));
 
 /* GET todos listing. */
 router.get('/', async (_, res) => {
@@ -10,6 +14,9 @@ router.get('/', async (_, res) => {
 
 /* POST todo to listing. */
 router.post('/', async (req, res) => {
+  const counter = await redisClient.get('counter')
+  await redisClient.set('counter', counter + 1)
+  
   const todo = await Todo.create({
     text: req.body.text,
     done: false
@@ -54,6 +61,7 @@ singleRouter.put('/', async (req, res) => {
 });
 
 router.use('/:id', findByIdMiddleware, singleRouter)
+
 
 
 module.exports = router;
