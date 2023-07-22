@@ -11,12 +11,17 @@ router.get('/', async (req, res) => {
       console.log(err)
     } else {
       console.log(data)
-      res.send({
-        added_todos: data
-      });
+      if (parseInt(data) >= 0) {
+        res.send({
+          added_todos: parseInt(data)
+        });
+      } else {
+        res.send({
+          added_todos: 0
+        });
+      }
     }
   })
-
 })
 
 
