@@ -1,0 +1,188 @@
+Script started on Fri Jul 21 20:43:21 2023
+[1m[7m%[27m[1m[0m                                                  [0m[27m[24m[Jkennychow@Kais-MacBook-Air todo-backend % [K[?2004hddocker e [Kxxec an  [?2004l
+"docker exec" requires at least 2 arguments.
+See 'docker exec --help'.
+
+Usage:  docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+
+Execute a command in a running container
+[1m[7m%[27m[1m[0m                                                  [0m[27m[24m[Jkennychow@Kais-MacBook-Air todo-backend % [K[?2004hddocker e [Kxxec -t it todooback     -back- end-redis-1[?2004l
+"docker exec" requires at least 2 arguments.
+See 'docker exec --help'.
+
+Usage:  docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+
+Execute a command in a running container
+[1m[7m%[27m[1m[0m                                                  [0m[27m[24m[Jkennychow@Kais-MacBook-Air todo-backend % [K[?2004hdocker exec -it todo-backend-redis-1[K[1Cbash[?2004l
+[?2004hroot@5d63b6b8e94b:/data# redis-cli KEy Y *
+[?2004l(error) ERR unknown command 'KEY', with args beginning with: '*' 
+[?2004hroot@5d63b6b8e94b:/data# redis-cli KEY *[1@S
+[?2004l1) "counter"
+[?2004hroot@5d63b6b8e94b:/data# GET
+[?2004lbash: GET: command not found
+[?2004hroot@5d63b6b8e94b:/data# G redis-cli GET
+[?2004l(error) ERR wrong number of arguments for 'get' command
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"2"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli SET counter 900 1
+[?2004lOK
+[?2004hroot@5d63b6b8e94b:/data# redis-cli SET counter 90011
+[?2004lOK
+[?2004hroot@5d63b6b8e94b:/data# GET COUN    cout  unter
+[?2004lbash: GET: command not found
+[?2004hroot@5d63b6b8e94b:/data# G re  GET counterredis-cli SET counter 90011[Aoot@5d63b6b8e94b:/data# redis-cli [4PGET counter
+[K[Aroot@5d63b6b8e94b:/data# redis-cli GET counter[KGET[Kredis-cli KEYS *[1P *[1@S *GET[K[10@redis-cli GET counter
+[?2004l"2"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter[10PGET counterredis-cli SET counter 90011
+[?2004lOK
+[?2004hroot@5d63b6b8e94b:/data# redis-cli SET counter 90011[Aoot@5d63b6b8e94b:/data# redis-cli [4PGET counter
+[K[Aroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"9001"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterSET counter 90011
+[?2004lOK
+[?2004hroot@5d63b6b8e94b:/data# redis-cli SET counter 90011[Aoot@5d63b6b8e94b:/data# redis-cli [4PGET counter
+[K[Aroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"9001"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"90011"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterSET counter 90011
+[?2004lOK
+[?2004hroot@5d63b6b8e94b:/data# redis-cli SET counter 90011[Aoot@5d63b6b8e94b:/data# redis-cli [4PGET counter
+[K[Aroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"9001"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterSET counter 90011[Aoot@5d63b6b8e94b:/data# redis-cli [4PGET counter
+[K[Aroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"9002"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redic-cli DEL ocu   counter
+[?2004lbash: redic-cli: command not found
+[?2004hroot@5d63b6b8e94b:/data# redic-cli DEL counter[1P[1@s
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterc-cli DEL counters-cli GET counter
+[?2004l(nil)
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l(nil)
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 0
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l(nil)
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter\ 
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l(nil)
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counterGET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l(nil)
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l(nil)
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l(nil)
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l(nil)
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterc-cli DEL counters-cli GET counterSET counter 90011[Aoot@5d63b6b8e94b:/data# redis-cli [4PGET counter
+[K[Aroot@5d63b6b8e94b:/data# redis-cli GET counterSET counter 90011
+[?2004lOK
+[?2004hroot@5d63b6b8e94b:/data# redis-cli SET counter 90011[Aoot@5d63b6b8e94b:/data# redis-cli [4PDEL counter
+[K[Aroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l"9001"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"9001"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterSET counter 90011[Aoot@5d63b6b8e94b:/data# redis-cli [4PDEL counter
+[K[Aroot@5d63b6b8e94b:/data# redis-cli DEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l"NaN"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counterGET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counterDEL counterGET counter
+[?2004l"5"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"5"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"5"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l"NaN"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counterGET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l(nil)
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 0
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l"NaN"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"0"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l(nil)
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"6"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counter
+[?2004l(nil)
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"5"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counter
+[?2004l"5"
+[?2004hroot@5d63b6b8e94b:/data# redis-cli GET counterDEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counter
+[?2004l(integer) 1
+[?2004hroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterGET counterDEL counterGET counterSET counter 90011[Aoot@5d63b6b8e94b:/data# redis-cli [4PDEL counter
+[K[Aroot@5d63b6b8e94b:/data# redis-cli DEL counterGET counterDEL counterSET counter 90011
+[?2004lOK
+[?2004hroot@5d63b6b8e94b:/data# exit
+[?2004lexit
+[1m[7m%[27m[1m[0m                                                  [0m[27m[24m[Jkennychow@Kais-MacBook-Air todo-backend % [K[?2004heexit[?2004l
+
+Script done on Fri Jul 21 21:34:49 2023
